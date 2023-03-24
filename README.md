@@ -1,12 +1,6 @@
-# tfg
-l
-DC ó PN
-<<<<<<< HEAD
-g
-dfsfsdfsdfsfsdfsdf
-=======
-dlkjfhkej
->>>>>>> 59c6e07bef8c0e697745f029daa1f2d93078bc25
-afasff
-mohon
-efwfwfeww
+# Carousel de Películas Estilo NETFLIX con HTML5, CSS3 y Javascript.
+### [Tutorial: https://youtu.be/1ukG4FTmdWQ](https://youtu.be/1ukG4FTmdWQ)
+
+![Carousel de Películas Estilo NETFLIX con HTML5, CSS3 y Javascript.](https://raw.githubusercontent.com/falconmasters/p-gina-estilo-netflix/carousel/img/thumb.png)
+
+Por: [FalconMasters](http://www.falconmasters.com)
