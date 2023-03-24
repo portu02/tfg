@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* CARRUSEL */
+        .object-fit-cover-top {
+            object-fit: cover;
+            object-position: top;
+            width: 100%;
+            height: 70vh;
+            /* Altura del carrusel */
+        }
+
+        .gradiante {
+            background: linear-gradient(to top, black, rgba(255, 122, 89, 0));
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            text-align: left;
+        }
+
+        .textocarrusel {
+            left: 200px;
+            position: relative;
+        }
+
+
+        /* CABECERA */
+        :root {
+            --rojo: #E50914;
+            --fondo: #141414;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--fondo);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .contenedor {
+            width: 90%;
+            margin: auto;
+        }
+
+        header {
+            padding: 30px 0;
+        }
+
+        header .contenedor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logotipo {
+            font-family: 'Bebas Neue', cursive;
+            font-weight: normal;
+            color: var(--rojo);
+            font-size: 40px;
+        }
+
+        header nav a {
+            color: #AAA;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        header nav a:hover,
+        header nav a.activo {
+            color: #FFF;
+        }
+
+
+        /* HOJA */
+        #hoja {
+            margin-left: 5%;
+            margin-right: 5%;
+            background-color: black;
+            height: 500vh;
+        }
+
+        #cartelera {
+            top: 25px;
+            position: relative;
+            left: 20px;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        .linea {
+            height: 5px;
+            background-color: white;
+            width: auto;
+            top: 25px;
+            position: relative;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        #peliculas {
+            background-color: black;
+            top: 40px;
+            position: relative;
+            margin-left: 5%;
+            margin-right: 5%;
+            height: 70vh;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 20px 0;
+            align-items: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            #hoja {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+
+            .pelicula {
+                height: 200px;
+                width: 50px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            #hoja {
+                margin-left: 15%;
+                margin-right: 15%;
+            }
+
+            .pelicula {
+                height: 20px;
+                width: 50px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #hoja {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+        }
+
+
+        .pelicula {
+            background-color: green;
+            top: 20px;
+            height: 450px;
+            width: 300px;
+            position: relative;
+            background-image: url('https://res.cloudinary.com/odeoncloud/w_380%2Ch_543%2Cf_auto%2Cq_auto/v1678442440/wcloud/odeon/ps_10162.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <h2 class="logotipo">Richiliculas</h2>
+            <nav>
+                <a href="#" class="activo">Inicio</a>
+                <a href="#">Programas</a>
+                <a href="#">Películas</a>
+                <a href="#">Más Recientes</a>
+                <a href="#">Mi lista</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"
+        style="margin: 0 auto;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg"
+                    class="d-block w-100 object-fit-cover-top"
+                    alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg"
+                    style="max-height: 500px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block gradiante">
+                    <h5 class="textocarrusel">Indiana Jones</h5>
+                    <p class="textocarrusel">Descripción de la imagen 1</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+
+                <img src="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg"
+                    class="d-block w-100 object-fit-cover-top"
+                    alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg"
+                    style="max-height: 500px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block gradiante">
+                    <h5 class="textocarrusel">Título de la imagen 2</h5>
+                    <p class="textocarrusel">Descripción de la imagen 2</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg"
+                    class="d-block w-100 object-fit-cover-top"
+                    alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg"
+                    style="max-height: 500px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block gradiante">
+                    <h5 class="textocarrusel">Título de la imagen 3</h5>
+                    <p class="textocarrusel">Descripción de la imagen 3</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div id="hoja">
+        <div id="cartelera">
+            <h2>Cartelera</h2>
+        </div>
+        <div class="linea"></div>
+        <div id="peliculas">
+            <div class="pelicula">1</div>
+            <div class="pelicula">2</div>
+            <div class="pelicula">3</div>
+            <div class="pelicula">4</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
