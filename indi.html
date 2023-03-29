@@ -92,11 +92,17 @@
         #hoja {
             margin-left: 5%;
             margin-right: 5%;
-            background-color: black;
+            background-color: rgb(0, 0, 0);
             height: 500vh;
         }
 
         #cartelera {
+            top: 25px;
+            position: relative;
+            left: 20px;
+        }
+
+        #estrenos {
             top: 25px;
             position: relative;
             left: 20px;
@@ -110,23 +116,29 @@
             height: 5px;
             background-color: white;
             width: auto;
-            top: 25px;
+
             position: relative;
             margin-left: 20px;
             margin-right: 20px;
         }
 
+        .linea1 {
+            margin-top: 25px;
+        }
+
+        .linea2 {
+            margin-top: 25px;
+        }
+
         #peliculas {
             background-color: black;
-            top: 40px;
+            margin-top: 40px;
             position: relative;
-            margin-left: 5%;
-            margin-right: 5%;
-            height: 70vh;
+            gap: 0 20px;
             display: flex;
-            justify-content: space-evenly;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 20px 0;
+            /*gap: 20px 0;*/
             align-items: flex-start;
         }
 
@@ -164,16 +176,136 @@
 
         .pelicula {
             background-color: green;
-            top: 20px;
-            height: 450px;
-            width: 300px;
+            height: 400px;
+            width: 250px;
             position: relative;
             background-image: url('https://res.cloudinary.com/odeoncloud/w_380%2Ch_543%2Cf_auto%2Cq_auto/v1678442440/wcloud/odeon/ps_10162.jpg');
             background-size: cover;
             background-position: center;
+            margin-top: 15px;
+            border-radius: 10px;
         }
 
+        .pelicula:hover {
+            border: 2px solid white;
+            /* margin-top: 0px;*/
+            transition: 0.2s;
+            transform: 0.2s;
+            cursor: pointer;
+            transform: scale(1.08);
+            z-index: 2;
+        }
+
+        #peliculasestrenos {
+            background-color: black;
+            margin-top: 40px;
+            position: relative;
+            gap: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            /*gap: 20px 0;*/
+            align-items: flex-start;
+        }
+
+        .peliculaestreno {
+            background-color: green;
+            height: 250px;
+            width: 400px;
+            position: relative;
+            background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/indiana-jones-dial-destino-1676266852.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .peliculaestreno:hover {
+            border: 2px solid white;
+            /* margin-top: 0px;*/
+            transition: 0.2s;
+            transform: 0.2s;
+            cursor: pointer;
+            transform: scale(1.09);
+            z-index: 2;
+        }
+
+        .play {
+            width: 50%;
+            height: auto;
+        }
+
+        /* Video de Trailer */
+        #video {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        #trailer {
+            width: 57.79vh;
+            height: 32.5vh;
+        }
+
+        @media (min-width: 1200px) {
+            #trailer {
+                width: 115.58vh;
+                height: 65.01vh;
+            }
+        }
+
+        .videofondo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            opacity: 0.8;
+            z-index: 9998;
+        }
     </style>
+    <script>
+        window.onload = function () {
+            Array.from(document.getElementsByClassName("peliculaestreno")).map(
+                m => m.addEventListener("click",
+                    function () {
+                        let expandirVideo = document.getElementById("video");
+                        //
+                        //SACO EL CODIGO DEL TRAILER DEL ALT DE LA IMAGEN
+                        //
+                        let nombreTrailer = this.querySelector("img").getAttribute("alt");
+
+                        expandirVideo.innerHTML = '<iframe id="trailer" src="https://www.youtube.com/embed/' + nombreTrailer + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+
+                        let elemento = document.getElementById("videofondo");
+                        elemento.setAttribute("class", "videofondo");
+
+                        expandirVideo.style.display = "block";
+                    }
+                ));
+
+            document.getElementById("videofondo").addEventListener("click",
+                function () {
+                    let expandirVideo = document.getElementById("video");
+
+                    expandirVideo.style.display = "none";
+                    document.getElementById("videofondo").setAttribute("class", "");
+
+                    //PARAR VIDEO
+                    let videoFrame = expandirVideo.querySelector("iframe");
+                    videoFrame.src = videoFrame.src;
+                }
+            );
+        }
+    </script>
 </head>
 
 <body>
@@ -249,15 +381,38 @@
         <div id="cartelera">
             <h2>Cartelera</h2>
         </div>
-        <div class="linea"></div>
+        <div class="linea1 linea"></div>
         <div id="peliculas">
             <div class="pelicula">1</div>
             <div class="pelicula">2</div>
             <div class="pelicula">3</div>
             <div class="pelicula">4</div>
+            <div class="pelicula">1</div>
+            <div class="pelicula">2</div>
+            <div class="pelicula">3</div>
+            <div class="pelicula">3</div>
         </div>
+
+
+        <div id="estrenos">
+            <h2>Próximos Estrenos</h2>
+        </div>
+        <div class="linea2 linea"></div>
+        <div id="peliculasestrenos">
+            <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play"
+                    src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play"
+                    src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play"
+                    src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+        </div>
+
+
     </div>
 
+
+    <div id="video"></div>
+    <div id="videofondo"></div>
 </body>
 
 </html>
