@@ -2,20 +2,26 @@
 function horario($hora)
 {
     switch ($hora) {
-        case 4:
-            $hora = "16:00:00";
+        case 22:
+            $hora = "22:00:00";
             break;
-        case 3:
-            $hora = "18:00:00";
+        case 21:
+            $hora = "21:00:00";
             break;
-        case 2:
+        case 20:
             $hora = "20:00:00";
             break;
-        case 1:
-            $hora = "22:00:00";
+        case 19:
+            $hora = "19:00:00";
+            break;
+        case 18:
+            $hora = "18:00:00";
+            break;
+        case 16:
+            $hora = "16:00:00";
             break;
         default:
-            $hora = "22:00:00";
+            $hora = "17:00:00";
             break;
     }
 
@@ -27,10 +33,11 @@ $servidor = "localhost";
 $usuario = "root";
 $clave = "";
 $sql = "";
+$dbname = "cine";
 
 /* SACAR ARRAY SALAS */
 try {
-    $conn = new PDO("mysql:host=$servidor;dbname=pruebacine;charset=utf8", $usuario, $clave);
+    $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->prepare("SELECT COUNT(id_sala) AS num_salas FROM sala");
@@ -40,17 +47,9 @@ try {
 
     if (count($salasarray) > 0) {
         $numsalas = $salasarray[0]["num_salas"];
-    }else{
-        $numsalas = 0;
+    } else {
+        $numsalas = 1;
     }
-
-    $elementosHorarios = array(1, 2, 3, 4);
-    $arraySalas = array();
-
-    for ($i = 0; $i < $numsalas; $i++) {
-        $arraySalas[] = $elementosHorarios;
-    }
-
 } catch (PDOException $e) {
     echo "Error" . $e->getMessage();
 }
@@ -58,7 +57,7 @@ $conn = null;
 
 /* SACAR ARRAY PELICULAS */
 try {
-    $conn = new PDO("mysql:host=$servidor;dbname=pruebacine;charset=utf8", $usuario, $clave);
+    $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->prepare("SELECT * FROM pelicula");
@@ -75,10 +74,10 @@ $conn = null;
 
 /* SACAR ARRAY DIAS */
 try {
-    $conn = new PDO("mysql:host=$servidor;dbname=pruebacine;charset=utf8", $usuario, $clave);
+    $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT dia FROM horario GROUP BY dia");
+    $stmt = $conn->prepare("SELECT fecha FROM horario GROUP BY fecha");
 
     $stmt->execute();
     $horarioarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,7 +85,7 @@ try {
     $arraydia = array();
     if (count($horarioarray) > 0) {
         foreach ($horarioarray as $a) {
-            $arraydia[] = $a["dia"];
+            $arraydia[] = $a["fecha"];
         }
     }
 } catch (PDOException $e) {
@@ -96,14 +95,14 @@ $conn = null;
 
 /* ELIMINAR HORARIOS ANTIGUOS */
 try {
-    $conn = new PDO("mysql:host=$servidor;dbname=pruebacine;charset=utf8", $usuario, $clave);
+    $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $fecha_anteayer = new DateTime();
     $fecha_anteayer->modify('-2 day');
     $fecha_antigua = $fecha_anteayer->format('Y-m-d');
 
-    $stmt = $conn->prepare("DELETE FROM horario WHERE dia <= :fecha;");
+    $stmt = $conn->prepare("DELETE FROM horario WHERE fecha <= :fecha;");
 
     $stmt->bindParam(":fecha", $fecha_antigua);
     $stmt->execute();
@@ -127,7 +126,9 @@ for ($iu = 0; $iu < 8; $iu++) {
     /* SI EXISTE LA FECHA NO LA VUELVE A INSERTAR */
     if (!in_array($fecha_actual->format('Y-m-d'), $arraydia)) {
 
+        //SOLO COGE LAS PELICULAS QUE TODAVIA NO SE HAN ESTRENADO strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])
         $peliculas = array();
+        $peliculasduracion = array();
         foreach ($registroarray as $a) {
             //SI ES EL MISMO DIA O ANTERIOR PROBABILIDAD 5
             if (($a["fecha_estreno"] == $fecha_actual->format('Y-m-d') || ($a["fecha_estreno"] == $fecha_ayer->format('Y-m-d'))) && strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
@@ -139,34 +140,44 @@ for ($iu = 0; $iu < 8; $iu++) {
             } elseif (strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])) {
                 $peliculas[$a["id_pelicula"]] = 1;
             }
+
+            //ARRAY DURACION PELICULAS
+            if (strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
+                $peliculasduracion[$a["id_pelicula"]] = $a["duracion"];
+            }
         }
 
-        
-        foreach ($arraySalas as $indice => $indiarray) {
+        //EL HORARIO EMPIEZA A LAS 16:00
+        $horatiempo = 16;
 
-            foreach ($indiarray as $valor) {
+        for ($ns = 1; $ns <= $numsalas; $ns++) {
 
+            echo $fecha_actual->format('Y-m-d');
+
+            //EL HORARIO NO PUEDE SER MAYOR DE LAS 22:00
+            while ($horatiempo <= 22) {
+
+                /* COGER PELICULA RANDOM CON LAS PROBABILIDADES */
                 $keys = array();
                 foreach ($peliculas as $key => $value) {
                     for ($i = 0; $i < $value; $i++) {
                         $keys[] = $key;
                     }
                 }
-
                 $peliculaElegida = $keys[array_rand($keys)];
 
                 //RESTA -1 A LA PROBABILIDAD
                 $peliculas[$peliculaElegida] = max($peliculas[$peliculaElegida] - 1, 1);
 
-
-                /* INSERTAR HORARIO */
+                /* INSERTAR */
                 try {
-                    $conn = new PDO("mysql:host=$servidor;dbname=pruebacine;charset=utf8", $usuario, $clave);
+                    $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stmt = $conn->prepare("INSERT INTO horario (dia, hora, id_sala, id_pelicula) VALUES (:dia,:hora,:sala,:pelicula)");
 
-                    $hora = horario($valor);
-                    $sala = $indice + 1;
+                    $stmt = $conn->prepare("INSERT INTO horario (fecha, hora, precio, id_pelicula, id_sala) VALUES (:dia,:hora,8,:pelicula,:sala)");
+
+                    $hora = horario($horatiempo);
+                    $sala = $ns;
                     $dia = $fecha_actual->format('Y-m-d');
                     $stmt->bindParam(":dia", $dia);
                     $stmt->bindParam(":hora", $hora);
@@ -177,15 +188,26 @@ for ($iu = 0; $iu < 8; $iu++) {
                     echo "Error" . $e->getMessage();
                 }
                 $conn = null;
-                
-                /* MOSTRAR LO QUE SE INSERTA */
-                echo $fecha_actual->format('Y-m-d');
-                echo "<b>" . $peliculas[$peliculaElegida] . "</b>";
+
+                //MOSTRAR LO QUE INSERTA
+                echo " => SALA [" . $ns;
+                echo "] <b>" . $peliculas[$peliculaElegida] . "</b>";
                 echo " PELICULA (" . $peliculaElegida . ") ";
-                echo " HORA -" . horario($valor);
+                echo " HORA -" . horario($horatiempo);
+                //
+
+                if ($peliculasduracion[$peliculaElegida] >= 138) {
+                    $horatiempo += 3;
+                } else {
+                    $horatiempo += 2;
+                }
+                echo " || ";
             }
+
+            $horatiempo = 16;
             echo "<br>";
         }
+
         echo "<hr>";
     }
 }
