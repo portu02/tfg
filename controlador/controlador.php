@@ -1,0 +1,40 @@
+<?php
+include_once("../modelo/pelicula.php");
+include_once("../modelo/horario.php");
+
+$peliculas = new Pelicula("", "", "", "", "", "", "", "", "");
+$arraypeliculas = $peliculas->obtieneTodos();
+
+$horarios = new Horario("", "", "", "", "", "");
+
+
+if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
+    if (isset($_POST["pelicula"])) {
+        $id_pelicula = $_POST["pelicula"]-1;
+        $arrayhorarios = $horarios->obtieneDeIDPelicula(9);
+
+        foreach ($arrayhorarios as $a) {
+            $diasimple = $a["fecha"];
+            $diaini = substr($diasimple, 8, 2);
+            $diafin = substr($diasimple, 5, 2);
+            $dia = $diaini . "/" . $diafin;
+            $array[] = $dia;
+        }
+        $b = array_unique($array);
+        $id_dia = array_shift($b);
+        
+    } elseif (isset($_POST["id_pelicula"])) {
+        $id_pelicula = $_POST["id_pelicula"];
+        $arrayhorarios = $horarios->obtieneDeIDPelicula(9);
+    }
+    if (isset($_POST["dia"])) {
+        $id_pelicula = $_POST["id_pelicula"];
+        $id_dia = $_POST["dia"];
+        $arrayhorarios = $horarios->obtieneDeIDPelicula(9);
+    }
+    
+    require_once("../vista/pelicula.php");
+}else{
+    require_once("../vista/index.php");
+}
+
