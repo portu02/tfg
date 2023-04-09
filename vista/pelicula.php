@@ -28,10 +28,8 @@
     </div>
     <div id="menudias">
         <form action="" method="post">
-            <?php
-            echo "<input type='text' value='" . $id_pelicula . "' name='id_pelicula' hidden/>";
-            echo "<input type='text' value='" . $id_dia . "' name='id_dia' hidden/>";
-            ?>
+            <input type='text' value='<?= $id_pelicula ?? "" ?>' name='id_pelicula' hidden/>
+            <input type='text' value='<?= $id_dia ?? "" ?>' name='id_dia' hidden/>
 
             <div id="dias">
                 <div class="dia">
@@ -78,6 +76,26 @@
         </div>
         <div id="horas">
             <div class="hora">Horario</div>
+            <?php
+            $diasimple = $id_dia;
+            $diaini = substr($diasimple, 0, 2);
+            $diafin = substr($diasimple, 3, 2);
+            $dia = $diafin . "-" . $diaini;
+
+            foreach ($arrayhorarios as $a) {
+                if (strpos($a["fecha"], $dia)) {
+                    $arrays[] = substr($a["hora"], 0, 5);
+                }
+            }
+
+            //ORDENAR LAS HORAS, NO SE REPITAN LAS HORAS
+            sort($arrays);
+            $arrays = array_unique($arrays);
+
+            foreach ($arrays as $a) {
+                echo '<div class="hora"><input class="botonhora" type="submit" value="' . $a . '" name="hora"></div>';
+            }
+            ?>
         </div>
 
         <div id="videograndetrailer">

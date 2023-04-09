@@ -11,7 +11,7 @@ $horarios = new Horario("", "", "", "", "", "");
 if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
     if (isset($_POST["pelicula"])) {
         $id_pelicula = $_POST["pelicula"]-1;
-        $arrayhorarios = $horarios->obtieneDeIDPelicula(9);
+        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula+1);
 
         foreach ($arrayhorarios as $a) {
             $diasimple = $a["fecha"];
@@ -25,12 +25,12 @@ if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
         
     } elseif (isset($_POST["id_pelicula"])) {
         $id_pelicula = $_POST["id_pelicula"];
-        $arrayhorarios = $horarios->obtieneDeIDPelicula(9);
+        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula+1);
     }
     if (isset($_POST["dia"])) {
         $id_pelicula = $_POST["id_pelicula"];
         $id_dia = $_POST["dia"];
-        $arrayhorarios = $horarios->obtieneDeIDPelicula(9);
+        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula+1);
     }
     
     require_once("../vista/pelicula.php");
