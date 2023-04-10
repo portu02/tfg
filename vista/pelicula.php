@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../vista/css/estilos.css">
+    <link rel="stylesheet" href="vista/css/estilos.css">
 </head>
 
 <body>
@@ -59,7 +59,7 @@
 
     <div id="hoja">
         <div id="escenapelicula">
-            <div class="pelicula" style="background-image: url('../vista/fotos/<?= $arraypeliculas[$id_pelicula]["imagen"] ?> ');"></div>
+            <div class="pelicula" style="background-image: url('vista/fotos/<?= $arraypeliculas[$id_pelicula]["imagen"] ?> ');"></div>
             <div id="info">
                 <h3><?= $arraypeliculas[$id_pelicula]["nombre"] ?></h3>
                 <h4>Sinopsis</h4>

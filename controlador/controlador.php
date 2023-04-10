@@ -1,6 +1,6 @@
 <?php
-include_once("../modelo/pelicula.php");
-include_once("../modelo/horario.php");
+include_once("modelo/pelicula.php");
+include_once("modelo/horario.php");
 
 $peliculas = new Pelicula("", "", "", "", "", "", "", "", "");
 $arraypeliculas = $peliculas->obtieneTodos();
@@ -33,8 +33,8 @@ if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
         $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula+1);
     }
     
-    require_once("../vista/pelicula.php");
+    require_once("vista/pelicula.php");
 }else{
-    require_once("../vista/index.php");
+    require_once("vista/principal.php");
 }
 
