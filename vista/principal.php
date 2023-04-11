@@ -74,15 +74,14 @@
         <div class="linea1 linea"></div>
         <form action="" method="post">
         <div id="peliculas">
-            <?php foreach ($arraypeliculas as $a) { ?>
+            <?php foreach ($arraypeliculaspaginado as $a) { ?>
                 <div class="pelicula" style="background-image: url('vista/fotos/<?= $a["imagen"] ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
             <?php } ?> 
         </div>
         </form>
         
         <div id='contain'>
-            <div id='dentro'>
-                
+            <div id='dentro'>           
         <?php
         foreach ($num as $a) {
 
