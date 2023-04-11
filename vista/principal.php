@@ -79,7 +79,38 @@
             <?php } ?> 
         </div>
         </form>
+        
+        <div id='contain'>
+            <div id='dentro'>
+                
+        <?php
+        foreach ($num as $a) {
 
+            if (isset($_GET["pagina"])) {
+                if ($_GET["pagina"] == $a) {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div id='colorea' class='dentro'></div></a>
+        <?php
+                } else {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div class='dentro'></div></a>
+        <?php
+                }
+            } else {
+                if ($a == 1) {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div id='colorea' class='dentro'></div></a>
+        <?php
+                } else {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div class='dentro'></div></a>
+        <?php
+                }
+            }
+        }
+        ?>
+        </div></div>
+        
 
         <div id="estrenos">
             <h2>Próximos Estrenos</h2>
