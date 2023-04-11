@@ -367,7 +367,7 @@
             transition: 0.2s;
             transform: 0.2s;
         }
-        
+
         #escenapelicula {
             background-color: black;
             top: 50px;
@@ -497,4 +497,46 @@
                 width: 115.58vh;
                 height: 65.01vh;
             }
+        }
+
+        /* PAGINACION */
+        #contain {
+            margin-top: 40px;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #dentro {
+            background-color: transparent;
+            position: relative;
+            width: 50%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px 20px;
+            flex-wrap: wrap;
+        }
+
+        #dentro a{
+            text-decoration: none;
+        }
+
+        .dentro {
+            background-color: #737373;
+            color: white;
+            width: 50px;
+            height:10px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #colorea {
+            background-color: white;
+            color: white;
+            font-weight: bold;
         }
