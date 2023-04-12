@@ -61,12 +61,42 @@
         <div class="linea1 linea"></div>
         <form action="" method="post">
         <div id="peliculas">
-            <?php foreach ($arraypeliculas as $a) { ?>
+            <?php foreach ($arraypeliculaspaginado as $a) { ?>
                 <div class="pelicula" style="background-image: url('vista/fotos/<?= $a["imagen"] ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
             <?php } ?> 
         </div>
         </form>
+        
+        <div id='contain'>
+            <div id='dentro'>           
+        <?php
+        foreach ($num as $a) {
 
+            if (isset($_GET["pagina"])) {
+                if ($_GET["pagina"] == $a) {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div id='colorea' class='dentro'></div></a>
+        <?php
+                } else {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div class='dentro'></div></a>
+        <?php
+                }
+            } else {
+                if ($a == 1) {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div id='colorea' class='dentro'></div></a>
+        <?php
+                } else {
+        ?>
+                    <a href='?pagina=<?= ($a) ?>'><div class='dentro'></div></a>
+        <?php
+                }
+            }
+        }
+        ?>
+        </div></div>
+        
 
         <div id="estrenos">
             <h2>Próximos Estrenos</h2>

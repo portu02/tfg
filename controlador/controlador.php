@@ -1,12 +1,16 @@
 <?php
 include_once("modelo/pelicula.php");
 include_once("modelo/horario.php");
+include_once("modelo/paginacion.php");
 
 $peliculas = new Pelicula("", "", "", "", "", "", "", "", "");
 $arraypeliculas = $peliculas->obtieneTodos();
 
 $horarios = new Horario("", "", "", "", "", "");
 
+$pagina = new Paginacion(4, "pelicula");
+$arraypeliculaspaginado = $pagina->mostrar();
+$num = $pagina->numeritos();
 
 if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
     if (isset($_POST["pelicula"])) {
