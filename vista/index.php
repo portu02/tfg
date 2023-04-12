@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="vista/js/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../vista/css/estilos.css">
+    <script src="../vista/js/script.js"></script>
 </head>
 
 <body>
+    <!-- menu principal -->
     <?php
-    include "vista/menu.php";
+        include "vista/menu.php";
     ?>
-
+    <!--carrusel de imagenes  -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="margin: 0 auto;">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -25,7 +29,7 @@
             <div class="carousel-item active">
                 <img src="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" class="d-block w-100 object-fit-cover-top" alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" style="max-height: 500px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block gradiante">
-                    <h5 class="textocarrusel"></h5>
+                    <h5 class="textocarrusel">Indiana Jones</h5>
                     <p class="textocarrusel">Descripción de la imagen 1</p>
                 </div>
             </div>
@@ -54,50 +58,20 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-
+    <!-- peliculas -->
     <div id="hoja">
         <div id="cartelera">
             <h2>Cartelera</h2>
         </div>
         <div class="linea1 linea"></div>
         <form action="" method="post">
-        <div id="peliculas">
-            <?php foreach ($arraypeliculaspaginado as $a) { ?>
-                <div class="pelicula" style="background-image: url('vista/fotos/<?= $a["imagen"] ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
-            <?php } ?> 
-        </div>
+            <div id="peliculas">
+                <?php foreach ($arraypeliculas as $a) { ?>
+                    <div class="pelicula" style="background-image: url('../vista/fotos/<?= $a["imagen"] ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
+                <?php } ?> 
+            </div>
         </form>
-        
-        <div id='contain'>
-            <div id='dentro'>           
-        <?php
-        foreach ($num as $a) {
 
-            if (isset($_GET["pagina"])) {
-                if ($_GET["pagina"] == $a) {
-        ?>
-                    <a href='?pagina=<?= ($a) ?>'><div id='colorea' class='dentro'></div></a>
-        <?php
-                } else {
-        ?>
-                    <a href='?pagina=<?= ($a) ?>'><div class='dentro'></div></a>
-        <?php
-                }
-            } else {
-                if ($a == 1) {
-        ?>
-                    <a href='?pagina=<?= ($a) ?>'><div id='colorea' class='dentro'></div></a>
-        <?php
-                } else {
-        ?>
-                    <a href='?pagina=<?= ($a) ?>'><div class='dentro'></div></a>
-        <?php
-                }
-            }
-        }
-        ?>
-        </div></div>
-        
 
         <div id="estrenos">
             <h2>Próximos Estrenos</h2>
