@@ -77,7 +77,7 @@ try {
         //SACAR TODAS LAS BUTACAS
         try {
 
-            $stmt = $conexion->conex()->prepare("SELECT * FROM sala INNER JOIN butaca ON sala.id_sala=butaca.id_sala ORDER BY fila,columna");
+            $stmt = $conexion->conex()->prepare("SELECT * FROM sala INNER JOIN butaca ON sala.id_sala=butaca.id_sala ORDER BY fila DESC ,columna DESC");
 
             $stmt->execute();
 
@@ -100,19 +100,27 @@ try {
                 $max_fila = $butaca['fila'];
             }
         }
+
         //css
-        echo "<style>td{width:20px;height:20px;}img{width:50px}table{background-color:#00001a;border-collapse: collapse;}</style>";
+        echo "<style>
+        td{width:50px;height:50px;position:relative;}
+        img{width:50px}
+        table{background-color:#00001a;border-collapse: collapse;}
+        .checkbox {position: absolute;top: 0;left: 0;width: 50px;opacity:0;height: 50px; cursor: pointer;}
+        </style>";
+
+
         echo "<table>";
         $numbutaca = 0;
 
-        for ($filas = 1; $filas <= $max_fila; $filas++) {
+        for ($filas = $max_fila; $filas > 0; $filas--) {
             echo "<tr>";
-            for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
+            for ($columnas = $max_columna; $columnas > 0; $columnas--) {
 
                 if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
                     //condicionales de color de butacas
                     if ($arraybutaca[$numbutaca]["color"] == "Verde") {
-                        echo "<td><img src='butaca_verde.png'></td>";
+                        echo "<td><img src='butaca_verde.png' class='butaca'><input type='checkbox' class='checkbox'></td>";
                     } elseif ($arraybutaca[$numbutaca]["color"] == "Rojo") {
                         echo "<td><img src='butaca_roja.png'></td>";
                     } elseif ($arraybutaca[$numbutaca]["color"] == "Gris") {
@@ -131,3 +139,18 @@ try {
 } catch (PDOException $e) {
     echo "Error" . $e->getMessage();
 }
+?>
+<script>
+    window.onload = function() {
+        let arraycheckbox = Array.from(document.getElementsByClassName('checkbox'));
+        arraycheckbox.map(
+            m => m.addEventListener('change', function() {
+                let butaca = this.previousElementSibling;
+                if (this.checked) {
+                    butaca.src = 'butaca_roja.png';
+                } else {
+                    butaca.src = 'butaca_verde.png';
+                }
+            }));
+    }
+</script>
