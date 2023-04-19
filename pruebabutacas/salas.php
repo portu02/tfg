@@ -100,41 +100,49 @@ try {
                 $max_fila = $butaca['fila'];
             }
         }
+?>
 
-        //css
-        echo "<style>
-        td{width:50px;height:50px;position:relative;}
-        img{width:50px}
-        table{background-color:#00001a;border-collapse: collapse;}
-        .checkbox {position: absolute;top: 0;left: 0;width: 50px;opacity:0;height: 50px; cursor: pointer;}
-        </style>";
+        <table id='butacas'>
+            <?php
+            $numbutaca = 0;
 
+            for ($filas = $max_fila; $filas > 0; $filas--) {
+            ?>
+                <tr>
+                    <?php
+                    for ($columnas = $max_columna; $columnas > 0; $columnas--) {
 
-        echo "<table>";
-        $numbutaca = 0;
+                        if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
+                            //condicionales de color de butacas
+                            if ($arraybutaca[$numbutaca]["color"] == "Verde") {
+                    ?>
+                                <td><img src='butaca_verde.png' class='butaca'><input type='checkbox' class='checkbox'></td>
+                            <?php
+                            } elseif ($arraybutaca[$numbutaca]["color"] == "Rojo") {
+                            ?>
+                                <td><img src='butaca_roja.png'></td>
+                            <?php
+                            } elseif ($arraybutaca[$numbutaca]["color"] == "Gris") {
+                            ?>
+                                <td><img src='butaca_gris.png'></td>
 
-        for ($filas = $max_fila; $filas > 0; $filas--) {
-            echo "<tr>";
-            for ($columnas = $max_columna; $columnas > 0; $columnas--) {
+                            <?php
+                            }
 
-                if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
-                    //condicionales de color de butacas
-                    if ($arraybutaca[$numbutaca]["color"] == "Verde") {
-                        echo "<td><img src='butaca_verde.png' class='butaca'><input type='checkbox' class='checkbox'></td>";
-                    } elseif ($arraybutaca[$numbutaca]["color"] == "Rojo") {
-                        echo "<td><img src='butaca_roja.png'></td>";
-                    } elseif ($arraybutaca[$numbutaca]["color"] == "Gris") {
-                        echo "<td><img src='butaca_gris.png'></td>";
+                            $numbutaca++;
+                        } else {
+                            ?>
+                            <td></td>
+                    <?php
+                        }
                     }
-
-                    $numbutaca++;
-                } else {
-                    echo "<td></td>";
-                }
+                    ?>
+                </tr>
+            <?php
             }
-            echo "</tr>";
-        }
-        echo "</table>";
+            ?>
+        </table>
+<?php
     }
 } catch (PDOException $e) {
     echo "Error" . $e->getMessage();
@@ -154,3 +162,29 @@ try {
             }));
     }
 </script>
+<style>
+    #butacas td {
+        width: 50px;
+        height: 50px;
+        position: relative;
+    }
+
+    #butacas img {
+        width: 50px
+    }
+
+    #butacas {
+        background-color: #00001a;
+        border-collapse: collapse;
+    }
+
+    .checkbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        opacity: 0;
+        height: 50px;
+        cursor: pointer;
+    }
+</style>
