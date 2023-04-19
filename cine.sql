@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2023 a las 21:47:49
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 19-04-2023 a las 19:57:10
+-- Versión del servidor: 8.0.28
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,12 +28,82 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `butaca` (
-  `id_butaca` smallint(6) NOT NULL,
-  `numero` smallint(6) NOT NULL,
-  `fila` smallint(6) NOT NULL,
+  `id_butaca` smallint NOT NULL,
+  `columna` smallint NOT NULL,
+  `fila` smallint NOT NULL,
   `color` enum('Verde','Rojo','Gris') NOT NULL,
-  `id_sala` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_sala` smallint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `butaca`
+--
+
+INSERT INTO `butaca` (`id_butaca`, `columna`, `fila`, `color`, `id_sala`) VALUES
+(558, 1, 1, 'Verde', 24),
+(559, 2, 1, 'Verde', 24),
+(560, 5, 1, 'Verde', 24),
+(561, 6, 1, 'Verde', 24),
+(562, 9, 1, 'Verde', 24),
+(563, 10, 1, 'Verde', 24),
+(564, 1, 2, 'Verde', 24),
+(565, 2, 2, 'Rojo', 24),
+(566, 5, 2, 'Verde', 24),
+(567, 6, 2, 'Verde', 24),
+(568, 9, 2, 'Verde', 24),
+(569, 10, 2, 'Verde', 24),
+(570, 1, 3, 'Verde', 24),
+(571, 2, 3, 'Verde', 24),
+(572, 5, 3, 'Verde', 24),
+(573, 6, 3, 'Verde', 24),
+(574, 9, 3, 'Verde', 24),
+(575, 10, 3, 'Verde', 24),
+(576, 1, 4, 'Verde', 24),
+(577, 2, 4, 'Verde', 24),
+(578, 5, 4, 'Verde', 24),
+(579, 6, 4, 'Verde', 24),
+(580, 9, 4, 'Verde', 24),
+(581, 10, 4, 'Verde', 24),
+(582, 1, 5, 'Verde', 24),
+(583, 2, 5, 'Verde', 24),
+(584, 5, 5, 'Verde', 24),
+(585, 6, 5, 'Verde', 24),
+(586, 9, 5, 'Verde', 24),
+(587, 10, 5, 'Verde', 24),
+(588, 1, 6, 'Verde', 24),
+(589, 2, 6, 'Verde', 24),
+(590, 5, 6, 'Verde', 24),
+(591, 6, 6, 'Gris', 24),
+(592, 9, 6, 'Verde', 24),
+(593, 10, 6, 'Verde', 24),
+(594, 1, 7, 'Verde', 24),
+(595, 2, 7, 'Verde', 24),
+(596, 5, 7, 'Verde', 24),
+(597, 6, 7, 'Verde', 24),
+(598, 9, 7, 'Verde', 24),
+(599, 10, 7, 'Verde', 24),
+(600, 1, 8, 'Verde', 24),
+(601, 2, 8, 'Verde', 24),
+(602, 5, 8, 'Verde', 24),
+(603, 6, 8, 'Verde', 24),
+(604, 9, 8, 'Verde', 24),
+(605, 10, 8, 'Verde', 24),
+(606, 1, 9, 'Verde', 24),
+(607, 2, 9, 'Verde', 24),
+(608, 5, 9, 'Verde', 24),
+(609, 6, 9, 'Verde', 24),
+(610, 9, 9, 'Verde', 24),
+(611, 10, 9, 'Verde', 24),
+(612, 1, 10, 'Verde', 24),
+(613, 2, 10, 'Verde', 24),
+(614, 3, 10, 'Verde', 24),
+(615, 4, 10, 'Verde', 24),
+(616, 5, 10, 'Verde', 24),
+(617, 6, 10, 'Verde', 24),
+(618, 7, 10, 'Verde', 24),
+(619, 8, 10, 'Verde', 24),
+(620, 9, 10, 'Verde', 24),
+(621, 10, 10, 'Verde', 24);
 
 -- --------------------------------------------------------
 
@@ -42,13 +112,13 @@ CREATE TABLE `butaca` (
 --
 
 CREATE TABLE `horario` (
-  `id_horario` smallint(6) NOT NULL,
+  `id_horario` smallint NOT NULL,
   `fecha` date NOT NULL,
   `hora` varchar(200) NOT NULL,
   `precio` double NOT NULL,
-  `id_pelicula` smallint(6) NOT NULL,
-  `id_sala` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_pelicula` smallint NOT NULL,
+  `id_sala` smallint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `horario`
@@ -174,16 +244,16 @@ INSERT INTO `horario` (`id_horario`, `fecha`, `hora`, `precio`, `id_pelicula`, `
 --
 
 CREATE TABLE `pelicula` (
-  `id_pelicula` smallint(6) NOT NULL,
+  `id_pelicula` smallint NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `imagen` varchar(200) DEFAULT NULL,
   `sinopsis` varchar(2000) DEFAULT NULL,
-  `duracion` smallint(6) NOT NULL,
+  `duracion` smallint NOT NULL,
   `url` varchar(1000) DEFAULT NULL,
   `clasificacion` enum('TP','+7','+12','+16','+18') NOT NULL,
   `categoria` enum('Acción','Aventuras','Ciencia Ficción','Comedia','No-Ficción','Drama','Documental','Fantasía','Musical','Suspense','Terror','Thriller','Animación','Infantil') NOT NULL,
   `fecha_estreno` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pelicula`
@@ -218,12 +288,12 @@ INSERT INTO `pelicula` (`id_pelicula`, `nombre`, `imagen`, `sinopsis`, `duracion
 --
 
 CREATE TABLE `reserva` (
-  `id_reserva` smallint(6) NOT NULL,
-  `id_horario` smallint(6) NOT NULL,
-  `id_usuario` smallint(6) NOT NULL,
-  `entradas` smallint(6) NOT NULL,
+  `id_reserva` smallint NOT NULL,
+  `id_horario` smallint NOT NULL,
+  `id_usuario` smallint NOT NULL,
+  `entradas` smallint NOT NULL,
   `precio` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -232,24 +302,24 @@ CREATE TABLE `reserva` (
 --
 
 CREATE TABLE `sala` (
-  `id_sala` smallint(6) NOT NULL,
+  `id_sala` smallint NOT NULL,
   `descripcion` varchar(2000) DEFAULT NULL,
-  `capacidad` smallint(6) DEFAULT NULL,
+  `capacidad` smallint DEFAULT NULL,
   `habilitada` tinyint(1) NOT NULL,
-  `imagen` varchar(2000) DEFAULT NULL,
   `luxury` tinyint(1) NOT NULL,
   `lleno` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `sala`
 --
 
-INSERT INTO `sala` (`id_sala`, `descripcion`, `capacidad`, `habilitada`, `imagen`, `luxury`, `lleno`) VALUES
-(1, 'Sala infantil', 114, 1, '', 0, 0),
-(2, 'Sala infantil', 114, 1, NULL, 0, 0),
-(3, 'Sala infantil', 114, 1, NULL, 0, 0),
-(4, 'Sala infantil', 114, 1, NULL, 0, 0);
+INSERT INTO `sala` (`id_sala`, `descripcion`, `capacidad`, `habilitada`, `luxury`, `lleno`) VALUES
+(1, 'Sala infantil', 0, 1, 0, 0),
+(2, 'Sala infantil', 114, 1, 0, 0),
+(3, 'Sala infantil', 114, 1, 0, 0),
+(4, 'Sala infantil', 114, 1, 0, 0),
+(24, 'LA SALA', 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -258,7 +328,7 @@ INSERT INTO `sala` (`id_sala`, `descripcion`, `capacidad`, `habilitada`, `imagen
 --
 
 CREATE TABLE `usuario` (
-  `id_usuario` smallint(6) NOT NULL,
+  `id_usuario` smallint NOT NULL,
   `nombre` varchar(30) DEFAULT NULL,
   `apellido1` varchar(30) DEFAULT NULL,
   `apellido2` varchar(30) DEFAULT NULL,
@@ -266,7 +336,7 @@ CREATE TABLE `usuario` (
   `correo` varchar(50) DEFAULT NULL,
   `contrasena` char(64) DEFAULT NULL,
   `rol` char(13) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -330,31 +400,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `butaca`
 --
 ALTER TABLE `butaca`
-  MODIFY `id_butaca` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_butaca` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=622;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `id_horario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=606;
+  MODIFY `id_horario` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=606;
 
 --
 -- AUTO_INCREMENT de la tabla `pelicula`
 --
 ALTER TABLE `pelicula`
-  MODIFY `id_pelicula` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_pelicula` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `sala`
 --
 ALTER TABLE `sala`
-  MODIFY `id_sala` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_sala` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

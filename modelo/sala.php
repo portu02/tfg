@@ -60,17 +60,14 @@ class Sala extends Crud
     function actualizar()
     {
         try {
-            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET nombre=:nombre,imagen=:imagen,sinopsis=:sinopsis,duracion=:duracion,url=:url,clasificacion=:clasificacion,categoria=:categoria,fecha_estreno=:fecha_estreno WHERE id_pelicula=:id_pelicula;");
+            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET descripcion=:descripcion,capacidad=:capacidad,habilitada=:habilitada,luxury=:luxury,lleno=:lleno WHERE id_sala=:id_sala;");
 
-            $stmt->bindParam(":id_pelicula", $this->id_pelicula);
-            $stmt->bindParam(":nombre", $this->nombre);
-            $stmt->bindParam(":imagen", $this->imagen);
-            $stmt->bindParam(":sinopsis", $this->sinopsis);
-            $stmt->bindParam(":duracion", $this->duracion);
-            $stmt->bindParam(":url", $this->url);
-            $stmt->bindParam(":clasificacion", $this->clasificacion);
-            $stmt->bindParam(":categoria", $this->categoria);
-            $stmt->bindParam(":fecha_estreno", $this->fecha_estreno);
+            $stmt->bindParam(":id_sala", $this->id_sala);
+            $stmt->bindParam(":descripcion", $this->descripcion);
+            $stmt->bindParam(":capacidad", $this->capacidad);
+            $stmt->bindParam(":habilitada", $this->habilitada);
+            $stmt->bindParam(":luxury", $this->luxury);
+            $stmt->bindParam(":lleno", $this->lleno);
 
             $stmt->execute();
         } catch (PDOException $e) {

@@ -20,6 +20,12 @@ if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
     require_once("controlador/controlador_peliculas.php");
     require_once("vista/pelicula.php");
 
+//si interactua con la hora
+}elseif(isset($_POST["hora"])){
+
+    require_once("controlador/controlador_butacas.php");
+    require_once("vista/sala.php");
+
 }else{
     require_once("vista/principal.php");
 }
