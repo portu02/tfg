@@ -81,11 +81,19 @@
             $arrays = array_unique($arrays);
 
             foreach ($arrays as $a) {
-                echo '<div class="hora"><input class="botonhora" type="submit" value="' . $a . '" name="hora"></div>';
+            ?>
+                <div class="hora">
+                    <form method="post" action="">
+                        <input type='text' value='<?= $id_pelicula ?? "" ?>' name='id_pelicula' hidden />
+                        <input type='text' value='<?= $id_dia ?? "" ?>' name='id_dia' hidden />
+                        <input class="botonhora" type="submit" value="<?= $a ?? ""?>" name="hora">
+                    </form>
+                </div>
+            <?php
             }
             ?>
         </div>
-        
+
         <div id="videograndetrailer">
             <iframe src="https://www.youtube.com/embed/<?= $arraypeliculas[$id_pelicula]["url"] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>

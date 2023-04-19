@@ -42,9 +42,8 @@ class Sala extends Crud
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(id_sala, descripcion, capacidad, habilitada, luxury, lleno) VALUES (:id_sala, :descripcion, :capacidad, :habilitada, :luxury, :lleno)");
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(descripcion, capacidad, habilitada, luxury, lleno) VALUES (:id_sala, :descripcion, :capacidad, :habilitada, :luxury, :lleno)");
 
-            $stmt->bindParam(":id_sala", $this->id_sala);
             $stmt->bindParam(":descripcion", $this->descripcion);
             $stmt->bindParam(":capacidad", $this->capacidad);
             $stmt->bindParam(":habilitada", $this->habilitada);
@@ -69,6 +68,29 @@ class Sala extends Crud
             $stmt->bindParam(":luxury", $this->luxury);
             $stmt->bindParam(":lleno", $this->lleno);
 
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
+
+    function sacarUltimoId(){
+        try {
+            $stmt = $this->conexion->prepare("SELECT id_sala FROM sala ORDER BY id_sala DESC LIMIT 1;");
+            $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            $ultimoId = $resultado['id_sala'];
+            return $ultimoId;
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
+
+    function actualizarCapacidad($numero, $ultimoId){
+        try {
+            $stmt = $this->conexion->prepare("UPDATE sala  SET capacidad = :capacidad WHERE id_sala = :id_sala");
+            $stmt->bindParam(":capacidad", $numero);
+            $stmt->bindParam(":id_sala", $ultimoId);
             $stmt->execute();
         } catch (PDOException $e) {
             echo "Error" . $e->getMessage();

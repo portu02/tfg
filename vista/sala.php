@@ -10,7 +10,6 @@
 <body>
     <table id='butacas'>
         <?php
-        $numbutaca = 0;
         for ($filas = $max_fila; $filas > 0; $filas--) {
         ?>
             <tr>

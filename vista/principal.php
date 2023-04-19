@@ -104,7 +104,7 @@
         </div>
         <div class="linea2 linea"></div>
         <div id="peliculasestrenos">
-            <div class="peliculaestreno"><img alt="YfopzNHLp4o" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno"><img alt="lLVmLJdRZJQ" class="play" src="https://www.youtube.com/watch?v=lLVmLJdRZJQ"></div>
             <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
             <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
             <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>

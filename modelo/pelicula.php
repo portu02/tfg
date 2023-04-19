@@ -49,9 +49,7 @@ class Pelicula extends Crud
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(id_pelicula, nombre, imagen, sinopsis, duracion, url, clasificacion, categoria, fecha_estreno) VALUES (:id_pelicula, :nombre, :imagen, :sinopsis, :duracion, :url, :clasificacion, :categoria, :fecha_estreno)");
-
-            $stmt->bindParam(":id_pelicula", $this->id_pelicula);
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(nombre, imagen, sinopsis, duracion, url, clasificacion, categoria, fecha_estreno) VALUES (:nombre, :imagen, :sinopsis, :duracion, :url, :clasificacion, :categoria, :fecha_estreno)");
             $stmt->bindParam(":nombre", $this->nombre);
             $stmt->bindParam(":imagen", $this->imagen);
             $stmt->bindParam(":sinopsis", $this->sinopsis);
@@ -87,5 +85,6 @@ class Pelicula extends Crud
             echo "Error" . $e->getMessage();
         }
     }
+
 }
 ?>
