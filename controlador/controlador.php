@@ -23,4 +23,4 @@ if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
 }else{
     require_once("vista/principal.php");
 }
-
+?>

@@ -20,6 +20,7 @@
                 <a href="#">Películas</a>
                 <a href="#">Más Recientes</a>
                 <a href="#">Mi lista</a>
+                <a href="#">Admin</a>
             </nav>
         </div>
     </header>
