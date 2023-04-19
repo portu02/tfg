@@ -69,3 +69,4 @@ class Paginacion extends Conexion
         return $array;
     }
 }
+?>

@@ -1,5 +1,5 @@
 <?php
-include_once("Crud.php");
+include_once("CRUD.php");
 class Pelicula extends Crud
 {
 
@@ -88,3 +88,4 @@ class Pelicula extends Crud
         }
     }
 }
+?>

@@ -1,5 +1,5 @@
 <?php
-include_once("Crud.php");
+include_once("CRUD.php");
 class Horario extends Crud
 {
 
@@ -64,3 +64,4 @@ class Horario extends Crud
         }
     }
 }
+?>
