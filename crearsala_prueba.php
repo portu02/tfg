@@ -76,59 +76,11 @@
 session_start();
 
 if (isset($_POST["editar"])) {
-    /* COLUMNAS */
+
     if (isset($_POST["columnas"]) || isset($_POST["filas"]) || isset($_POST["butacas"])) {
 
-        if (isset($_POST["columnas"]) && isset($_POST["filas"])) {
-            /* COLUMNAS */
-            $array_columnas = $_POST["columnas"];
-
-            /* GUARDAR COLUMNAS BUTACA EN SESSION */
-            if (isset($_SESSION["columnas"])) {
-                $miArray = $_SESSION['columnas'];
-                foreach ($array_columnas as $i => $a) {
-                    if (!array_key_exists($i, $miArray)) {
-                        /* ELIMINAR BUTACAS */
-                        /* LAS AGREGAR DEL ARRAY */
-                        $miArray[$i] = $a;
-                    } else {
-                        /* AGREGAR BUTACAS */
-                        /* LAS ELIMINA DEL ARRAY */
-                        unset($miArray[$i]);
-                    }
-                }
-                $_SESSION['columnas'] = $miArray;
-                $array_columnas = $miArray;
-            } else {
-                $_SESSION["columnas"] = $_POST["columnas"];
-            }
-
-            /* FILAS */
-            $array_filas = $_POST["filas"];
-
-            /* GUARDAR filas BUTACA EN SESSION */
-            if (isset($_SESSION["filas"])) {
-                $miArray = $_SESSION['filas'];
-                foreach ($array_filas as $i => $a) {
-                    if (!array_key_exists($i, $miArray)) {
-                        /* ELIMINAR BUTACAS */
-                        /* LAS AGREGAR DEL ARRAY */
-                        $miArray[$i] = $a;
-                    } else {
-                        /* AGREGAR BUTACAS */
-                        /* LAS ELIMINA DEL ARRAY */
-                        unset($miArray[$i]);
-                    }
-                }
-                $_SESSION['filas'] = $miArray;
-                $array_filas = $miArray;
-            } else {
-                $_SESSION["filas"] = $_POST["filas"];
-            }
-
-
-            /***** ARRAY BUTACAS ******/
-        } elseif (isset($_POST["butacas"])) {
+        /***** ARRAY BUTACAS ******/
+        if (isset($_POST["butacas"])) {
 
             $array_butacas = $_POST["butacas"];
 
@@ -152,10 +104,9 @@ if (isset($_POST["editar"])) {
                 //si no se ha creado sesion arraybutacas la inicia
                 $_SESSION["butacas"] = $_POST["butacas"];
             }
-
-
-            /***** ARRAY COLUMNAS ******/
-        } elseif (isset($_POST["columnas"])) {
+        }
+        /***** ARRAY COLUMNAS ******/
+        if (isset($_POST["columnas"])) {
             //si esta la sesion arraybutacas se comprueba mas tarde si han surgido cambios
             if (isset($_SESSION["butacas"])) {
                 $array_butacas = $_SESSION["butacas"];
@@ -192,10 +143,9 @@ if (isset($_POST["editar"])) {
                 //si no se ha creado sesion arraycolumnas la inicia
                 $_SESSION["columnas"] = $_POST["columnas"];
             }
-
-
-            /***** ARRAY FILAS ******/
-        } elseif (isset($_POST["filas"])) {
+        }
+        /***** ARRAY FILAS ******/
+        if (isset($_POST["filas"])) {
 
             $array_filas = $_POST["filas"];
 
@@ -263,73 +213,134 @@ if (isset($_SESSION["butacas"])) {
     $array_butacas = array("vacio" => "vacio");
 }
 
-/* ELIMINA TODAS LAS SESIONES */
+/****** MAXIMO FILAS ******/
+if (isset($_POST["limpiar"]) && isset($_POST["longfila"])) {
+    $max_fila = $_POST["longfila"];
+}
+if (isset($_SESSION["maxfilas"])) {
+
+    if (isset($max_fila)) {
+        $_SESSION["maxfilas"] = $max_fila;
+    } else {
+        $max_fila = $_SESSION["maxfilas"];
+    }
+} else {
+    if (isset($max_fila)) {
+        $_SESSION["maxfilas"] = $max_fila;
+    } else {
+        $max_fila = 5;
+    }
+}
+/****** MAXIMO COLUMNAS ******/
+if (isset($_POST["limpiar"]) && isset($_POST["longcolumna"])) {
+    $max_columna = $_POST["longcolumna"];
+}
+if (isset($_SESSION["maxcolumnas"])) {
+
+    if (isset($max_columna)) {
+        $_SESSION["maxcolumnas"] = $max_columna;
+    } else {
+        $max_columna = $_SESSION["maxcolumnas"];
+    }
+} else {
+    if (isset($max_columna)) {
+        $_SESSION["maxcolumnas"] = $max_columna;
+    } else {
+        $max_columna = 5;
+    }
+}
+
+/****** ELIMINA TODAS LAS SESIONES ******/
 if (isset($_POST["limpiar"])) {
-    session_destroy();
+    unset($_SESSION["filas"]);
+    unset($_SESSION["columnas"]);
+    unset($_SESSION["butacas"]);
+
     $array_filas = array("vacio" => "vacio");
     $array_columnas = array("vacio" => "vacio");
     $array_butacas = array("vacio" => "vacio");
 }
 
+?>
+<form method='post' action=''>
+    <label for='longcolumna'>Maxímo columnas:</label>
+    <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'><br><br>
+    <label for='longfila'>Maxímo filas:</label>
+    <input type='number' min='1' name='longfila' value='<?= $max_fila ?? "" ?>'><br><br>
+    <input type='submit' value='Limpiar' name='limpiar'><br><br>
 
+    <table border='1' id='butacas'>
+        <?php
+        for ($filas = $max_fila; $filas >= 0; $filas--) {
+        ?>
+            <tr>
+                <?php
+                /* MENU SELECCIONAR LAS FILAS */
+                //el if es para dar color
+                if (!array_key_exists($filas, $array_filas)) {
+                ?>
+                    <td><input type='checkbox' name='filas[<?= $filas ?>]' class='checkbox'><span><?= $filas ?? "" ?></span></td>
+                <?php
+                } else {
+                ?>
+                    <td><input type='checkbox' name='filas[<?= $filas ?>]' class='checkbox'><span class='marcado'><?= $filas ?? "" ?></span></td>
+                    <?php
+                }
+                /* */
 
-$max_fila = 10;
-$max_columna = 15;
-
-echo "<form method='post' action=''>";
-echo "<table border='1' id='butacas'>";
-for ($filas = $max_fila; $filas >= 0; $filas--) {
-
-    echo "<tr>";
-
-    /* MENU SELECCIONAR LAS FILAS */
-    //el if es para dar color
-    if (!array_key_exists($filas, $array_filas)) {
-        echo "<td><input type='checkbox' name='filas[" . $filas . "]' class='checkbox'><span>" . $filas . "</span></td>";
-    } else {
-        echo "<td><input type='checkbox' name='filas[" . $filas . "]' class='checkbox'><span class='marcado'>" . $filas . "</span></td>";
-    }
-    /* */
-
-    for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
-        if ($filas == 0) {
-            /* MENU SELECCIONAR LAS COLUMNAS */
-            //el if es para dar color
-            if (!array_key_exists($columnas, $array_columnas)) {
-                echo "<td><input type='checkbox' name='columnas[" . $columnas . "]' class='checkbox'><span>" . $columnas . "</span></td>";
-            } else {
-                echo "<td><input type='checkbox' name='columnas[" . $columnas . "]' class='checkbox'><span class='marcado'>" . $columnas . "</span></td>";
-            }
-            /* */
-        } elseif (array_key_exists($filas, $array_filas)) {
-            if (!array_key_exists($filas . ";" . $columnas, $array_butacas)) {
-                echo '<td><input type="checkbox" name="butacas[' . $filas . ';' . $columnas . ']" class="checkbox"><span>' . $columnas . '</span></td>';
-            } else {
-                /*  IMPRIMIR BUTACAS */
-                echo '<td>
-                        <span style="position: relative; display: block;">  
-                        <img src="butaca_verde.png" class="butaca">
-                        <span class="numero">' . $columnas . '</span>
-                    </span>
-                </td>';
-            }
-        } else {
-            if (!array_key_exists($columnas, $array_columnas) || array_key_exists($filas . ";" . $columnas, $array_butacas)) {
-                /*  IMPRIMIR BUTACAS */
-                echo '<td>
-                        <span style="position: relative; display: block;">  
-                        <img src="butaca_verde.png" class="butaca">
-                        <span class="numero">' . $columnas . '</span>
-                        </span>
-                    </td>';
-            } else {
-                echo '<td><input type="checkbox" name="butacas[' . $filas . ';' . $columnas . ']" class="checkbox"><span>' . $columnas . '</span></td>';
-            }
+                for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
+                    if ($filas == 0) {
+                        /* MENU SELECCIONAR LAS COLUMNAS */
+                        //el if es para dar color
+                        if (!array_key_exists($columnas, $array_columnas)) {
+                    ?>
+                            <td><input type='checkbox' name='columnas[<?= $columnas ?>]' class='checkbox'><span><?= $columnas ?? "" ?></span></td>
+                        <?php
+                        } else {
+                        ?>
+                            <td><input type='checkbox' name='columnas[<?= $columnas ?>]' class='checkbox'><span class='marcado'><?= $columnas ?? "" ?></span></td>
+                        <?php
+                        }
+                    } elseif (array_key_exists($filas, $array_filas)) {
+                        if (!array_key_exists($filas . ";" . $columnas, $array_butacas)) {
+                        ?>
+                            <td><input type="checkbox" name="butacas[<?= $filas ?>;<?= $columnas ?>]" class="checkbox"><span><?= $columnas ?? "" ?></span></td>
+                        <?php
+                        } else {
+                            /*  IMPRIMIR BUTACAS */
+                        ?>
+                            <td>
+                                <span style="position: relative; display: block;">
+                                    <img src="butaca_verde.png" class="butaca">
+                                    <span class="numero"><?= $columnas ?? "" ?></span>
+                                </span>
+                            </td>
+                        <?php
+                        }
+                    } else {
+                        if (!array_key_exists($columnas, $array_columnas) || array_key_exists($filas . ";" . $columnas, $array_butacas)) {
+                            /*  IMPRIMIR BUTACAS */
+                        ?>
+                            <td>
+                                <span style="position: relative; display: block;">
+                                    <img src="butaca_verde.png" class="butaca">
+                                    <span class="numero"><?= $columnas ?? "" ?></span>
+                                </span>
+                            </td>
+                        <?php
+                        } else {
+                        ?>
+                            <td><input type="checkbox" name="butacas[<?= $filas ?>;<?= $columnas ?>]" class="checkbox"><span><?= $columnas ?? "" ?></span></td>
+                <?php
+                        }
+                    }
+                }
+                ?>
+            </tr>
+        <?php
         }
-    }
-    echo "</tr>";
-}
-echo "</table>";
-echo "<input type='submit' value='Modificar' name='editar'>";
-echo "<input type='submit' value='Limpiar' name='limpiar'>";
-echo "</form>";
+        ?>
+    </table>
+    <input type='submit' value='Modificar' name='editar'>
+    <input type='submit' value='Correcto' formaction='respuesta.php' name='enviar_sala'>
+</form>
