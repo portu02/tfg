@@ -23,25 +23,24 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" class="d-block w-100 object-fit-cover-top" alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" style="max-height: 500px; object-fit: cover;">
+                <img src="vista/fotos/indiana-jones.jpg" class="d-block w-100 object-fit-cover-top" alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" style="max-height: 500px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block gradiante">
-                    <h5 class="textocarrusel"></h5>
-                    <p class="textocarrusel">Descripción de la imagen 1</p>
+                    <h5 class="textocarrusel">Indiana Jones: El dial del destino</h5>
+                    <p class="textocarrusel">Fecha de estreno 30/06/2023</p>
                 </div>
             </div>
             <div class="carousel-item">
-
-                <img src="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" class="d-block w-100 object-fit-cover-top" alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" style="max-height: 500px; object-fit: cover;">
+                <img src="vista/fotos/panoramicaTransformers.webp" class="d-block w-100 object-fit-cover-top" alt="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/transformers-despertar-bestias-1669970401.png" style="max-height: 500px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block gradiante">
-                    <h5 class="textocarrusel">Título de la imagen 2</h5>
-                    <p class="textocarrusel">Descripción de la imagen 2</p>
+                    <h5 class="textocarrusel">Transformers: El despertar de las bestias</h5>
+                    <p class="textocarrusel">Fecha de estreno 09/06/2023</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" class="d-block w-100 object-fit-cover-top" alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" style="max-height: 500px; object-fit: cover;">
+                <img src="vista/fotos/blueBeetle.jpg" class="d-block w-100 object-fit-cover-top" alt="https://www.joblo.com/wp-content/uploads/2022/11/indiana-jones-5-empire-cover.jpg" style="max-height: 500px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block gradiante">
-                    <h5 class="textocarrusel">Título de la imagen 3</h5>
-                    <p class="textocarrusel">Descripción de la imagen 3</p>
+                    <h5 class="textocarrusel">Blue Beetle</h5>
+                    <p class="textocarrusel">Fecha de estreno 18/08/2023</p>
                 </div>
             </div>
         </div>
@@ -104,11 +103,11 @@
         </div>
         <div class="linea2 linea"></div>
         <div id="peliculasestrenos">
-            <div class="peliculaestreno"><img alt="lLVmLJdRZJQ" class="play" src="https://www.youtube.com/watch?v=lLVmLJdRZJQ"></div>
-            <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
-            <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
-            <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
-            <div class="peliculaestreno"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno" style="background-image:url('https://i.ytimg.com/vi/2dP-Lj5mYKY/maxresdefault.jpg');"><img alt="lLVmLJdRZJQ" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno" style="background-image:url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/indiana-jones-dial-destino-1676266852.jpg');"><img alt="9ShSKNr-PR0" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno" style="background-image:url('https://bolavip.com/__export/1680546890871/sites/bolavip/img/2023/04/03/blue-beetle-estrena-trailer-de-que-se-trata-la-pelicula-ok.jpeg_412320734.jpeg');"><img alt="I4nNE4jB5rc" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno" style="background-image:url('https://img.youtube.com/vi/hflCiNtY6MA/maxresdefault.jpg');"><img alt="yLYbOe914ZU" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
+            <div class="peliculaestreno" style="background-image:url('https://media.revistagq.com/photos/63ea01f16c6ab595e1330cf0/16:9/w_2560%2Cc_limit/flash.png');"><img alt="Gzj1JzTCxm8" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
         </div>
 
 
@@ -117,6 +116,9 @@
 
     <div id="video"></div>
     <div id="videofondo"></div>
+    <footer></footer>
+        
+    </footer>
 </body>
 
 </html>

@@ -1,0 +1,55 @@
+#butacas td {
+    width: 50px;
+    height: 53px;
+    position: relative;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#butacas td:first-child {
+    background-color: red;
+}
+
+#butacas tr:last-child {
+    background-color: red;
+}
+
+#butacas img {
+    width: 50px;
+}
+
+#butacas {
+    background-color: #00001a;
+    border-collapse: collapse;
+}
+
+.checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    opacity: 0;
+    height: 50px;
+    cursor: pointer;
+}
+
+.oculto {
+    color: yellow;
+    font-weight: bold;
+}
+
+.numero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 100%;
+    width: 100%;
+}
+
+.marcado {
+    color: green;
+    font-weight: bold;
+}

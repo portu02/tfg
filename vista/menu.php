@@ -21,7 +21,7 @@
                         <a href="index.php">Películas</a>
                         <a href="index.php">Más Recientes</a>
                         <a href="index.php">Mi lista</a>
-                        <a href="#index.php"><input class="opcion_nav" type="submit" name="nav" value="admin"></a>
+                        <a href="#index.php"><input class="opcion_nav" type="submit" name="nav" value="Admin"></a>
                     </form>
                 </nav>
         </div>

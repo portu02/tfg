@@ -1,6 +1,4 @@
-
 <?php
-session_start();
 
 if (isset($_POST["editar"])) {
 
@@ -188,86 +186,5 @@ if (isset($_POST["limpiar"])) {
     $array_butacas = array("vacio" => "vacio");
 }
 
+require_once 'vista/crearsala_admin.php';
 ?>
-<form method='post' action=''>
-    <label for='longcolumna'>Maxímo columnas:</label>
-    <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'><br><br>
-    <label for='longfila'>Maxímo filas:</label>
-    <input type='number' min='1' name='longfila' value='<?= $max_fila ?? "" ?>'><br><br>
-    <input type='submit' value='Limpiar' name='limpiar'><br><br>
-
-    <table border='1' id='butacas'>
-        <?php
-        for ($filas = $max_fila; $filas >= 0; $filas--) {
-        ?>
-            <tr>
-                <?php
-                /* MENU SELECCIONAR LAS FILAS */
-                //el if es para dar color
-                if (!array_key_exists($filas, $array_filas)) {
-                ?>
-                    <td><input type='checkbox' name='filas[<?= $filas ?>]' class='checkbox'><span><?= $filas ?? "" ?></span></td>
-                <?php
-                } else {
-                ?>
-                    <td><input type='checkbox' name='filas[<?= $filas ?>]' class='checkbox'><span class='marcado'><?= $filas ?? "" ?></span></td>
-                    <?php
-                }
-                /* */
-
-                for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
-                    if ($filas == 0) {
-                        /* MENU SELECCIONAR LAS COLUMNAS */
-                        //el if es para dar color
-                        if (!array_key_exists($columnas, $array_columnas)) {
-                    ?>
-                            <td><input type='checkbox' name='columnas[<?= $columnas ?>]' class='checkbox'><span><?= $columnas ?? "" ?></span></td>
-                        <?php
-                        } else {
-                        ?>
-                            <td><input type='checkbox' name='columnas[<?= $columnas ?>]' class='checkbox'><span class='marcado'><?= $columnas ?? "" ?></span></td>
-                        <?php
-                        }
-                    } elseif (array_key_exists($filas, $array_filas)) {
-                        if (!array_key_exists($filas . ";" . $columnas, $array_butacas)) {
-                        ?>
-                            <td><input type="checkbox" name="butacas[<?= $filas ?>;<?= $columnas ?>]" class="checkbox"><span><?= $columnas ?? "" ?></span></td>
-                        <?php
-                        } else {
-                            /*  IMPRIMIR BUTACAS */
-                        ?>
-                            <td>
-                                <span style="position: relative; display: block;">
-                                    <img src="butaca_verde.png" class="butaca">
-                                    <span class="numero"><?= $columnas ?? "" ?></span>
-                                </span>
-                            </td>
-                        <?php
-                        }
-                    } else {
-                        if (!array_key_exists($columnas, $array_columnas) || array_key_exists($filas . ";" . $columnas, $array_butacas)) {
-                            /*  IMPRIMIR BUTACAS */
-                        ?>
-                            <td>
-                                <span style="position: relative; display: block;">
-                                    <img src="butaca_verde.png" class="butaca">
-                                    <span class="numero"><?= $columnas ?? "" ?></span>
-                                </span>
-                            </td>
-                        <?php
-                        } else {
-                        ?>
-                            <td><input type="checkbox" name="butacas[<?= $filas ?>;<?= $columnas ?>]" class="checkbox"><span><?= $columnas ?? "" ?></span></td>
-                <?php
-                        }
-                    }
-                }
-                ?>
-            </tr>
-        <?php
-        }
-        ?>
-    </table>
-    <input type='submit' value='Modificar' name='editar'>
-    <input type='submit' value='Correcto' formaction='respuesta.php' name='enviar_sala'>
-</form>
