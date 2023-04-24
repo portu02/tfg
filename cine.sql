@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2023 a las 20:09:38
--- Versión del servidor: 8.0.28
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 24-04-2023 a las 20:36:20
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `butaca` (
-  `id_butaca` smallint NOT NULL,
-  `columna` smallint NOT NULL,
-  `fila` smallint NOT NULL,
-  `color` enum('Verde','Rojo','Gris') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `id_sala` smallint NOT NULL
+  `id_butaca` smallint(6) NOT NULL,
+  `columna` smallint(6) NOT NULL,
+  `fila` smallint(6) NOT NULL,
+  `color` enum('Verde','Rojo','Gris') COLLATE utf8mb4_spanish_ci NOT NULL,
+  `id_sala` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -112,130 +112,129 @@ INSERT INTO `butaca` (`id_butaca`, `columna`, `fila`, `color`, `id_sala`) VALUES
 --
 
 CREATE TABLE `horario` (
-  `id_horario` smallint NOT NULL,
+  `id_horario` smallint(6) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `precio` double NOT NULL,
-  `id_pelicula` smallint NOT NULL,
-  `id_sala` smallint NOT NULL
+  `hora` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `id_pelicula` smallint(6) NOT NULL,
+  `id_sala` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `horario`
 --
 
-INSERT INTO `horario` (`id_horario`, `fecha`, `hora`, `precio`, `id_pelicula`, `id_sala`) VALUES
-(495, '2023-04-09', '16:00:00', 8, 8, 1),
-(496, '2023-04-09', '19:00:00', 8, 17, 1),
-(497, '2023-04-09', '21:00:00', 8, 19, 1),
-(498, '2023-04-09', '16:00:00', 8, 1, 2),
-(499, '2023-04-09', '18:00:00', 8, 8, 2),
-(500, '2023-04-09', '21:00:00', 8, 13, 2),
-(501, '2023-04-09', '16:00:00', 8, 9, 3),
-(502, '2023-04-09', '18:00:00', 8, 11, 3),
-(503, '2023-04-09', '20:00:00', 8, 4, 3),
-(504, '2023-04-09', '22:00:00', 8, 18, 3),
-(505, '2023-04-09', '16:00:00', 8, 14, 4),
-(506, '2023-04-09', '18:00:00', 8, 19, 4),
-(507, '2023-04-09', '20:00:00', 8, 6, 4),
-(508, '2023-04-09', '22:00:00', 8, 2, 4),
-(509, '2023-04-10', '16:00:00', 8, 5, 1),
-(510, '2023-04-10', '18:00:00', 8, 3, 1),
-(511, '2023-04-10', '20:00:00', 8, 14, 1),
-(512, '2023-04-10', '22:00:00', 8, 17, 1),
-(513, '2023-04-10', '16:00:00', 8, 6, 2),
-(514, '2023-04-10', '18:00:00', 8, 12, 2),
-(515, '2023-04-10', '21:00:00', 8, 18, 2),
-(516, '2023-04-10', '16:00:00', 8, 1, 3),
-(517, '2023-04-10', '18:00:00', 8, 11, 3),
-(518, '2023-04-10', '20:00:00', 8, 8, 3),
-(519, '2023-04-10', '16:00:00', 8, 18, 4),
-(520, '2023-04-10', '19:00:00', 8, 5, 4),
-(521, '2023-04-10', '21:00:00', 8, 12, 4),
-(522, '2023-04-11', '16:00:00', 8, 6, 1),
-(523, '2023-04-11', '18:00:00', 8, 8, 1),
-(524, '2023-04-11', '21:00:00', 8, 12, 1),
-(525, '2023-04-11', '16:00:00', 8, 8, 2),
-(526, '2023-04-11', '19:00:00', 8, 8, 2),
-(527, '2023-04-11', '22:00:00', 8, 7, 2),
-(528, '2023-04-11', '16:00:00', 8, 4, 3),
-(529, '2023-04-11', '18:00:00', 8, 8, 3),
-(530, '2023-04-11', '21:00:00', 8, 7, 3),
-(531, '2023-04-11', '16:00:00', 8, 4, 4),
-(532, '2023-04-11', '18:00:00', 8, 11, 4),
-(533, '2023-04-11', '20:00:00', 8, 13, 4),
-(534, '2023-04-11', '22:00:00', 8, 18, 4),
-(535, '2023-04-12', '16:00:00', 8, 8, 1),
-(536, '2023-04-12', '19:00:00', 8, 14, 1),
-(537, '2023-04-12', '21:00:00', 8, 13, 1),
-(538, '2023-04-12', '16:00:00', 8, 10, 2),
-(539, '2023-04-12', '18:00:00', 8, 12, 2),
-(540, '2023-04-12', '21:00:00', 8, 19, 2),
-(541, '2023-04-12', '16:00:00', 8, 11, 3),
-(542, '2023-04-12', '18:00:00', 8, 2, 3),
-(543, '2023-04-12', '20:00:00', 8, 20, 3),
-(544, '2023-04-12', '22:00:00', 8, 13, 3),
-(545, '2023-04-12', '16:00:00', 8, 18, 4),
-(546, '2023-04-12', '19:00:00', 8, 11, 4),
-(547, '2023-04-12', '21:00:00', 8, 5, 4),
-(548, '2023-04-13', '16:00:00', 8, 10, 1),
-(549, '2023-04-13', '18:00:00', 8, 14, 1),
-(550, '2023-04-13', '20:00:00', 8, 10, 1),
-(551, '2023-04-13', '22:00:00', 8, 1, 1),
-(552, '2023-04-13', '16:00:00', 8, 7, 2),
-(553, '2023-04-13', '18:00:00', 8, 20, 2),
-(554, '2023-04-13', '20:00:00', 8, 15, 2),
-(555, '2023-04-13', '22:00:00', 8, 2, 2),
-(556, '2023-04-13', '16:00:00', 8, 7, 3),
-(557, '2023-04-13', '18:00:00', 8, 9, 3),
-(558, '2023-04-13', '20:00:00', 8, 17, 3),
-(559, '2023-04-13', '22:00:00', 8, 14, 3),
-(560, '2023-04-13', '16:00:00', 8, 15, 4),
-(561, '2023-04-13', '18:00:00', 8, 8, 4),
-(562, '2023-04-13', '21:00:00', 8, 11, 4),
-(563, '2023-04-14', '16:00:00', 8, 17, 1),
-(564, '2023-04-14', '18:00:00', 8, 6, 1),
-(565, '2023-04-14', '20:00:00', 8, 19, 1),
-(566, '2023-04-14', '22:00:00', 8, 14, 1),
-(567, '2023-04-14', '16:00:00', 8, 13, 2),
-(568, '2023-04-14', '18:00:00', 8, 12, 2),
-(569, '2023-04-14', '21:00:00', 8, 12, 2),
-(570, '2023-04-14', '16:00:00', 8, 5, 3),
-(571, '2023-04-14', '18:00:00', 8, 12, 3),
-(572, '2023-04-14', '21:00:00', 8, 8, 3),
-(573, '2023-04-14', '16:00:00', 8, 17, 4),
-(574, '2023-04-14', '18:00:00', 8, 3, 4),
-(575, '2023-04-14', '20:00:00', 8, 2, 4),
-(576, '2023-04-14', '22:00:00', 8, 3, 4),
-(577, '2023-04-15', '16:00:00', 8, 15, 1),
-(578, '2023-04-15', '18:00:00', 8, 20, 1),
-(579, '2023-04-15', '20:00:00', 8, 7, 1),
-(580, '2023-04-15', '22:00:00', 8, 8, 1),
-(581, '2023-04-15', '16:00:00', 8, 8, 2),
-(582, '2023-04-15', '19:00:00', 8, 20, 2),
-(583, '2023-04-15', '21:00:00', 8, 1, 2),
-(584, '2023-04-15', '16:00:00', 8, 17, 3),
-(585, '2023-04-15', '18:00:00', 8, 8, 3),
-(586, '2023-04-15', '21:00:00', 8, 8, 3),
-(587, '2023-04-15', '16:00:00', 8, 7, 4),
-(588, '2023-04-15', '18:00:00', 8, 16, 4),
-(589, '2023-04-15', '20:00:00', 8, 11, 4),
-(590, '2023-04-15', '22:00:00', 8, 1, 4),
-(591, '2023-04-16', '16:00:00', 8, 5, 1),
-(592, '2023-04-16', '18:00:00', 8, 11, 1),
-(593, '2023-04-16', '20:00:00', 8, 9, 1),
-(594, '2023-04-16', '22:00:00', 8, 3, 1),
-(595, '2023-04-16', '16:00:00', 8, 11, 2),
-(596, '2023-04-16', '18:00:00', 8, 6, 2),
-(597, '2023-04-16', '20:00:00', 8, 4, 2),
-(598, '2023-04-16', '22:00:00', 8, 4, 2),
-(599, '2023-04-16', '16:00:00', 8, 5, 3),
-(600, '2023-04-16', '18:00:00', 8, 9, 3),
-(601, '2023-04-16', '20:00:00', 8, 18, 3),
-(602, '2023-04-16', '16:00:00', 8, 13, 4),
-(603, '2023-04-16', '18:00:00', 8, 9, 4),
-(604, '2023-04-16', '20:00:00', 8, 10, 4),
-(605, '2023-04-16', '22:00:00', 8, 12, 4);
+INSERT INTO `horario` (`id_horario`, `fecha`, `hora`, `id_pelicula`, `id_sala`) VALUES
+(495, '2023-04-09', '16:00:00', 8, 1),
+(496, '2023-04-09', '19:00:00', 17, 1),
+(497, '2023-04-09', '21:00:00', 19, 1),
+(498, '2023-04-09', '16:00:00', 1, 2),
+(499, '2023-04-09', '18:00:00', 8, 2),
+(500, '2023-04-09', '21:00:00', 13, 2),
+(501, '2023-04-09', '16:00:00', 9, 3),
+(502, '2023-04-09', '18:00:00', 11, 3),
+(503, '2023-04-09', '20:00:00', 4, 3),
+(504, '2023-04-09', '22:00:00', 18, 3),
+(505, '2023-04-09', '16:00:00', 14, 4),
+(506, '2023-04-09', '18:00:00', 19, 4),
+(507, '2023-04-09', '20:00:00', 6, 4),
+(508, '2023-04-09', '22:00:00', 2, 4),
+(509, '2023-04-10', '16:00:00', 5, 1),
+(510, '2023-04-10', '18:00:00', 3, 1),
+(511, '2023-04-10', '20:00:00', 14, 1),
+(512, '2023-04-10', '22:00:00', 17, 1),
+(513, '2023-04-10', '16:00:00', 6, 2),
+(514, '2023-04-10', '18:00:00', 12, 2),
+(515, '2023-04-10', '21:00:00', 18, 2),
+(516, '2023-04-10', '16:00:00', 1, 3),
+(517, '2023-04-10', '18:00:00', 11, 3),
+(518, '2023-04-10', '20:00:00', 8, 3),
+(519, '2023-04-10', '16:00:00', 18, 4),
+(520, '2023-04-10', '19:00:00', 5, 4),
+(521, '2023-04-10', '21:00:00', 12, 4),
+(522, '2023-04-11', '16:00:00', 6, 1),
+(523, '2023-04-11', '18:00:00', 8, 1),
+(524, '2023-04-11', '21:00:00', 12, 1),
+(525, '2023-04-11', '16:00:00', 8, 2),
+(526, '2023-04-11', '19:00:00', 8, 2),
+(527, '2023-04-11', '22:00:00', 7, 2),
+(528, '2023-04-11', '16:00:00', 4, 3),
+(529, '2023-04-11', '18:00:00', 8, 3),
+(530, '2023-04-11', '21:00:00', 7, 3),
+(531, '2023-04-11', '16:00:00', 4, 4),
+(532, '2023-04-11', '18:00:00', 11, 4),
+(533, '2023-04-11', '20:00:00', 13, 4),
+(534, '2023-04-11', '22:00:00', 18, 4),
+(535, '2023-04-12', '16:00:00', 8, 1),
+(536, '2023-04-12', '19:00:00', 14, 1),
+(537, '2023-04-12', '21:00:00', 13, 1),
+(538, '2023-04-12', '16:00:00', 10, 2),
+(539, '2023-04-12', '18:00:00', 12, 2),
+(540, '2023-04-12', '21:00:00', 19, 2),
+(541, '2023-04-12', '16:00:00', 11, 3),
+(542, '2023-04-12', '18:00:00', 2, 3),
+(543, '2023-04-12', '20:00:00', 20, 3),
+(544, '2023-04-12', '22:00:00', 13, 3),
+(545, '2023-04-12', '16:00:00', 18, 4),
+(546, '2023-04-12', '19:00:00', 11, 4),
+(547, '2023-04-12', '21:00:00', 5, 4),
+(548, '2023-04-13', '16:00:00', 10, 1),
+(549, '2023-04-13', '18:00:00', 14, 1),
+(550, '2023-04-13', '20:00:00', 10, 1),
+(551, '2023-04-13', '22:00:00', 1, 1),
+(552, '2023-04-13', '16:00:00', 7, 2),
+(553, '2023-04-13', '18:00:00', 20, 2),
+(554, '2023-04-13', '20:00:00', 15, 2),
+(555, '2023-04-13', '22:00:00', 2, 2),
+(556, '2023-04-13', '16:00:00', 7, 3),
+(557, '2023-04-13', '18:00:00', 9, 3),
+(558, '2023-04-13', '20:00:00', 17, 3),
+(559, '2023-04-13', '22:00:00', 14, 3),
+(560, '2023-04-13', '16:00:00', 15, 4),
+(561, '2023-04-13', '18:00:00', 8, 4),
+(562, '2023-04-13', '21:00:00', 11, 4),
+(563, '2023-04-14', '16:00:00', 17, 1),
+(564, '2023-04-14', '18:00:00', 6, 1),
+(565, '2023-04-14', '20:00:00', 19, 1),
+(566, '2023-04-14', '22:00:00', 14, 1),
+(567, '2023-04-14', '16:00:00', 13, 2),
+(568, '2023-04-14', '18:00:00', 12, 2),
+(569, '2023-04-14', '21:00:00', 12, 2),
+(570, '2023-04-14', '16:00:00', 5, 3),
+(571, '2023-04-14', '18:00:00', 12, 3),
+(572, '2023-04-14', '21:00:00', 8, 3),
+(573, '2023-04-14', '16:00:00', 17, 4),
+(574, '2023-04-14', '18:00:00', 3, 4),
+(575, '2023-04-14', '20:00:00', 2, 4),
+(576, '2023-04-14', '22:00:00', 3, 4),
+(577, '2023-04-15', '16:00:00', 15, 1),
+(578, '2023-04-15', '18:00:00', 20, 1),
+(579, '2023-04-15', '20:00:00', 7, 1),
+(580, '2023-04-15', '22:00:00', 8, 1),
+(581, '2023-04-15', '16:00:00', 8, 2),
+(582, '2023-04-15', '19:00:00', 20, 2),
+(583, '2023-04-15', '21:00:00', 1, 2),
+(584, '2023-04-15', '16:00:00', 17, 3),
+(585, '2023-04-15', '18:00:00', 8, 3),
+(586, '2023-04-15', '21:00:00', 8, 3),
+(587, '2023-04-15', '16:00:00', 7, 4),
+(588, '2023-04-15', '18:00:00', 16, 4),
+(589, '2023-04-15', '20:00:00', 11, 4),
+(590, '2023-04-15', '22:00:00', 1, 4),
+(591, '2023-04-16', '16:00:00', 5, 1),
+(592, '2023-04-16', '18:00:00', 11, 1),
+(593, '2023-04-16', '20:00:00', 9, 1),
+(594, '2023-04-16', '22:00:00', 3, 1),
+(595, '2023-04-16', '16:00:00', 11, 2),
+(596, '2023-04-16', '18:00:00', 6, 2),
+(597, '2023-04-16', '20:00:00', 4, 2),
+(598, '2023-04-16', '22:00:00', 4, 2),
+(599, '2023-04-16', '16:00:00', 5, 3),
+(600, '2023-04-16', '18:00:00', 9, 3),
+(601, '2023-04-16', '20:00:00', 18, 3),
+(602, '2023-04-16', '16:00:00', 13, 4),
+(603, '2023-04-16', '18:00:00', 9, 4),
+(604, '2023-04-16', '20:00:00', 10, 4),
+(605, '2023-04-16', '22:00:00', 12, 4);
 
 -- --------------------------------------------------------
 
@@ -244,14 +243,14 @@ INSERT INTO `horario` (`id_horario`, `fecha`, `hora`, `precio`, `id_pelicula`, `
 --
 
 CREATE TABLE `pelicula` (
-  `id_pelicula` smallint NOT NULL,
-  `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `imagen` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `sinopsis` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `duracion` smallint NOT NULL,
-  `url` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `clasificacion` enum('TP','+7','+12','+16','+18') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `categoria` enum('Acción','Aventuras','Ciencia Ficción','Comedia','No-Ficción','Drama','Documental','Fantasía','Musical','Suspense','Terror','Thriller','Animación','Infantil') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_pelicula` smallint(6) NOT NULL,
+  `nombre` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `imagen` varchar(200) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `sinopsis` varchar(2000) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `duracion` smallint(6) NOT NULL,
+  `url` varchar(1000) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `clasificacion` enum('TP','+7','+12','+16','+18') COLLATE utf8mb4_spanish_ci NOT NULL,
+  `categoria` enum('Acción','Aventuras','Ciencia Ficción','Comedia','No-Ficción','Drama','Documental','Fantasía','Musical','Suspense','Terror','Thriller','Animación','Infantil') COLLATE utf8mb4_spanish_ci NOT NULL,
   `fecha_estreno` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -288,10 +287,10 @@ INSERT INTO `pelicula` (`id_pelicula`, `nombre`, `imagen`, `sinopsis`, `duracion
 --
 
 CREATE TABLE `reserva` (
-  `id_reserva` smallint NOT NULL,
-  `id_horario` smallint NOT NULL,
-  `id_usuario` smallint NOT NULL,
-  `entradas` smallint NOT NULL,
+  `id_reserva` smallint(6) NOT NULL,
+  `id_horario` smallint(6) NOT NULL,
+  `id_usuario` smallint(6) NOT NULL,
+  `entradas` smallint(6) NOT NULL,
   `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -302,9 +301,9 @@ CREATE TABLE `reserva` (
 --
 
 CREATE TABLE `sala` (
-  `id_sala` smallint NOT NULL,
-  `descripcion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `capacidad` smallint DEFAULT NULL,
+  `id_sala` smallint(6) NOT NULL,
+  `descripcion` varchar(2000) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `capacidad` smallint(6) DEFAULT NULL,
   `habilitada` tinyint(1) NOT NULL,
   `luxury` tinyint(1) NOT NULL,
   `lleno` tinyint(1) NOT NULL
@@ -328,14 +327,14 @@ INSERT INTO `sala` (`id_sala`, `descripcion`, `capacidad`, `habilitada`, `luxury
 --
 
 CREATE TABLE `usuario` (
-  `id_usuario` smallint NOT NULL,
-  `nombre` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `apellido1` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `apellido2` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `nombre_usuario` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `correo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `contrasena` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `rol` char(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `id_usuario` smallint(6) NOT NULL,
+  `nombre` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `apellido1` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `apellido2` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `nombre_usuario` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `correo` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `contrasena` char(64) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `rol` char(13) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -400,31 +399,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `butaca`
 --
 ALTER TABLE `butaca`
-  MODIFY `id_butaca` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=622;
+  MODIFY `id_butaca` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=622;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `id_horario` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=606;
+  MODIFY `id_horario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=606;
 
 --
 -- AUTO_INCREMENT de la tabla `pelicula`
 --
 ALTER TABLE `pelicula`
-  MODIFY `id_pelicula` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_pelicula` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `sala`
 --
 ALTER TABLE `sala`
-  MODIFY `id_sala` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_sala` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

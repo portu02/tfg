@@ -48,7 +48,7 @@ class Paginacion extends Conexion
     {
         try {
 
-            $stmt = $this->conexion->prepare("SELECT * FROM $this->tabla ORDER BY fecha_estreno DESC LIMIT $this->indice, $this->resultadoporpag ");
+            $stmt = $this->conexion->prepare("SELECT DISTINCT pelicula.id_pelicula AS id_pelicula, pelicula.nombre	AS nombre,pelicula.imagen AS imagen,pelicula.sinopsis AS sinopsis,pelicula.duracion AS duracion,	pelicula.url AS	url,pelicula.clasificacion AS clasificacion,pelicula.categoria AS categoria,pelicula.fecha_estreno AS fecha_estreno FROM horario INNER JOIN pelicula ON (horario.id_pelicula = pelicula.id_pelicula) ORDER BY fecha_estreno DESC LIMIT $this->indice, $this->resultadoporpag ");
 
             $stmt->execute();
             $registroarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
