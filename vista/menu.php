@@ -14,14 +14,16 @@
     <header>
         <div class="contenedor">
             <h2 class="logotipo">Richiliculas</h2>
-            <nav>
-                <a href="index.php" class="activo">Inicio</a>
-                <a href="#">Programas</a>
-                <a href="#">Películas</a>
-                <a href="#">Más Recientes</a>
-                <a href="#">Mi lista</a>
-                <a href="#">Admin</a>
-            </nav>
+                <nav>
+                    <form action="" method="post">
+                        <a href="index.php" class="activo">Inicio</a>
+                        <a href="index.php">Programas</a>
+                        <a href="index.php">Películas</a>
+                        <a href="index.php">Más Recientes</a>
+                        <a href="index.php">Mi lista</a>
+                        <a href="#index.php"><input class="opcion_nav" type="submit" name="nav" value="admin"></a>
+                    </form>
+                </nav>
         </div>
     </header>
 </body>
