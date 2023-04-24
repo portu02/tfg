@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2023 a las 19:57:10
+-- Tiempo de generación: 24-04-2023 a las 20:09:38
 -- Versión del servidor: 8.0.28
 -- Versión de PHP: 8.1.6
 
@@ -31,9 +31,9 @@ CREATE TABLE `butaca` (
   `id_butaca` smallint NOT NULL,
   `columna` smallint NOT NULL,
   `fila` smallint NOT NULL,
-  `color` enum('Verde','Rojo','Gris') NOT NULL,
+  `color` enum('Verde','Rojo','Gris') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id_sala` smallint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `butaca`
@@ -114,11 +114,11 @@ INSERT INTO `butaca` (`id_butaca`, `columna`, `fila`, `color`, `id_sala`) VALUES
 CREATE TABLE `horario` (
   `id_horario` smallint NOT NULL,
   `fecha` date NOT NULL,
-  `hora` varchar(200) NOT NULL,
+  `hora` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `precio` double NOT NULL,
   `id_pelicula` smallint NOT NULL,
   `id_sala` smallint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `horario`
@@ -245,15 +245,15 @@ INSERT INTO `horario` (`id_horario`, `fecha`, `hora`, `precio`, `id_pelicula`, `
 
 CREATE TABLE `pelicula` (
   `id_pelicula` smallint NOT NULL,
-  `nombre` varchar(200) NOT NULL,
-  `imagen` varchar(200) DEFAULT NULL,
-  `sinopsis` varchar(2000) DEFAULT NULL,
+  `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `imagen` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `sinopsis` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `duracion` smallint NOT NULL,
-  `url` varchar(1000) DEFAULT NULL,
-  `clasificacion` enum('TP','+7','+12','+16','+18') NOT NULL,
-  `categoria` enum('Acción','Aventuras','Ciencia Ficción','Comedia','No-Ficción','Drama','Documental','Fantasía','Musical','Suspense','Terror','Thriller','Animación','Infantil') NOT NULL,
+  `url` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `clasificacion` enum('TP','+7','+12','+16','+18') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `categoria` enum('Acción','Aventuras','Ciencia Ficción','Comedia','No-Ficción','Drama','Documental','Fantasía','Musical','Suspense','Terror','Thriller','Animación','Infantil') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `fecha_estreno` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `pelicula`
@@ -293,7 +293,7 @@ CREATE TABLE `reserva` (
   `id_usuario` smallint NOT NULL,
   `entradas` smallint NOT NULL,
   `precio` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -303,12 +303,12 @@ CREATE TABLE `reserva` (
 
 CREATE TABLE `sala` (
   `id_sala` smallint NOT NULL,
-  `descripcion` varchar(2000) DEFAULT NULL,
+  `descripcion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `capacidad` smallint DEFAULT NULL,
   `habilitada` tinyint(1) NOT NULL,
   `luxury` tinyint(1) NOT NULL,
   `lleno` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `sala`
@@ -329,14 +329,14 @@ INSERT INTO `sala` (`id_sala`, `descripcion`, `capacidad`, `habilitada`, `luxury
 
 CREATE TABLE `usuario` (
   `id_usuario` smallint NOT NULL,
-  `nombre` varchar(30) DEFAULT NULL,
-  `apellido1` varchar(30) DEFAULT NULL,
-  `apellido2` varchar(30) DEFAULT NULL,
-  `nombre_usuario` varchar(30) DEFAULT NULL,
-  `correo` varchar(50) DEFAULT NULL,
-  `contrasena` char(64) DEFAULT NULL,
-  `rol` char(13) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nombre` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `apellido1` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `apellido2` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nombre_usuario` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `correo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `contrasena` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `rol` char(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
