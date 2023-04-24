@@ -21,14 +21,14 @@
         Crear Sala
     </div>
     <div id="hoja">
-    <div style="background-color: black;">
+
         <form method='post' action=''>
             <label for='longcolumna'>Maxímo columnas:</label>
             <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'><br><br>
             <label for='longfila'>Maxímo filas:</label>
             <input type='number' min='1' name='longfila' value='<?= $max_fila ?? "" ?>'><br><br>
             <input type='submit' value='Limpiar' name='limpiar'><br><br>
-
+            <div style="display:flex;justify-content:center;">
             <table border='1' id='butacas'>
                 <?php
                 for ($filas = $max_fila; $filas >= 0; $filas--) {
@@ -101,11 +101,12 @@
                 }
                 ?>
             </table>
+            </div>
             <input type='submit' value='Modificar' name='editar'>
             <input type='submit' value='Correcto' formaction='respuesta.php' name='enviar_sala'>
         </form>
     </div>
-    </div>
+
 </body>
 
 </html>
