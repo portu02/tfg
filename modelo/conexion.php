@@ -3,7 +3,7 @@ class Conexion
 {
     private $servidor = "localhost";
     private $usuario = "root";
-    private $clave = "";
+    private $clave = "root";
     private $dbname = "cine";
 
     function conex()
