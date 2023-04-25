@@ -40,13 +40,17 @@ try {
     $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT COUNT(id_sala) AS num_salas FROM sala");
+    $stmt = $conn->prepare("SELECT id_sala AS num_salas FROM sala");
 
     $stmt->execute();
     $salasarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (count($salasarray) > 0) {
-        $numsalas = $salasarray[0]["num_salas"];
+        foreach($salasarray as $i => $a){
+            foreach($a as $j){
+                $numsalas[] = $j;
+            }
+        }
     } else {
         $numsalas = 1;
     }
@@ -112,7 +116,6 @@ try {
 $conn = null;
 
 
-
 /* INSERTA UNA SEMANA */
 for ($iu = 0; $iu < 8; $iu++) {
 
@@ -150,7 +153,7 @@ for ($iu = 0; $iu < 8; $iu++) {
         //EL HORARIO EMPIEZA A LAS 16:00
         $horatiempo = 16;
 
-        for ($ns = 1; $ns <= $numsalas; $ns++) {
+        foreach($numsalas as $numsalasi => $ns){
 
             echo $fecha_actual->format('Y-m-d');
 
@@ -174,7 +177,7 @@ for ($iu = 0; $iu < 8; $iu++) {
                     $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                    $stmt = $conn->prepare("INSERT INTO horario (fecha, hora, precio, id_pelicula, id_sala) VALUES (:dia,:hora,8,:pelicula,:sala)");
+                    $stmt = $conn->prepare("INSERT INTO horario (fecha, hora, id_pelicula, id_sala) VALUES (:dia,:hora,:pelicula,:sala)");
 
                     $hora = horario($horatiempo);
                     $sala = $ns;
