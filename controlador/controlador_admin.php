@@ -171,7 +171,7 @@ if (isset($_SESSION["maxcolumnas"])) {
     if (isset($max_columna)) {
         $_SESSION["maxcolumnas"] = $max_columna;
     } else {
-        $max_columna = 5;
+        $max_columna = 10;
     }
 }
 
