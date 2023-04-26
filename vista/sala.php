@@ -5,45 +5,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vista/css/tablasAdmin.css">
+    <link rel="stylesheet" href="vista/css/estilos.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <table id='butacas'>
+    <?php
+    include "vista/menu.php";
+    ?>
+    <table>
+        <tr>
+            <th>NÚMERO</th>
+            <th>DESCRIPCIÓN</th>
+            <th>CAPACIDAD</th>
+            <th>HABILITADA</th>
+            <th>LUXURY</th>
+            <th colspan="2">ACCIONES</th>
+        </tr>
+        <tr>
+            <td colspan="5">NUEVA SALA</td>
+            <td colspan="2">
+                <form method="post" action="index.php">
+                    <input type="hidden" name="sala" value="<?php echo $_POST['sala'] ?>" />
+                    <button class="insert" name="nueva" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
+                </form>
+            </td>
+        </tr>
         <?php
-        for ($filas = $max_fila; $filas > 0; $filas--) {
+        foreach ($arraysalas as $row) {
         ?>
             <tr>
-                <?php
-                for ($columnas = $max_columna; $columnas > 0; $columnas--) {
-                    
-                    if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
-                        //condicionales de color de butacas
-                        if ($arraybutaca[$numbutaca]["color"] == "Verde") {
-                ?>
-                            <td><img src='butaca_verde.png' class='butaca'><input type='checkbox' class='checkbox'></td>
-                        <?php
-                        } elseif ($arraybutaca[$numbutaca]["color"] == "Rojo") {
-                        ?>
-                            <td><img src='butaca_roja.png'></td>
-                        <?php
-                        } elseif ($arraybutaca[$numbutaca]["color"] == "Gris") {
-                        ?>
-                            <td><img src='butaca_gris.png'></td>
-
-                        <?php
-                        }
-
-                        $numbutaca++;
+                <td><?php echo 'Sala ' . $row['id_sala'] ?></td>
+                <td><?php echo $row['descripcion'] ?></td>
+                <td><?php echo $row['capacidad'] ?></td>
+                <td>
+                    <?php if ($row['habilitada'] == 1) {
+                        echo 'Sí';
                     } else {
-                        ?>
-                        <td></td>
-                <?php
-                    }
-                }
-                ?>
+                        echo 'No';
+                    } ?>
+                </td>
+                <td>
+                    <?php if ($row['luxury'] == 1) {
+                        echo 'Sí';
+                    } else {
+                        echo 'No';
+                    } ?>
+                </td>
+                <td>
+                    <form method="post" action="index.php">
+                        <button class="edit" name="editar" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
+                        <input type="hidden" name="id_sala" value="<?php echo $row['id_sala'] ?>" />
+                        <input type="hidden" name="descripcion" value="<?php echo $row['descripcion'] ?>" />
+                        <input type="hidden" name="capacidad" value="<?php echo $row['capacidad'] ?>" />
+                        <input type="hidden" name="habilitada" value="<?php echo $row['habilitada'] ?>" />
+                        <input type="hidden" name="luxury" value="<?php echo $row['luxury'] ?>" />
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="index.php">
+                        <button class="trash" name="borrar" title="Borrar"><i class='far fa-trash-alt' style='font-size:24px'></i></button>
+                        <input type="hidden" name="id_sala" value="<?php echo $row['id_sala'] ?>" />
+                    </form>
+                </td>
             </tr>
         <?php
         }
         ?>
     </table>
+    <br>
+    <?php
+    include('Paginacion.php');
+    ?>
 </body>
+
+</html>

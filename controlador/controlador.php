@@ -15,7 +15,8 @@ include_once("modelo/butaca.php");
 //creacion de horarios
     $butacas = new Butaca("", "", "", "", "", "");
 //creacion de sala
-    $sala = new Butaca("", "", "", "", "", "");
+    $sala = new Sala("", "", "", "", "", "");
+    $arraysalas = $sala->obtieneTodos();
 //creacion de paginacion
     $pagina = new Paginacion(4, "pelicula");
     $arraypeliculaspaginado = $pagina->mostrar();
@@ -33,10 +34,10 @@ if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
     require_once("controlador/controlador_sala.php");
     //require_once("vista/sala.php");
 
-}elseif(isset($_POST["sala"]) || isset($_POST["editar"]) || isset($_POST["limpiar"]) || isset($_POST["enviar_sala"])){
-    require_once("controlador/controlador_admin.php");
-
-}elseif(isset($_POST["nav"])){
+}elseif(isset($_POST["sala"])){
+    require_once("controlador/controlador_sala.php");
+}
+elseif(isset($_POST["nav"])){
     require_once("vista/vista_admin.php");
 }else{
     require_once("vista/principal.php");
