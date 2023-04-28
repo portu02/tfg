@@ -1,4 +1,11 @@
 <?php
+    if (isset($_POST['nueva'])){
+        require_once("controlador/controlador_admin.php");
+    }
+    else {
+        require_once('vista/sala.php');
+    }
+    /*
     $id_pelicula=$_POST["id_pelicula"]+1;
 
     $dia_simple = $_POST["id_dia"];
@@ -15,5 +22,5 @@
     }else{
         
     }
-
+*/
 ?>

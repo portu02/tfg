@@ -38,7 +38,7 @@ class Butaca extends Crud
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(columna, fila, color, id_sala) VALUES (:columna, :fila, :color, id_sala)");
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(columna, fila, color, id_sala) VALUES (:columna, :fila, :color, :id_sala)");
 
             $stmt->bindParam(":columna", $this->columna);
             $stmt->bindParam(":fila", $this->fila);
@@ -76,6 +76,21 @@ class Butaca extends Crud
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error" . $e->getMessage();
+        }
+    }
+
+    function obtieneDeIDSala($id)
+    {
+        try {
+            $stmt = $this->conexion->prepare("SELECT * FROM " . self::TABLA . " WHERE id_sala LIKE :id ORDER BY fila DESC ,columna ASC;");
+
+            $stmt->bindParam(":id", $id);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return $e->getMessage();
         }
     }
 }

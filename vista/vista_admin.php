@@ -15,10 +15,10 @@
     <?php
         include "./vista/menu.php";
     ?>
-    <div id="hoja_admin">
+    <div id="hoja_admin" >
         <form action="" method="post"  id="opciones">
             <div id="salas" >
-                <input type="submit" value="SALAS" name="crearsala">
+                <input type="submit" value="SALAS">
             </div>
             <div id="peliculas">
                 <input type="submit" value="PELICULAS">

@@ -14,6 +14,23 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+    <header>
+        <div class="contenedor">
+            <h2 class="logotipo">Richiliculas</h2>
+                <nav>
+                    <form action="" method="post">
+                        <a href="index.php" class="activo">Inicio</a>
+                        <a href="index.php">Programas</a>
+                        <a href="index.php">Películas</a>
+                        <a href="index.php">Más Recientes</a>
+                        <a href="index.php">Mi lista</a>
+                        <a href="#index.php"><input class="opcion_nav" type="submit" name="nav" value="admin"></a>
+                    </form>
+                </nav>
+        </div>
+    </header>
+=======
     <div class="contenedor">
         <form action="" method="post">  
             <nav class="navbar navbar-expand-lg navbar-dark"> 
@@ -45,6 +62,7 @@
             </nav>
             </form>
     </div>
+>>>>>>> origin
 </body>
 
 </html>
