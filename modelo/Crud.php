@@ -39,6 +39,8 @@ abstract class Crud extends Conexion
             return $e->getMessage();
         }
     }
+<<<<<<< HEAD
+=======
     
     public function obtieneUltimoID()
     {
@@ -47,6 +49,7 @@ abstract class Crud extends Conexion
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return (int) $row['last_id'];
     }
+>>>>>>> origin
 
     public function borrar($id)
     {
