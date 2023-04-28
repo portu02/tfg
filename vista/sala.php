@@ -78,7 +78,7 @@
     </table>
     <br>
     <?php
-    include('Paginacion.php');
+    //include('Paginacion.php');
     ?>
 </body>
 

@@ -36,8 +36,11 @@ if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
 
 }elseif(isset($_POST["sala"])){
     require_once("controlador/controlador_sala.php");
-}
-elseif(isset($_POST["nav"])){
+
+}elseif(isset($_POST['nueva']) || isset($_POST["editar_sala"]) || isset($_POST["limpiar"]) || isset($_POST["enviar_sala"])){
+    require_once("controlador/controlador_admin.php");
+
+}elseif(isset($_POST["nav"])){
     require_once("vista/vista_admin.php");
 }else{
     require_once("vista/principal.php");

@@ -1,6 +1,6 @@
 <?php
     if (isset($_POST['nueva'])){
-        require_once('vista/crearsala_admin.php');
+        require_once("controlador/controlador_admin.php");
     }
     else {
         require_once('vista/sala.php');
