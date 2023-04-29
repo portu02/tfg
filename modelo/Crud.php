@@ -39,7 +39,6 @@ abstract class Crud extends Conexion
             return $e->getMessage();
         }
     }
-
     
     public function obtieneUltimoID()
     {

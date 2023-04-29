@@ -14,23 +14,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <header>
-        <div class="contenedor">
-            <h2 class="logotipo">Richiliculas</h2>
-                <nav>
-                    <form action="" method="post">
-                        <a href="index.php" class="activo">Inicio</a>
-                        <a href="index.php">Programas</a>
-                        <a href="index.php">Películas</a>
-                        <a href="index.php">Más Recientes</a>
-                        <a href="index.php">Mi lista</a>
-                        <a href="#index.php"><input class="opcion_nav" type="submit" name="nav" value="admin"></a>
-                    </form>
-                </nav>
-        </div>
-    </header>
-=======
     <div class="contenedor">
         <form action="" method="post">  
             <nav class="navbar navbar-expand-lg navbar-dark"> 
@@ -46,9 +29,6 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <input class="dropdown-item submit-btn w-100" type="submit" value="Salas" name="sala">
-                                <input class="dropdown-item submit-btn w-100" type="submit" value="Usuarios" name="usuarios">
-                                <input class="dropdown-item submit-btn w-100" type="submit" value="Horarios" name="horarios">
-                                <input class="dropdown-item submit-btn w-100" type="submit" value="Peliculas" name="peliculas">
                             </div>
                         </li>
                         <li class="nav-item active">
@@ -62,7 +42,6 @@
             </nav>
             </form>
     </div>
->>>>>>> origin
 </body>
 
 </html>
