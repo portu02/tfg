@@ -1,0 +1,120 @@
+#butacas td {
+    width: 45px;
+    height: 48px;
+    position: relative;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    min-width: 45px;
+}
+
+#butacas td:first-child {
+    background-color: rgb(147, 0, 0);
+    color: white;
+    position: sticky;
+    z-index: 2;
+    left: 0;
+}
+
+#butacas tr:last-child {
+    background-color: rgb(147, 0, 0);
+    color: white;
+    position: sticky;
+    z-index: 2;
+    bottom: 0;
+}
+
+#butacas img {
+    width: 45px;
+}
+
+#butacas {
+    background-color: black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.oculto {
+    color: yellow;
+    font-weight: bold;
+}
+
+.numero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 100%;
+    width: 100%;
+}
+
+.marcado {
+    color: black;
+    font-weight: bold;
+}
+
+label{
+    color:white;
+}
+
+.butacas-contenedor .butacascontenido {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.butacas-contenedor {
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 60vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    background-color: black;
+    position: relative;
+    border: 5px solid #737373;
+}
+
+.filas-columnas{
+    background-color: black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+    padding: 10px;
+}
+
+.boton-modificar{
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px 20px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+.pen{
+    background-image: url('../fotos/pen.png');
+    background-color: rgb(79, 79, 255);
+}
+.confirm{
+    background-image: url('../fotos/confirm.png');
+    background-color: rgb(32, 155, 32);
+}
