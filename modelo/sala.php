@@ -42,8 +42,8 @@ class Sala extends Crud
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(descripcion, capacidad, habilitada, luxury, lleno) VALUES (:descripcion, :capacidad, :habilitada, :luxury, :lleno)");
-
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(id_sala,descripcion, capacidad, habilitada, luxury, lleno) VALUES (:id,:descripcion, :capacidad, :habilitada, :luxury, :lleno)");
+            $stmt->bindParam(":id", $this->id_sala);
             $stmt->bindParam(":descripcion", $this->descripcion);
             $stmt->bindParam(":capacidad", $this->capacidad);
             $stmt->bindParam(":habilitada", $this->habilitada);

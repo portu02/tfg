@@ -45,7 +45,8 @@ abstract class Crud extends Conexion
         $stmt = $this->conexion->prepare("SELECT MAX(id_$this->tabla) AS last_id FROM $this->tabla");
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return (int) $row['last_id'];
+        $last_id = (int) $row['last_id'];
+        return $last_id > 0 ? $last_id : 1;
     }
 
     public function borrar($id)

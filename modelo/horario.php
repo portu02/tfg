@@ -52,8 +52,9 @@ class Horario extends Crud
     public function obtieneDeIDPelicula($id)
     {
         try {
-            $stmt = $this->conexion->prepare("SELECT * FROM " . self::TABLA . " WHERE id_pelicula = :id;");
-
+            $fecha_hoy = date("Y-m-d");
+            $stmt = $this->conexion->prepare("SELECT * FROM " . self::TABLA . " WHERE id_pelicula = :id AND fecha >= :hoy AND CAST(CONCAT(fecha, ' ', hora) AS DATETIME) >= NOW();");
+            $stmt->bindParam(":hoy", $fecha_hoy);
             $stmt->bindParam(":id", $id);
 
             $stmt->execute();

@@ -1,0 +1,78 @@
+#butacas td {
+    width: 45px;
+    height: 48px;
+    position: relative;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    min-width: 45px;
+}
+
+#butacas img {
+    width: 45px;
+}
+
+#butacas {
+    background-color: black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    /* */
+    z-index:2;
+}
+/* */
+.numbutaca{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.oculto {
+    color: yellow;
+    font-weight: bold;
+}
+
+.numero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 100%;
+    width: 100%;
+}
+
+.marcado {
+    color: black;
+    font-weight: bold;
+}
+
+label{
+    color:white;
+}
+
+.butacas-contenedor .butacascontenido {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.butacas-contenedor {
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 60vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    background-color: black;
+    position: relative;
+    border: 5px solid #737373;
+}
