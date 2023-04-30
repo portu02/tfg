@@ -29,6 +29,8 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <input class="dropdown-item submit-btn w-100" type="submit" value="Salas" name="sala">
+                                <input class="dropdown-item submit-btn w-100" type="submit" value="Peliculas" name="pelicula_admin">
+                                <input class="dropdown-item submit-btn w-100" type="submit" value="Usuarios" name="usuario">
                             </div>
                         </li>
                         <li class="nav-item active">

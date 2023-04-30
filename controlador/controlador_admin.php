@@ -345,9 +345,11 @@ if (isset($_POST["enviar_sala"])) {
     unset($_SESSION["columnas"]);
     unset($_SESSION["butacas"]);
 
-    header('location: index.php');
-    exit;
+    $result = 'Sala creada correctamente';
+    $arraysalas = $sala->obtieneTodos();
+    require_once('vista/sala.php');
     
 }
-
-require_once 'vista/crearsala_admin.php';
+else {
+    require_once 'vista/crearsala_admin.php';
+}

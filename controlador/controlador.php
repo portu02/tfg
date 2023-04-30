@@ -24,25 +24,18 @@ include_once("modelo/butaca.php");
     
 //si interactua con alguna pelicula o el dia
 if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
-    
     require_once("controlador/controlador_peliculas.php");
-    require_once("vista/pelicula.php");
 
 //si interactua con la hora
-} elseif(isset($_POST["hora"])){
-
-    require_once("controlador/controlador_sala.php");
-    //require_once("vista/sala.php");
-
-}elseif(isset($_POST["sala"])){
+} elseif(isset($_POST["sala"]) || isset($_POST["hora"]) || isset($_POST["borrar"])){
     require_once("controlador/controlador_sala.php");
 
 }elseif(isset($_POST['nueva']) || isset($_POST["editar_sala"]) || isset($_POST["limpiar"]) || isset($_POST["enviar_sala"])){
     require_once("controlador/controlador_admin.php");
 
-}elseif(isset($_POST["nav"])){
+} /*elseif(isset($_POST["nav"])){
     require_once("vista/vista_admin.php");
-}else{
+}*/ else{
     require_once("vista/principal.php");
 }
 

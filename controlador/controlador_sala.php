@@ -1,7 +1,14 @@
 <?php
+if(isset($_POST['borrar'])) {
+    $id_sala = $_POST['id_sala'];
+    $sala->borrar($id_sala);
+    $result = 'Sala borrada correctamente';
+    $arraysalas = $sala->obtieneTodos();
+} 
 if (isset($_POST['nueva'])) {
     require_once("controlador/controlador_admin.php");
-} elseif (isset($_POST['hora'])) {
+} 
+else if (isset($_POST['hora'])) {
     $id_pelicula = $_POST["id_pelicula"] + 1;
 
     $dia_simple = $_POST["id_dia"];
@@ -36,7 +43,7 @@ if (isset($_POST['nueva'])) {
     $numbutaca = 0;
 
     require_once('vista/reservaSala.php');
-} else {
+}  else {
     require_once('vista/sala.php');
 }
     /*
