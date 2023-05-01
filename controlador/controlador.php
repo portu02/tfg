@@ -23,7 +23,7 @@ include_once("modelo/butaca.php");
     $num = $pagina->numeritos();
     
 //si interactua con alguna pelicula o el dia
-if(isset($_POST["pelicula"]) || isset($_POST["dia"])){
+if(isset($_POST["pelicula"]) || isset($_POST["dia"]) || isset($_POST["pelicula_admin"]) || isset($_POST["borrar_peli"])){
     require_once("controlador/controlador_peliculas.php");
 
 //si interactua con la hora

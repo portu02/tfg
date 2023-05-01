@@ -29,7 +29,7 @@
 
 <body>
     <?php
-    include 'menu.php';
+    include 'vista/menu.php';
    
     ?>
     <div id="imagengrande">

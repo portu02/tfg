@@ -42,9 +42,9 @@ else if (isset($_POST['hora'])) {
 
     $numbutaca = 0;
 
-    require_once('vista/reservaSala.php');
+    require_once('vista/sala/reservaSala.php');
 }  else {
-    require_once('vista/sala.php');
+    require_once('vista/sala/sala_admin.php');
 }
     /*
     $id_pelicula=$_POST["id_pelicula"]+1;

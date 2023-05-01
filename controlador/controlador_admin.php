@@ -347,9 +347,9 @@ if (isset($_POST["enviar_sala"])) {
 
     $result = 'Sala creada correctamente';
     $arraysalas = $sala->obtieneTodos();
-    require_once('vista/sala.php');
+    require_once('vista/sala/sala_admin.php');
     
 }
 else {
-    require_once 'vista/crearsala_admin.php';
+    require_once 'vista/sala/crearsala_admin.php';
 }
