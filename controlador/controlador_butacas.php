@@ -19,3 +19,4 @@ if (isset($_POST["hora"]) && isset($_POST["sala_seleccionada"])) {
 
     $numbutaca = 0;
 }
+?>

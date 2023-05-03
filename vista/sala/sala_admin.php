@@ -35,7 +35,7 @@
             <td colspan="5">NUEVA SALA</td>
             <td colspan="2">
                 <form method="post" action="index.php">
-                    <button class="insert" name="nueva" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
+                    <button class="insert" name="anadir_sala_admin" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
                 </form>
             </td>
         </tr>
@@ -72,7 +72,7 @@
                 </td>
                 <td>
                     <form method="post" action="index.php">
-                        <button class="trash" name="borrar" title="Borrar"><i class='far fa-trash-alt' style='font-size:24px'></i></button>
+                        <button class="trash" name="borrar_sala_admin" title="Borrar"><i class='far fa-trash-alt' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_sala" value="<?php echo $row['id_sala'] ?>" />
                     </form>
                 </td>

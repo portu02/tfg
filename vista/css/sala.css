@@ -62,8 +62,9 @@ label{
 }
 
 .butacas-contenedor .butacascontenido {
-    display: inline-block;
-    vertical-align: top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .butacas-contenedor {

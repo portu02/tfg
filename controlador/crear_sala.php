@@ -1,8 +1,6 @@
-
 <?php
-session_start();
 
-if (isset($_POST["editar"])) {
+if (isset($_POST["editar_sala_admin"])) {
 
     if (isset($_POST["columnas"]) || isset($_POST["filas"]) || isset($_POST["butacas"])) {
 
@@ -141,7 +139,7 @@ if (isset($_SESSION["butacas"])) {
 }
 
 /****** MAXIMO FILAS ******/
-if (isset($_POST["limpiar"]) && isset($_POST["longfila"])) {
+if (isset($_POST["previsualizar"]) && isset($_POST["longfila"])) {
     $max_fila = $_POST["longfila"];
 }
 if (isset($_SESSION["maxfilas"])) {
@@ -159,7 +157,7 @@ if (isset($_SESSION["maxfilas"])) {
     }
 }
 /****** MAXIMO COLUMNAS ******/
-if (isset($_POST["limpiar"]) && isset($_POST["longcolumna"])) {
+if (isset($_POST["previsualizar"]) && isset($_POST["longcolumna"])) {
     $max_columna = $_POST["longcolumna"];
 }
 if (isset($_SESSION["maxcolumnas"])) {
@@ -177,8 +175,65 @@ if (isset($_SESSION["maxcolumnas"])) {
     }
 }
 
+/****** DESCRIPCION ******/
+if (isset($_POST["previsualizar"]) && isset($_POST["descripcion"])) {
+    $descripcion = $_POST["descripcion"];
+}
+if (isset($_SESSION["descripcion"])) {
+
+    if (isset($descripcion)) {
+        $_SESSION["descripcion"] = $descripcion;
+    } else {
+        $descripcion = $_SESSION["descripcion"];
+    }
+} else {
+    if (isset($descripcion)) {
+        $_SESSION["descripcion"] = $descripcion;
+    } else {
+        $descripcion = "";
+    }
+}
+
+/****** HABILITADA ******/
+if (isset($_POST["previsualizar"]) && isset($_POST["habilitada"])) {
+    $habilitada = $_POST["habilitada"];
+}
+if (isset($_SESSION["habilitada"])) {
+
+    if (isset($habilitada)) {
+        $_SESSION["habilitada"] = $habilitada;
+    } else {
+        $habilitada = $_SESSION["habilitada"];
+    }
+} else {
+    if (isset($habilitada)) {
+        $_SESSION["habilitada"] = $habilitada;
+    } else {
+        $habilitada = "";
+    }
+}
+
+/****** LUXURY ******/
+if (isset($_POST["previsualizar"]) && isset($_POST["luxury"])) {
+    $luxury = $_POST["luxury"];
+}
+if (isset($_SESSION["luxury"])) {
+
+    if (isset($luxury)) {
+        $_SESSION["luxury"] = $luxury;
+    } else {
+        $luxury = $_SESSION["luxury"];
+    }
+} else {
+    if (isset($luxury)) {
+        $_SESSION["luxury"] = $luxury;
+    } else {
+        $luxury = "";
+    }
+}
+
 /****** ELIMINA TODAS LAS SESIONES ******/
-if (isset($_POST["limpiar"])) {
+if (isset($_POST["previsualizar"])) {
     unset($_SESSION["filas"]);
     unset($_SESSION["columnas"]);
     unset($_SESSION["butacas"]);
@@ -188,86 +243,115 @@ if (isset($_POST["limpiar"])) {
     $array_butacas = array("vacio" => "vacio");
 }
 
-?>
-<form method='post' action=''>
-    <label for='longcolumna'>Maxímo columnas:</label>
-    <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'><br><br>
-    <label for='longfila'>Maxímo filas:</label>
-    <input type='number' min='1' name='longfila' value='<?= $max_fila ?? "" ?>'><br><br>
-    <input type='submit' value='Limpiar' name='limpiar'><br><br>
+/****** CREAR SALA ******/
+if (isset($_POST["enviar_sala"])) {
+    /***** COMPROBAR QUE EXISTEN LAS SESIONES *****/
+    if (isset($_SESSION["maxfilas"])) {
+        $max_fila = $_SESSION["maxfilas"];
+    } else {
+        $max_fila = 5;
+    }
 
-    <table border='1' id='butacas'>
-        <?php
-        for ($filas = $max_fila; $filas >= 0; $filas--) {
-        ?>
-            <tr>
-                <?php
-                /* MENU SELECCIONAR LAS FILAS */
-                //el if es para dar color
-                if (!array_key_exists($filas, $array_filas)) {
-                ?>
-                    <td><input type='checkbox' name='filas[<?= $filas ?>]' class='checkbox'><span><?= $filas ?? "" ?></span></td>
-                <?php
-                } else {
-                ?>
-                    <td><input type='checkbox' name='filas[<?= $filas ?>]' class='checkbox'><span class='marcado'><?= $filas ?? "" ?></span></td>
-                    <?php
-                }
-                /* */
+    if (isset($_SESSION["maxcolumnas"])) {
+        $max_columna = $_SESSION["maxcolumnas"];
+    } else {
+        $max_columna = 5;
+    }
 
-                for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
-                    if ($filas == 0) {
-                        /* MENU SELECCIONAR LAS COLUMNAS */
-                        //el if es para dar color
-                        if (!array_key_exists($columnas, $array_columnas)) {
-                    ?>
-                            <td><input type='checkbox' name='columnas[<?= $columnas ?>]' class='checkbox'><span><?= $columnas ?? "" ?></span></td>
-                        <?php
-                        } else {
-                        ?>
-                            <td><input type='checkbox' name='columnas[<?= $columnas ?>]' class='checkbox'><span class='marcado'><?= $columnas ?? "" ?></span></td>
-                        <?php
-                        }
-                    } elseif (array_key_exists($filas, $array_filas)) {
-                        if (!array_key_exists($filas . ";" . $columnas, $array_butacas)) {
-                        ?>
-                            <td><input type="checkbox" name="butacas[<?= $filas ?>;<?= $columnas ?>]" class="checkbox"><span><?= $columnas ?? "" ?></span></td>
-                        <?php
-                        } else {
-                            /*  IMPRIMIR BUTACAS */
-                        ?>
-                            <td>
-                                <span style="position: relative; display: block;">
-                                    <img src="butaca_verde.png" class="butaca">
-                                    <span class="numero"><?= $columnas ?? "" ?></span>
-                                </span>
-                            </td>
-                        <?php
-                        }
-                    } else {
-                        if (!array_key_exists($columnas, $array_columnas) || array_key_exists($filas . ";" . $columnas, $array_butacas)) {
-                            /*  IMPRIMIR BUTACAS */
-                        ?>
-                            <td>
-                                <span style="position: relative; display: block;">
-                                    <img src="butaca_verde.png" class="butaca">
-                                    <span class="numero"><?= $columnas ?? "" ?></span>
-                                </span>
-                            </td>
-                        <?php
-                        } else {
-                        ?>
-                            <td><input type="checkbox" name="butacas[<?= $filas ?>;<?= $columnas ?>]" class="checkbox"><span><?= $columnas ?? "" ?></span></td>
-                <?php
-                        }
-                    }
+    if (isset($_SESSION["descripcion"])) {
+        $descripcion = $_SESSION["descripcion"];
+    } else {
+        $descripcion = "";
+    }
+
+    if (isset($_SESSION["habilitada"])) {
+        $habilitada = $_SESSION["habilitada"];
+    } else {
+        $habilitada = 0;
+    }
+
+    if (isset($_SESSION["luxury"])) {
+        $luxury = $_SESSION["luxury"];
+    } else {
+        $luxury = 0;
+    }
+
+    if (isset($_SESSION["filas"])) {
+        $array_filas = $_SESSION["filas"];
+    } else {
+        $array_filas = array("vacio" => "vacio");
+    }
+
+    if (isset($_SESSION["columnas"])) {
+        $array_columnas = $_SESSION["columnas"];
+    } else {
+        $array_columnas = array("vacio" => "vacio");
+    }
+
+    if (isset($_SESSION["butacas"])) {
+        $array_butacas = $_SESSION["butacas"];
+    } else {
+        $array_butacas = array("vacio" => "vacio");
+    }
+
+    /* CAPACIDAD */
+    $capacidad = 0;
+    for ($filas = $max_fila; $filas >= 0; $filas--) {
+        for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
+            if (array_key_exists($filas, $array_filas) && $filas != 0) {
+                if (array_key_exists($filas . ";" . $columnas, $array_butacas)) {
+                    $capacidad++;
                 }
-                ?>
-            </tr>
-        <?php
+            } elseif ($filas != 0) {
+                if (!array_key_exists($columnas, $array_columnas) || array_key_exists($filas . ";" . $columnas, $array_butacas)) {
+                    $capacidad++;
+                }
+            }
         }
-        ?>
-    </table>
-    <input type='submit' value='Modificar' name='editar'>
-    <input type='submit' value='Correcto' formaction='respuesta.php' name='enviar_sala'>
-</form>
+    }
+    $salas = new Sala("","","","","","");
+    $id_sala = $salas->obtieneUltimoID();
+    $id_sala = $id_sala+1;
+
+    $sala = new Sala($id_sala, $descripcion, $capacidad, $habilitada, $luxury, 0);
+    $sala->crear();
+
+    /* INSERTAR BUTACAS */
+    for ($filas = $max_fila; $filas >= 0; $filas--) {
+        for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
+            if (array_key_exists($filas, $array_filas) && $filas != 0) {
+                if (array_key_exists($filas . ";" . $columnas, $array_butacas)) {
+                    //INSERTAR
+                    $butaca = new Butaca("", $columnas, $filas, "Verde", $id_sala);
+                    $butaca->crear();
+                }
+            } elseif ($filas != 0) {
+                if (!array_key_exists($columnas, $array_columnas) || array_key_exists($filas . ";" . $columnas, $array_butacas)) {
+                    //INSERTAR
+                    $butaca = new Butaca("", $columnas, $filas, "Verde", $id_sala);
+                    $butaca->crear();
+                }
+            }
+        }
+    }
+
+    /* BORRAR SESIONES */
+    unset($_SESSION["maxfilas"]);
+    unset($_SESSION["maxcolumnas"]);
+    unset($_SESSION["descripcion"]);
+    unset($_SESSION["habilitada"]);
+    unset($_SESSION["luxury"]);
+    unset($_SESSION["filas"]);
+    unset($_SESSION["columnas"]);
+    unset($_SESSION["butacas"]);
+
+    $result = 'Sala creada correctamente';
+    $arraysalas = $sala->obtieneTodos();
+    /* EJECUTAR SCRIPT CREAR HORARIO */
+    require_once('./controlador/crear_horario.php');
+    
+    require_once('vista/sala/sala_admin.php');   
+}
+else {
+    require_once 'vista/sala/crearsala_admin.php';
+}

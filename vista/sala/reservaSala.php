@@ -12,34 +12,32 @@
     <link rel="stylesheet" href="vista/css/sala.css">
     <link rel="stylesheet" href="vista/css/estilos.css">
     <script>
-    window.onload = function() {
-        let arraycheckbox = Array.from(document.getElementsByClassName('checkbox'));
-        arraycheckbox.map(
-            m => m.addEventListener('change', function() {
-                let butaca = this.previousElementSibling;
-                if (this.checked) {
-                    butaca.src = 'vista/fotos/butacas/butaca_roja.png';
-                } else {
-                    butaca.src = 'vista/fotos/butacas/butaca_verde.png';
-                }
-            }));
-    }
-</script>
+        window.onload = function() {
+            let arraycheckbox = Array.from(document.getElementsByClassName('checkbox'));
+            arraycheckbox.map(
+                m => m.addEventListener('change', function() {
+                    let butaca = this.previousElementSibling;
+                    if (this.checked) {
+                        butaca.src = 'vista/fotos/butacas/butaca_roja.png';
+                    } else {
+                        butaca.src = 'vista/fotos/butacas/butaca_verde.png';
+                    }
+                }));
+        }
+    </script>
 </head>
 
 <body>
     <?php
     include 'vista/menu.php';
-   
+
     ?>
     <div id="imagengrande">
         Sala <?= $id ?? "" ?>
     </div>
     <div class="butacas-contenedor">
-            <div class="butacascontenido">
-    <form method='post' action=''>
-
-
+        <div class="butacascontenido">
+            <form method='post' action=''>
                 <table id='butacas'>
                     <?php
                     for ($filas = $max_fila; $filas > 0; $filas--) {
@@ -53,8 +51,8 @@
                                     //condicionales de color de butacas
                                     if ($arraybutaca[$numbutaca]["color"] == "Verde") {
                             ?>
-                                <td><img src="vista/fotos/butacas/butaca_verde.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
-                                        
+                                        <td><img src="vista/fotos/butacas/butaca_verde.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+
                                     <?php
                                     } elseif ($arraybutaca[$numbutaca]["color"] == "Rojo") {
                                     ?>
@@ -74,15 +72,15 @@
                             <?php
                                 }
                             }
-                    
+
                             ?>
                         </tr>
                     <?php
                     }
                     ?>
                 </table>
-    </form>
-            </div>
+            </form>
+        </div>
     </div>
 
 </body>

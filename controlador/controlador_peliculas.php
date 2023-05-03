@@ -24,14 +24,6 @@ if (isset($_POST["dia"])) {
     $id_dia = $_POST["dia"];
     $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula + 1);
     require_once("vista/pelicula/pelicula.php");
-} elseif (isset($_POST["pelicula_admin"])) {
-    if (isset($_POST['borrar_peli'])) {
-        $id_pelicula = $_POST['id_pelicula_a'];
-        $peliculas->borrar($id_pelicula);
-        $result = 'Pelicula borrada correctamente';
-        $arraypeliculas = $peliculas->obtieneTodos();
-    }
-    require_once("vista/pelicula/pelicula_admin.php");
 } else {
     require_once("vista/pelicula/pelicula.php");
 }
