@@ -19,7 +19,7 @@ $butacas = new Butaca("", "", "", "", "", "");
 $sala = new Sala("", "", "", "", "", "");
 $arraysalas = $sala->obtieneTodos();
 //creacion de usuarios
-$usuario = new Usuario("", "", "", "", "", "", "", "");
+$usuario = new Usuario("", "", "", "", "", "");
 $arrayusuarios = $usuario->obtieneTodos();
 //creacion de paginacion
 $pagina = new Paginacion(4, "pelicula");
@@ -44,6 +44,9 @@ elseif (isset($_POST["sala"]) || isset($_POST["hora"])) {
 elseif (isset($_POST["usuario_admin"]) || isset($_POST["borrar_usuario_admin"])) {
     require_once("controlador/admin/controlador_admin_usuarios.php");
 } 
+elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isset($_POST["volver_login"]) || isset($_POST["crear_login"]) || isset($_POST['registar_nuevo_login'])){
+    require_once("controlador/controlador_login.php");
+}
 else {
     require_once("vista/principal.php");
 }

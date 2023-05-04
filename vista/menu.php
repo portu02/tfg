@@ -33,11 +33,11 @@
                                 <input class="dropdown-item submit-btn w-100" type="submit" value="Usuarios" name="usuario_admin">
                             </div>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.php">Inicio</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Películas</a>
+                        </li>
+                        <li class="nav-item">
+                            <input type=submit name="iniciar_sesion" id="botones" value="Iniciar sesion" class="nav-link" >
                         </li>
                     </ul>
                 </div>

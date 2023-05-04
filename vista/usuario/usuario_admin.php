@@ -27,7 +27,7 @@
             <th>NÚMERO</th>
             <th>NOMBRE</th>
             <th>APELLIDOS</th>
-            <th>NOMBRE_USUARIO</th>
+            <th></th>
             <th>CORREO</th>
             <th>ROL</th>
             <th colspan="2">ACCIONES</th>
@@ -46,8 +46,7 @@
             <tr>
                 <td><?php echo 'Usuario ' . $row['id_usuario'] - 1 ?></td>
                 <td><?php echo $row['nombre'] ?></td>
-                <td><?php echo $row['apellido1'] . ' ' . $row['apellido2'] ?></td>
-                <td><?php echo $row['nombre_usuario'] ?></td>
+                <td><?php echo $row['apellido'] ?></td>
                 <td><?php echo $row['correo'] ?></td>
                 <td><?php echo $row['rol'] ?></td>
                 <td>
@@ -55,9 +54,7 @@
                         <button class="edit" name="editar" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_usuario" value="<?php echo $row['id_usuario'] ?>" />
                         <input type="hidden" name="nombre" value="<?php echo $row['nombre'] ?>" />
-                        <input type="hidden" name="apellido1" value="<?php echo $row['apellido1'] ?>" />
-                        <input type="hidden" name="apellido2" value="<?php echo $row['apellido2'] ?>" />
-                        <input type="hidden" name="nombre_usuario" value="<?php echo $row['nombre_usuario'] ?>" />
+                        <input type="hidden" name="apellido" value="<?php echo $row['apellido'] ?>" />
                         <input type="hidden" name="correo" value="<?php echo $row['correo'] ?>" />
                         <input type="hidden" name="rol" value="<?php echo $row['rol'] ?>" />
                     </form>

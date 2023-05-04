@@ -329,9 +329,9 @@ INSERT INTO `sala` (`id_sala`, `descripcion`, `capacidad`, `habilitada`, `luxury
 CREATE TABLE `usuario` (
   `id_usuario` smallint(6) NOT NULL,
   `nombre` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `apellido1` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `apellido2` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `nombre_usuario` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `apellido` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `correo` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `contrasena` char(64) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `rol` char(13) COLLATE utf8mb4_spanish_ci NOT NULL
@@ -341,7 +341,7 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido1`, `apellido2`, `nombre_usuario`, `correo`, `contrasena`, `rol`) VALUES
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, ``, `correo`, `contrasena`, `rol`) VALUES
 (1, 'Juan', 'Gutierrez', 'Rodriguez', 'juan28', 'juan@ciudadescolarfp.es', 'b2b4b251569487f1bd5ce7dff52f3ecd59cf04154e4dc46ede3c604f6b55c3bc', 'Cliente'),
 (2, 'Marta', 'Fernandez', 'Sanchez', 'marta456', 'marta@ciudadescolarfp.es', 'b2b4b251569487f1bd5ce7dff52f3ecd59cf04154e4dc46ede3c604f6b55c3bc', 'Administrador'),
 (3, 'Pepe', 'Fernandez', 'Sanchez', 'pepe4', 'pepe@ciudadescolarfp.es', 'b2b4b251569487f1bd5ce7dff52f3ecd59cf04154e4dc46ede3c604f6b55c3bc', 'Administrador');

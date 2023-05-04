@@ -6,21 +6,17 @@ class Usuario extends Crud
     private $conexion;
     private $id_usuario;
     private $nombre;
-    private $apellido1;
-    private $apellido2;
-    private $nombre_usuario;
+    private $apellido;
     private $correo;
     private $contrasena;
     private $rol;
     const TABLA = "usuario";
 
-    public function __construct($id_usuario, $nombre, $apellido1, $apellido2, $nombre_usuario, $correo, $contrasena, $rol)
+    public function __construct($id_usuario, $nombre, $apellido,  $correo, $contrasena, $rol)
     {
         $this->id_usuario = $id_usuario;
         $this->nombre = $nombre;
-        $this->apellido1 = $apellido1;
-        $this->apellido2 = $apellido2;
-        $this->nombre_usuario = $nombre_usuario;
+        $this->apellido = $apellido;
         $this->correo = $correo;
         $this->contrasena = $contrasena;
         $this->rol = $rol;
@@ -40,16 +36,24 @@ class Usuario extends Crud
             return $this->data[$property];
         }
     }
+    public function getcorreo(){
+        return $this->correo;
+    }
+    public function getcontra(){
+        return $this->contrasena;
+    }
+    public function setcontra($a){
+        $this->contrasena=$a;
+    }
+
 
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(nombre, apellido1, apellido2, nombre_usuario, correo, contrasena, rol) VALUES (:nombre, :apellido1, :apellido2, :nombre_usuario, :correo, :contrasena, :rol)");
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(nombre, apellido,  correo, contrasena, rol) VALUES (:nombre, :apellido,:correo, :contrasena, :rol)");
 
             $stmt->bindParam(":nombre", $this->nombre);
-            $stmt->bindParam(":apellido1", $this->apellido1);
-            $stmt->bindParam(":apellido2", $this->apellido2);
-            $stmt->bindParam(":nombre_usuario", $this->nombre_usuario);
+            $stmt->bindParam(":apellido", $this->apellido);
             $stmt->bindParam(":correo", $this->correo);
             $stmt->bindParam(":contrasena", $this->contrasena);
             $stmt->bindParam(":rol", $this->rol);
@@ -63,12 +67,10 @@ class Usuario extends Crud
     function actualizar()
     {
         try {
-            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET nombre =: nombre,apellido1 =: apellido1,apellido2 =: apellido2, nombre_usuario =: nombre_usuario, rol =: rol WHERE id_usuario =: id_usuario;");
+            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET nombre =: nombre,apellido =: apellido,  =:  rol =: rol WHERE id_usuario =: id_usuario;");
 
             $stmt->bindParam(":nombre", $this->nombre);
-            $stmt->bindParam(":apellido1", $this->apellido1);
-            $stmt->bindParam(":apellido2", $this->apellido2);
-            $stmt->bindParam(":nombre_usuario", $this->nombre_usuario);
+            $stmt->bindParam(":apellido", $this->apellido);
             $stmt->bindParam(":rol", $this->rol);
             $stmt->bindParam(":id_usuario", $this->id_usuario);
 
@@ -76,5 +78,22 @@ class Usuario extends Crud
         } catch (PDOException $e) {
             echo "Error" . $e->getMessage();
         }
+    }
+    function comprueba($contra,$correo){
+        $prueba=False;
+        try{
+            $stmt = $this->conexion->prepare("SELECT * FROM ". self::TABLA ." WHERE correo = '".$this->correo."'");
+            $stmt->execute();
+            $resultados=$stmt->fetchAll();
+            if(count($resultados)>0){
+                $contra_base=$resultados[0]['contrasena'];
+                if(password_verify($this->contrasena,$contra_base)){
+                    $prueba=True;
+                }
+            }
+        }catch(PDOException $e){
+            echo "Error" . $e->getMessage();
+        }
+        return $prueba;
     }
 }

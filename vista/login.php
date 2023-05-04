@@ -5,9 +5,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     </head>
     <body>
-    <section class="vh-100" style="background-color: #C70039 ;">
+    <section class="vh-100" style="background-color: black;">
+        <!--formulario para volver a login-->
+        <form action="index.php" method="post">
+                <input class="btn btn-dark btn-lg btn-block t" type="submit" name="inicio" value="volver al inicio">
+            </form>
         <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="row d-flex justify-content-center align-items-center h-120">
             <div class="col col-xl-10">
                 <div class="card" style="border-radius: 1rem;">
                 <div class="row g-0">
@@ -20,29 +24,30 @@
 
                         <form action="index.php" method="post">
                         <div class="d-flex align-items-center mb-3 pb-1">
-                            <span class="h1 fw-bold mb-0" style="font-family: 'Bebas Neue', cursive;font-weight: normal;color: var(--rojo);;">RICHILICULAS</span>
+                            <span class="h1 fw-bold mb-0" style="font-family: 'Bebas Neue', cursive;font-weight: normal;color: Red;;">RICHILICULAS</span>
                         </div>
 
                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Bienvenido a Richiliculas ingresa con tu cuenta</h5>
 
                         <div class="form-outline mb-4">
-                            <input type="email" id="form2Example17" class="form-control form-control-lg" name="gmail_login"/>
+                            <input type="email" id="form2Example17" class="form-control form-control-lg" name="gmail_login" />
                             <label class="form-label" for="form2Example17">Gmail</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input type="password" id="form2Example27" class="form-control form-control-lg" name="contra_login"/>
+                            <input type="password" id="form2Example27" class="form-control form-control-lg" name="contra_login" />
                             <label class="form-label" for="form2Example27">Contrasena</label>
                         </div>
 
                         <div class="pt-1 mb-4">
                             <input class="btn btn-dark btn-lg btn-block" type="submit" name="acceder_login" value="Acceder">
+                            <input class="btn btn-dark btn-lg btn-block" type="submit" name="crear_login" value="Crear cuenta">
+                        </div>
+                        <div>
+                            <?=$msg?>
                         </div>
 
-                        <a class="small text-muted" href="#!">Forgot password?</a>
-                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
-                            style="color: #393f81;">Register here</a></p>
-                        <a href="#!" class="small text-muted">Terms of use.</a>
+                        <a href="#!" class="small text-muted">Terms of RRR.</a>
                         <a href="#!" class="small text-muted">Privacy policy</a>
                         </form>
 
