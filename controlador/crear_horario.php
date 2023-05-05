@@ -31,7 +31,7 @@ function horario($hora)
 
 $servidor = "localhost";
 $usuario = "root";
-$clave = "";
+$clave = "root";
 $sql = "";
 $dbname = "cine";
 
@@ -203,7 +203,7 @@ for ($iu = 0; $iu < 8; $iu++) {
 
         foreach ($numsalas as $numsalasi => $ns) {
 
-            echo $fecha_actual->format('Y-m-d');
+            //echo $fecha_actual->format('Y-m-d');
 
             //EL HORARIO NO PUEDE SER MAYOR DE LAS 22:00
             while ($horatiempo <= 22) {
@@ -264,10 +264,12 @@ for ($iu = 0; $iu < 8; $iu++) {
                     $conn = null;
                     
                     //MOSTRAR LO QUE INSERTA
+                    /*
                     echo " => SALA [" . $ns;
                     echo "] <b>" . $peliculas[$peliculaElegida] . "</b>";
                     echo " PELICULA (" . $peliculaElegida . ") ";
                     echo " HORA -" . horario($horatiempo);
+                    */
                     //
 
                     if ($peliculasduracion[$peliculaElegida] >= 138) {
@@ -275,16 +277,16 @@ for ($iu = 0; $iu < 8; $iu++) {
                     } else {
                         $horatiempo += 2;
                     }
-                    echo " || ";
+                    //echo " || ";
                 }else{
-                    echo "PAYASO";
+                    //echo "PAYASO";
                 }
             }
 
             $horatiempo = 16;
-            echo "<br>";
+            //echo "<br>";
         }
 
-        echo "<hr>";
+        //echo "<hr>";
     }
 }

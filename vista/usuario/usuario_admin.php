@@ -26,8 +26,7 @@
         <tr>
             <th>NÚMERO</th>
             <th>NOMBRE</th>
-            <th>APELLIDOS</th>
-            <th></th>
+            <th>APELLIDO</th>
             <th>CORREO</th>
             <th>ROL</th>
             <th colspan="2">ACCIONES</th>
@@ -53,10 +52,10 @@
                     <form method="post" action="index.php">
                         <button class="edit" name="editar_usuario_admin" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_usuario" value="<?php echo $row['id_usuario'] ?>" />
-                        <input type="hidden" name="nombre" value="<?php echo $row['nombre'] ?>" />
-                        <input type="hidden" name="apellido" value="<?php echo $row['apellido'] ?>" />
-                        <input type="hidden" name="correo" value="<?php echo $row['correo'] ?>" />
-                        <input type="hidden" name="rol" value="<?php echo $row['rol'] ?>" />
+                        <input type="hidden" name="nombre_usuario_admin" value="<?php echo $row['nombre'] ?>" />
+                        <input type="hidden" name="apellido_usuario_admin" value="<?php echo $row['apellido'] ?>" />
+                        <input type="hidden" name="correo_usuario_admin" value="<?php echo $row['correo'] ?>" />
+                        <input type="hidden" name="rol_usuario_admin" value="<?php echo $row['rol'] ?>" />
                     </form>
                 </td>
                 <td>

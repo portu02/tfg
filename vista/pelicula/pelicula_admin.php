@@ -36,7 +36,7 @@
             <td colspan="6">NUEVA PELICULA</td>
             <td colspan="4">
                 <form method="post" action="index.php">
-                    <button class="insert" name="nueva" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
+                    <button class="insert" name="nueva_pelicula" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
                 </form>
             </td>
         </tr>
@@ -56,7 +56,7 @@
                 <td><a href="<?php echo 'https://www.youtube.com/embed/' . $row['url'] ?>" target="_blank" style="text-decoration: none">Trailer</a></td>
                 <td>
                     <form method="post" action="index.php">
-                        <button class="edit" name="editar" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
+                        <button class="edit" name="editar_pelicula" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_pelicula" value="<?php echo $row['id_pelicula'] ?>" />
                         <input type="hidden" name="nombre" value="<?php echo $row['nombre'] ?>" />
                         <input type="hidden" name="imagen" value="<?php echo $row['imagen'] ?>" />

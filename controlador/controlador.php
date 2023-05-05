@@ -31,7 +31,7 @@ if (isset($_POST["pelicula"]) || isset($_POST["dia"])) {
     require_once("controlador/controlador_peliculas.php");
 
     //si interactua con la hora
-} elseif (isset($_POST["pelicula_admin"]) || isset($_POST["borrar_peli"])) {
+} elseif (isset($_POST["pelicula_admin"]) || isset($_POST["borrar_peli"]) || isset($_POST["nueva_pelicula"]) || isset($_POST["editar_pelicula"])){
     require_once("controlador/admin/controlador_admin_peliculas.php");   
 }
 //admin sala 
