@@ -35,13 +35,13 @@ if (isset($_POST["pelicula"]) || isset($_POST["dia"])) {
     require_once("controlador/admin/controlador_admin_peliculas.php");   
 }
 //admin sala 
-elseif( isset($_POST["sala_admin"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["anadir_sala_admin"]) || isset($_POST["borrar_sala_admin"]) || isset($_POST["previsualizar"]) || isset($_POST["enviar_sala"])){
+elseif(isset($_POST["sala_admin"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["editar_sala"]) || isset($_POST["anadir_sala_admin"]) || isset($_POST["borrar_sala_admin"]) || isset($_POST["previsualizar"]) || isset($_POST["enviar_sala"])){
     require_once("controlador/admin/controlador_admin_salas.php");
 }
 elseif (isset($_POST["sala"]) || isset($_POST["hora"])) {
     require_once("controlador/controlador_sala.php");
 } 
-elseif (isset($_POST["usuario_admin"]) || isset($_POST["borrar_usuario_admin"])) {
+elseif (isset($_POST["usuario_admin"])  || isset($_POST["borrar_usuario_admin"]) || isset($_POST["nuevo_usuario_admin"]) | isset($_POST["editar_usuario_admin"])) {
     require_once("controlador/admin/controlador_admin_usuarios.php");
 } 
 elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isset($_POST["volver_login"]) || isset($_POST["crear_login"]) || isset($_POST['registar_nuevo_login'])){

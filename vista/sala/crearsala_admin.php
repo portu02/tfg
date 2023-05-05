@@ -22,7 +22,7 @@
     </div>
 
     <form method='post' action=''>
-
+        <input type="hidden" name="id_sala" value="<?= $id_sala ?? 0 ?>" />
         <div class="filas-columnas">
             <label for='longcolumna'>Maxímo columnas:
                 <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'>
@@ -92,7 +92,7 @@
                                     ?>
                                         <td>
                                             <span style="position: relative; display: block;">
-                                                <img src="/vista/fotos/butacas/butaca_verde.png" class="butaca">
+                                                <img src="vista/fotos/butacas/butaca_verde.png" class="butaca">
                                                 <span class="numero"><?= $columnas ?? "" ?></span>
                                             </span>
                                         </td>
@@ -104,7 +104,7 @@
                                     ?>
                                         <td>
                                             <span style="position: relative; display: block;">
-                                                <img src="butaca_verde.png" class="butaca">
+                                                <img src="vista/fotos/butacas/butaca_verde.png" class="butaca">
                                                 <span class="numero"><?= $columnas ?? "" ?></span>
                                             </span>
                                         </td>

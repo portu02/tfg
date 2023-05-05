@@ -1,5 +1,66 @@
 <?php
+if(isset($_POST["editar_sala"]) || isset($_POST["anadir_sala_admin"])){
+    /* BORRAR SESIONES */
+    unset($_SESSION["maxfilas"]);
+    unset($_SESSION["maxcolumnas"]);
+    unset($_SESSION["descripcion"]);
+    unset($_SESSION["habilitada"]);
+    unset($_SESSION["luxury"]);
+    unset($_SESSION["filas"]);
+    unset($_SESSION["columnas"]);
+    unset($_SESSION["butacas"]);
+}
 
+
+/***********  EDITAR  ***********/
+if(isset($_POST["id_sala"])){
+    $id_sala = $_POST["id_sala"];
+}else{
+    $id_sala = 0;
+}
+
+if (isset($_POST["editar_sala"])) {
+    $butacas = new Butaca("", "", "", "", "");
+    $sala = new Sala($id_sala, "", "", "", "", "");
+
+
+    $descripcion = $sala->obtieneDeID($id_sala)->descripcion;
+    $habilitada = $sala->obtieneDeID($id_sala)->habilitada;
+    $luxury = $sala->obtieneDeID($id_sala)->luxury;
+
+    
+    $arraybutaca = $butacas->obtieneDeIDSala($id_sala);
+
+    //SACAR MAXIMO DE COLUMNAS
+    $max_columna = 0;
+    foreach ($arraybutaca as $butaca) {
+        if ($butaca['columna'] > $max_columna) {
+            $max_columna = $butaca['columna'];
+        }
+    }
+    //SACAR MAXIMO DE FILAS
+    $max_fila = 0;
+    foreach ($arraybutaca as $butaca) {
+        if ($butaca['fila'] > $max_fila) {
+            $max_fila = $butaca['fila'];
+        }
+    }
+
+    $numbutaca = 0;
+
+    for ($filas = $max_fila; $filas > 0; $filas--) {
+        $array_filas[$filas] = "on";
+        for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
+            if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
+                $array_butacas[$filas . ";" . $columnas] = "on";
+                $numbutaca++;
+            }
+        }
+    }
+}
+
+
+/***********  CREAR  ***********/
 if (isset($_POST["editar_sala_admin"])) {
 
     if (isset($_POST["columnas"]) || isset($_POST["filas"]) || isset($_POST["butacas"])) {
@@ -32,6 +93,7 @@ if (isset($_POST["editar_sala_admin"])) {
         }
         /***** ARRAY COLUMNAS ******/
         if (isset($_POST["columnas"])) {
+
             //si esta la sesion arraybutacas se comprueba mas tarde si han surgido cambios
             if (isset($_SESSION["butacas"])) {
                 $array_butacas = $_SESSION["butacas"];
@@ -113,18 +175,35 @@ if (isset($_POST["editar_sala_admin"])) {
     }
 }
 
+
 /* CAMBIOS EN COLUMNAS, FILAS Y BUTACAS */
 //si no existe la sesion arraycolumnas mete uno vacio
 if (isset($_SESSION["columnas"])) {
-    $array_columnas = $_SESSION['columnas'];
+    if (isset($array_columnas)) {
+        $_SESSION['columnas'] = $array_columnas;
+    } else {
+        $array_columnas = $_SESSION['columnas'];
+    }
 } else {
-    $array_columnas = array("vacio" => "vacio");
+    if (isset($array_columnas)) {
+        $_SESSION['columnas'] = $array_columnas;
+    } else {
+        $array_columnas = array("vacio" => "vacio");
+    }
 }
 //si no existe la sesion arrayfilas mete uno vacio
 if (isset($_SESSION["filas"])) {
-    $array_filas = $_SESSION['filas'];
+    if (isset($array_filas)) {
+        $_SESSION['filas'] = $array_filas;
+    } else {
+        $array_filas = $_SESSION['filas'];
+    }
 } else {
-    $array_filas = array("vacio" => "vacio");
+    if (isset($array_filas)) {
+        $_SESSION['filas'] = $array_filas;
+    } else {
+        $array_filas = array("vacio" => "vacio");
+    }
 }
 //si existe la sesion arraybutacas y se ha hecho cambios en $arraybutacas se cambia la sesion arraybutacas
 //si no se deja como esta en la sesion
@@ -135,7 +214,11 @@ if (isset($_SESSION["butacas"])) {
         $array_butacas = $_SESSION['butacas'];
     }
 } else {
-    $array_butacas = array("vacio" => "vacio");
+    if (isset($array_butacas)) {
+        $_SESSION['butacas'] = $array_butacas;
+    } else {
+        $array_butacas = array("vacio" => "vacio");
+    }
 }
 
 /****** MAXIMO FILAS ******/
@@ -243,6 +326,7 @@ if (isset($_POST["previsualizar"])) {
     $array_butacas = array("vacio" => "vacio");
 }
 
+
 /****** CREAR SALA ******/
 if (isset($_POST["enviar_sala"])) {
     /***** COMPROBAR QUE EXISTEN LAS SESIONES *****/
@@ -309,9 +393,17 @@ if (isset($_POST["enviar_sala"])) {
             }
         }
     }
-    $salas = new Sala("","","","","","");
-    $id_sala = $salas->obtieneUltimoID();
-    $id_sala = $id_sala+1;
+
+    /* SI HAY QUE EDITAR, id_sala != 0 BORRO Y CREO OTRA SALA */
+    $salas = new Sala("", "", "", "", "", "");
+    if($id_sala == 0){
+
+        $id_sala = $salas->obtieneUltimoID();
+        $id_sala = $id_sala + 1;
+
+    }else{
+        $salas->borrar($id_sala);
+    }
 
     $sala = new Sala($id_sala, $descripcion, $capacidad, $habilitada, $luxury, 0);
     $sala->crear();
@@ -349,9 +441,8 @@ if (isset($_POST["enviar_sala"])) {
     $arraysalas = $sala->obtieneTodos();
     /* EJECUTAR SCRIPT CREAR HORARIO */
     require_once('./controlador/crear_horario.php');
-    
-    require_once('vista/sala/sala_admin.php');   
-}
-else {
+
+    require_once('vista/sala/sala_admin.php');
+} else {
     require_once 'vista/sala/crearsala_admin.php';
 }

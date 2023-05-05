@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     <form method="post" action="index.php">
-                        <button class="edit" name="editar" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
+                        <button class="edit" name="editar_sala" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_sala" value="<?php echo $row['id_sala'] ?>" />
                         <input type="hidden" name="descripcion" value="<?php echo $row['descripcion'] ?>" />
                         <input type="hidden" name="capacidad" value="<?php echo $row['capacidad'] ?>" />

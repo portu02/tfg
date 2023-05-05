@@ -40,7 +40,7 @@
             <form method='post' action=''>
                 <table id='butacas'>
                     <?php
-                    for ($filas = $max_fila; $filas > 0; $filas--) {
+                    for ($filas = $max_fila; $filas >= 1; $filas--) {
 
                     ?>
                         <tr>

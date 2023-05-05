@@ -31,7 +31,7 @@ function horario($hora)
 
 $servidor = "localhost";
 $usuario = "root";
-$clave = "root";
+$clave = "";
 $sql = "";
 $dbname = "cine";
 
@@ -50,8 +50,8 @@ try {
     $salasarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (count($salasarray) > 0) {
-        foreach($salasarray as $i => $a){
-            foreach($a as $j){
+        foreach ($salasarray as $i => $a) {
+            foreach ($a as $j) {
                 $numsalas[] = $j;
             }
         }
@@ -163,59 +163,82 @@ $conn = null;
 
 
 /* SI EXISTEN ESOS DIAS SE TIENEN QUE VOLVER A REPLANTEAR PARA QUE COINCIDAN CON LAS NUEVAS PELICULAS */
-    /* INSERTA UNA SEMANA */
-    for ($iu = 0; $iu < 8; $iu++) {
+/* INSERTA UNA SEMANA */
+for ($iu = 0; $iu < 8; $iu++) {
 
-        $fecha_actual = new DateTime();
-        $fecha_actual->modify('+' . $iu . ' day');
+    $fecha_actual = new DateTime();
+    $fecha_actual->modify('+' . $iu . ' day');
 
-        $fecha_ayer = new DateTime();
-        $fecha_ayer = $fecha_ayer->modify('+' . $iu . ' day');
-        $fecha_ayer->modify('-1 day');
+    $fecha_ayer = new DateTime();
+    $fecha_ayer = $fecha_ayer->modify('+' . $iu . ' day');
+    $fecha_ayer->modify('-1 day');
 
-        /* SI EXISTE LA FECHA NO LA VUELVE A INSERTAR */
-        if (!in_array($fecha_actual->format('Y-m-d'), $arraydia)) {
+    /* SI EXISTE LA FECHA NO LA VUELVE A INSERTAR */
+    if (!in_array($fecha_actual->format('Y-m-d'), $arraydia)) {
 
-            //SOLO COGE LAS PELICULAS QUE TODAVIA NO SE HAN ESTRENADO strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])
-            $peliculas = array();
-            $peliculasduracion = array();
-            foreach ($registroarray as $a) {
-                //SI ES EL MISMO DIA O ANTERIOR PROBABILIDAD 5
-                if (($a["fecha_estreno"] == $fecha_actual->format('Y-m-d') || ($a["fecha_estreno"] == $fecha_ayer->format('Y-m-d'))) && strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
-                    $peliculas[$a["id_pelicula"]] = 5;
-                    //SI ESTAN EN LA MISMA SEMANA PROBABILIDAD 2
-                } elseif (date('W', strtotime($a["fecha_estreno"])) == date('W', strtotime($fecha_actual->format('Y-m-d'))) && strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
-                    $peliculas[$a["id_pelicula"]] = 2;
-                    //SINO PROBABILIDAD 1
-                } elseif (strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])) {
-                    $peliculas[$a["id_pelicula"]] = 1;
-                }
-
-                //ARRAY DURACION PELICULAS
-                if (strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
-                    $peliculasduracion[$a["id_pelicula"]] = $a["duracion"];
-                }
+        //SOLO COGE LAS PELICULAS QUE TODAVIA NO SE HAN ESTRENADO strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])
+        $peliculas = array();
+        $peliculasduracion = array();
+        foreach ($registroarray as $a) {
+            //SI ES EL MISMO DIA O ANTERIOR PROBABILIDAD 5
+            if (($a["fecha_estreno"] == $fecha_actual->format('Y-m-d') || ($a["fecha_estreno"] == $fecha_ayer->format('Y-m-d'))) && strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
+                $peliculas[$a["id_pelicula"]] = 5;
+                //SI ESTAN EN LA MISMA SEMANA PROBABILIDAD 2
+            } elseif (date('W', strtotime($a["fecha_estreno"])) == date('W', strtotime($fecha_actual->format('Y-m-d'))) && strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
+                $peliculas[$a["id_pelicula"]] = 2;
+                //SINO PROBABILIDAD 1
+            } elseif (strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])) {
+                $peliculas[$a["id_pelicula"]] = 1;
             }
 
+            //ARRAY DURACION PELICULAS
+            if (strtotime($fecha_actual->format('Y-m-d')) >= strtotime($a["fecha_estreno"])) {
+                $peliculasduracion[$a["id_pelicula"]] = $a["duracion"];
+            }
+        }
 
-            //EL HORARIO EMPIEZA A LAS 16:00
-            $horatiempo = 16;
 
-            foreach($numsalas as $numsalasi => $ns){
+        //EL HORARIO EMPIEZA A LAS 16:00
+        $horatiempo = 16;
 
-                //echo $fecha_actual->format('Y-m-d');
+        foreach ($numsalas as $numsalasi => $ns) {
 
-                //EL HORARIO NO PUEDE SER MAYOR DE LAS 22:00
-                while ($horatiempo <= 22) {
+            echo $fecha_actual->format('Y-m-d');
 
-                    /* COGER PELICULA RANDOM CON LAS PROBABILIDADES */
-                    $keys = array();
-                    foreach ($peliculas as $key => $value) {
-                        for ($i = 0; $i < $value; $i++) {
-                            $keys[] = $key;
-                        }
+            //EL HORARIO NO PUEDE SER MAYOR DE LAS 22:00
+            while ($horatiempo <= 22) {
+
+                /* COGER PELICULA RANDOM CON LAS PROBABILIDADES */
+                $keys = array();
+                foreach ($peliculas as $key => $value) {
+                    for ($i = 0; $i < $value; $i++) {
+                        $keys[] = $key;
                     }
-                    $peliculaElegida = $keys[array_rand($keys)];
+                }
+                $peliculaElegida = $keys[array_rand($keys)];
+
+                /* COMPROBAR SI EXISTE LA MISMA PELICULA EN LA MISMA HORA EN EL MISMO DIA EN DISTINTA SALA */
+                try {
+                    $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8", $usuario, $clave);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    $stmtValidar = $conn->prepare("SELECT * FROM horario WHERE fecha = :dia AND hora = :hora AND id_pelicula = :pelicula");
+
+                    $hora = horario($horatiempo);
+                    $sala = $ns;
+                    $dia = $fecha_actual->format('Y-m-d');
+                    $stmtValidar->bindParam(":dia", $dia);
+                    $stmtValidar->bindParam(":hora", $hora);
+                    $stmtValidar->bindParam(":pelicula", $peliculaElegida);
+                    $stmtValidar->execute();
+                    $resultValidacion = $stmtValidar->fetch(PDO::FETCH_ASSOC);
+
+                } catch (PDOException $e) {
+                    echo "Error" . $e->getMessage();
+                }
+                $conn = null;
+
+                if (!$resultValidacion) {
 
                     //RESTA -1 A LA PROBABILIDAD
                     $peliculas[$peliculaElegida] = max($peliculas[$peliculaElegida] - 1, 1);
@@ -239,12 +262,12 @@ $conn = null;
                         echo "Error" . $e->getMessage();
                     }
                     $conn = null;
-
+                    
                     //MOSTRAR LO QUE INSERTA
-                    //echo " => SALA [" . $ns;
-                    //echo "] <b>" . $peliculas[$peliculaElegida] . "</b>";
-                    //echo " PELICULA (" . $peliculaElegida . ") ";
-                    //echo " HORA -" . horario($horatiempo);
+                    echo " => SALA [" . $ns;
+                    echo "] <b>" . $peliculas[$peliculaElegida] . "</b>";
+                    echo " PELICULA (" . $peliculaElegida . ") ";
+                    echo " HORA -" . horario($horatiempo);
                     //
 
                     if ($peliculasduracion[$peliculaElegida] >= 138) {
@@ -252,14 +275,16 @@ $conn = null;
                     } else {
                         $horatiempo += 2;
                     }
-                    //echo " || ";
+                    echo " || ";
+                }else{
+                    echo "PAYASO";
                 }
-
-                $horatiempo = 16;
-                //echo "<br>";
             }
 
-            //echo "<hr>";
+            $horatiempo = 16;
+            echo "<br>";
         }
+
+        echo "<hr>";
     }
-?>
+}

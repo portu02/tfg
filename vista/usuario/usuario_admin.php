@@ -36,7 +36,7 @@
             <td colspan="6">NUEVO USUARIO</td>
             <td colspan="2">
                 <form method="post" action="index.php">
-                    <button class="insert" name="nuevo" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
+                    <button class="insert" name="nuevo_usuario_admin" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
                 </form>
             </td>
         </tr>
@@ -51,7 +51,7 @@
                 <td><?php echo $row['rol'] ?></td>
                 <td>
                     <form method="post" action="index.php">
-                        <button class="edit" name="editar" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
+                        <button class="edit" name="editar_usuario_admin" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_usuario" value="<?php echo $row['id_usuario'] ?>" />
                         <input type="hidden" name="nombre" value="<?php echo $row['nombre'] ?>" />
                         <input type="hidden" name="apellido" value="<?php echo $row['apellido'] ?>" />

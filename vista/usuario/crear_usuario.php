@@ -25,7 +25,7 @@ checkbox.addEventListener('change', function() {
             <form action="index.php" method="post">
                 <input class="btn btn-dark btn-lg btn-block t" type="submit" name="volver_login" value="Ir al login">
             </form>
-            <div class="container py-5 h-120">
+            <div class="container py-5">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col col-xl-10">
                         <div class="card" style="border-radius: 1rem;">
@@ -45,14 +45,15 @@ checkbox.addEventListener('change', function() {
                                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Bienvenido a Richiliculas</h5>
 
                                             <div class="form-outline mb-2">
-                                                <input type="text" id="form2Example17" class="form-control form-control-lg" name="nombre_nuevo_login" required/>
                                                 <label class="form-label" for="form2Example17">Nombre</label>
-                                                <input type="text" id="form2Example17" class="form-control form-control-lg" name="apellido_nuevo_login" required/>
+                                                <input type="text" id="form2Example17" class="form-control form-control-lg" name="nombre_nuevo_login" required/>
                                                 <label class="form-label" for="form2Example17">Apellido</label>
-                                                <input type="email" id="form2Example17" class="form-control form-control-lg" name="gmail_nuevo_login" required/>
+                                                <input type="text" id="form2Example17" class="form-control form-control-lg" name="apellido_nuevo_login" required/>
                                                 <label class="form-label" for="form2Example17">Gmail</label>
-                                                <input type="password" id="form2Example27" class="form-control form-control-lg" name="contra_nuevo_login" required/>
+                                                <input type="email" id="form2Example17" class="form-control form-control-lg" name="gmail_nuevo_login" required/>
                                                 <label class="form-label" for="form2Example27"></label>Contrasena</label>
+                                                <input type="password" id="form2Example27" class="form-control form-control-lg" name="contra_nuevo_login" required/>
+    
                                                 <label>
                                                 <input type="hidden" value="Cliente" name="rol_nuevo_login">
                                                 <input type="checkbox" id="verPassword" /> Mostrar contraseña

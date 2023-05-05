@@ -11,7 +11,7 @@
                 <input class="btn btn-dark btn-lg btn-block t" type="submit" name="inicio" value="volver al inicio">
             </form>
         <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-120">
+            <div class="row d-flex justify-content-center align-items-center ">
             <div class="col col-xl-10">
                 <div class="card" style="border-radius: 1rem;">
                 <div class="row g-0">
