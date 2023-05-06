@@ -31,7 +31,7 @@ function horario($hora)
 
 $servidor = "localhost";
 $usuario = "root";
-$clave = "root";
+$clave = "";
 $sql = "";
 $dbname = "cine";
 

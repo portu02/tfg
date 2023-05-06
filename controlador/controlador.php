@@ -44,7 +44,7 @@ elseif (isset($_POST["sala"]) || isset($_POST["hora"])) {
 elseif (isset($_POST["usuario_admin"])  || isset($_POST["borrar_usuario_admin"]) || isset($_POST["nuevo_usuario_admin"]) | isset($_POST["editar_usuario_admin"])) {
     require_once("controlador/admin/controlador_admin_usuarios.php");
 } 
-elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isset($_POST["volver_login"]) || isset($_POST["crear_login"]) || isset($_POST['registar_nuevo_login'])){
+elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isset($_POST["volver_login"]) || isset($_POST["crear_login"]) || isset($_POST['registar_nuevo_login']) || isset($_POST['comprobar_codigo'])){
     require_once("controlador/controlador_login.php");
 }
 else {

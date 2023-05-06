@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="contenedor">
+    <div class="contenedor" style="background-color:#141414;">
         <form action="" method="post">  
             <nav class="navbar navbar-expand-lg navbar-dark"> 
                 <a class="navbar-brand logotipo" href="">Richiliculas</a>
