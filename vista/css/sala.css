@@ -76,3 +76,37 @@ label{
     position: relative;
     border: 5px solid #737373;
 }
+
+.filas-columnas{
+    background-color: black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+    padding: 10px;
+}
+.boton-modificar{
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px 20px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+.pen{
+    background-image: url('../fotos/pen.png');
+    background-color: rgb(79, 79, 255);
+}
+.confirm{
+    background-image: url('../fotos/confirm.png');
+    background-color: rgb(32, 155, 32);
+}

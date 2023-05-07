@@ -61,6 +61,10 @@
                                     } elseif ($arraybutaca[$numbutaca]["color"] == "Gris") {
                                     ?>
                                         <td><img src="vista/fotos/butacas/butaca_gris.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+                                        <?php
+                                    } elseif ($arraybutaca[$numbutaca]["color"] == "Azul") {
+                                    ?>
+                                        <td><img src="vista/fotos/butacas/butaca_azul.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
 
                                     <?php
                                     }

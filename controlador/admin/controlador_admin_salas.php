@@ -5,7 +5,9 @@ if (isset($_POST['borrar_sala_admin'])) {
     $result = 'Sala borrada correctamente';
     $arraysalas = $sala->obtieneTodos();
 }
-if (isset($_POST['anadir_sala_admin']) || isset($_POST["editar_sala"]) || isset($_POST["previsualizar"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["enviar_sala"])) {
+if(isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset($_POST["editar_sala_admin_editar"])){
+    require_once("controlador/editar_sala.php");
+}elseif (isset($_POST['anadir_sala_admin']) || isset($_POST["previsualizar"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["enviar_sala"])) {
     require_once("controlador/crear_sala.php");
 }
 else {

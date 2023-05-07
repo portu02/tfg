@@ -22,7 +22,6 @@
     </div>
 
     <form method='post' action=''>
-        <input type="hidden" name="id_sala" value="<?= $id_sala ?? 0 ?>" />
         <div class="filas-columnas">
             <label for='longcolumna'>Maxímo columnas:
                 <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'>

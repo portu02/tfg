@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST["editar_sala"]) || isset($_POST["anadir_sala_admin"])){
+if (isset($_POST["anadir_sala_admin"])) {
     /* BORRAR SESIONES */
     unset($_SESSION["maxfilas"]);
     unset($_SESSION["maxcolumnas"]);
@@ -10,55 +10,6 @@ if(isset($_POST["editar_sala"]) || isset($_POST["anadir_sala_admin"])){
     unset($_SESSION["columnas"]);
     unset($_SESSION["butacas"]);
 }
-
-
-/***********  EDITAR  ***********/
-if(isset($_POST["id_sala"])){
-    $id_sala = $_POST["id_sala"];
-}else{
-    $id_sala = 0;
-}
-
-if (isset($_POST["editar_sala"])) {
-    $butacas = new Butaca("", "", "", "", "");
-    $sala = new Sala($id_sala, "", "", "", "", "");
-
-
-    $descripcion = $sala->obtieneDeID($id_sala)->descripcion;
-    $habilitada = $sala->obtieneDeID($id_sala)->habilitada;
-    $luxury = $sala->obtieneDeID($id_sala)->luxury;
-
-    
-    $arraybutaca = $butacas->obtieneDeIDSala($id_sala);
-
-    //SACAR MAXIMO DE COLUMNAS
-    $max_columna = 0;
-    foreach ($arraybutaca as $butaca) {
-        if ($butaca['columna'] > $max_columna) {
-            $max_columna = $butaca['columna'];
-        }
-    }
-    //SACAR MAXIMO DE FILAS
-    $max_fila = 0;
-    foreach ($arraybutaca as $butaca) {
-        if ($butaca['fila'] > $max_fila) {
-            $max_fila = $butaca['fila'];
-        }
-    }
-
-    $numbutaca = 0;
-
-    for ($filas = $max_fila; $filas > 0; $filas--) {
-        $array_filas[$filas] = "on";
-        for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
-            if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
-                $array_butacas[$filas . ";" . $columnas] = "on";
-                $numbutaca++;
-            }
-        }
-    }
-}
-
 
 /***********  CREAR  ***********/
 if (isset($_POST["editar_sala_admin"])) {
@@ -394,16 +345,11 @@ if (isset($_POST["enviar_sala"])) {
         }
     }
 
-    /* SI HAY QUE EDITAR, id_sala != 0 BORRO Y CREO OTRA SALA */
+    /* INSERTAR SALA */
     $salas = new Sala("", "", "", "", "", "");
-    if($id_sala == 0){
 
-        $id_sala = $salas->obtieneUltimoID();
-        $id_sala = $id_sala + 1;
-
-    }else{
-        $salas->borrar($id_sala);
-    }
+    $id_sala = $salas->obtieneUltimoID();
+    $id_sala = $id_sala + 1;
 
     $sala = new Sala($id_sala, $descripcion, $capacidad, $habilitada, $luxury, 0);
     $sala->crear();

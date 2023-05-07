@@ -93,4 +93,20 @@ class Butaca extends Crud
             return $e->getMessage();
         }
     }
+
+    function cambiarColor()
+    {
+        try {
+            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET color = :color WHERE columna = :columna AND fila = :fila AND id_sala = :id_sala;");
+
+            $stmt->bindParam(":columna", $this->columna);
+            $stmt->bindParam(":fila", $this->fila);
+            $stmt->bindParam(":color", $this->color);
+            $stmt->bindParam(":id_sala", $this->id_sala);
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
 }

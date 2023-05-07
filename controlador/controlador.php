@@ -35,7 +35,7 @@ if (isset($_POST["pelicula"]) || isset($_POST["dia"])) {
     require_once("controlador/admin/controlador_admin_peliculas.php");   
 }
 //admin sala 
-elseif(isset($_POST["sala_admin"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["editar_sala"]) || isset($_POST["anadir_sala_admin"]) || isset($_POST["borrar_sala_admin"]) || isset($_POST["previsualizar"]) || isset($_POST["enviar_sala"])){
+elseif(isset($_POST["sala_admin"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["anadir_sala_admin"]) || isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset($_POST["editar_sala_admin_editar"]) || isset($_POST["borrar_sala_admin"]) || isset($_POST["previsualizar"]) || isset($_POST["enviar_sala"])){
     require_once("controlador/admin/controlador_admin_salas.php");
 }
 elseif (isset($_POST["sala"]) || isset($_POST["hora"])) {
