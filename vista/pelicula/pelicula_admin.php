@@ -11,11 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script>
-    <?php if ($result != "") {
-    ?>alert("<?= $result ?>")
-    <?php
-    } ?>
-</script>
+        <?php if ($result != "") {
+        ?>alert("<?= $result ?>")
+        <?php
+        } ?>
+    </script>
 </head>
 
 <body>
@@ -51,9 +51,20 @@
                 <td><?php echo $row['categoria'] ?></td>
                 <td><?php echo $row['fecha_estreno'] ?></td>
                 <td>
-                    <a href="vista/fotos/<?php echo $row['imagen'] ?>" target="_blank" style="text-decoration: none">Imagen</a>
+                    <?php if ($row['imagen'] != null) { ?>
+                        <a href="vista/fotos/<?php echo $row['imagen'] ?>" target="_blank" style="text-decoration: none">Imagen</a>
+                    <?php } else { ?>
+
+                    <?php } ?>
                 </td>
-                <td><a href="<?php echo 'https://www.youtube.com/embed/' . $row['url'] ?>" target="_blank" style="text-decoration: none">Trailer</a></td>
+                <td>
+                    <?php if ($row['url'] != null) { ?>
+                        <a href="<?php echo 'https://www.youtube.com/embed/' . $row['url'] ?>" target="_blank" style="text-decoration: none">Trailer</a>
+                    <?php } else { ?>
+
+                    <?php } ?>
+                </td>
+
                 <td>
                     <form method="post" action="index.php">
                         <button class="edit" name="editar_pelicula" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
