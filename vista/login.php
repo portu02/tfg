@@ -33,15 +33,15 @@
 
                                             <div class="form-outline mb-2">
                                                 <label class="form-label" for="form2Example17">Gmail</label>
-                                                <input type="email" id="form2Example17" class="form-control " name="gmail_login" />
+                                                <input type="email" id="form2Example17" class="form-control " name="gmail_login" required/><br>
                                                 <label class="form-label" for="form2Example27">Contraseña</label>
-                                                <input type="password" id="form2Example27" class="form-control" name="contra_login" />
+                                                <input type="password" id="form2Example27" class="form-control" name="contra_login" required/><br>
                                             </div>
                                             <div class="pt-1 mb-4" style="display: flex;justify-content: space-between;">
-                                                <input class="btn btn-dark btn-lg btn-block" type="submit" name="acceder_login" value="Acceder">
+                                                <input class="btn btn-dark btn-block" type="submit" name="acceder_login" value="Acceder">
                                         </form>
                                         <form action="index.php" method="post">
-                                            <input class="btn btn-dark btn-lg btn-block" type="submit" name="crear_login" value="Crear cuenta">
+                                            <input class="btn btn-dark btn-block" type="submit" name="crear_login" value="Crear cuenta">
                                         </form>
                                     </div>
 

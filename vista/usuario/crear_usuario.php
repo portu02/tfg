@@ -72,7 +72,7 @@
     <?php
     include "vista/menu.php";
     ?>
-    <div class="container py-5 d-flex justify-content-center align-items-center">
+    <div class="container d-flex justify-content-center align-items-center">
         <section>
             <!--formulario para volver a login-->
             <div class="container py-5">
@@ -95,13 +95,13 @@
 
                                             <div class="form-outline mb-2">
                                                 <label class="form-label" for="form2Example17">Nombre</label>
-                                                <input type="text" id="nombre" class="form-control form-control-lg" name="nombre_nuevo_login" required />
+                                                <input type="text" id="nombre" class="form-control" name="nombre_nuevo_login" required /><br>
                                                 <label class="form-label" for="form2Example17">Apellido</label>
-                                                <input type="text" id="apellido" class="form-control form-control-lg" name="apellido_nuevo_login" required />
+                                                <input type="text" id="apellido" class="form-control" name="apellido_nuevo_login" required /><br>
                                                 <label class="form-label" for="form2Example17">Gmail</label>
-                                                <input type="email" id="gmail" class="form-control form-control-lg" name="gmail_nuevo_login" required />
-                                                <label class="form-label" for="form2Example27"></label>Contrasena</label>
-                                                <input type="password" id="contra" class="form-control form-control-lg" name="contra_nuevo_login" required />
+                                                <input type="email" id="gmail" class="form-control" name="gmail_nuevo_login" required /><br>
+                                                <label class="form-label" for="form2Example27"></label>Contraseña</label>
+                                                <input type="password" id="contra" class="form-control" name="contra_nuevo_login" required /><br>
 
                                                 <label>
                                                     <input type="hidden" id="rol" value="Cliente" name="rol_nuevo_login">
@@ -110,10 +110,10 @@
 
                                             </div>
                                             <div class="pt-1 mb-4" style="display: flex;justify-content: space-between;">
-                                                <input class="btn btn-dark btn-lg t d-inline-block" type="submit" name="registar_nuevo_login" value="Registrar">
+                                                <input class="btn btn-dark t d-inline-block" type="submit" name="registar_nuevo_login" value="Registrar">
                                         </form>
                                         <form action="index.php" method="post">
-                                            <input class="btn btn-dark btn-lg t d-inline-block" type="submit" name="volver_login" value="Ir al login">
+                                            <input class="btn btn-dark t d-inline-block" type="submit" name="volver_login" value="Ir al login">
                                         </form>
                                     </div>
 

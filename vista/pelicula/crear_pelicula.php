@@ -32,14 +32,16 @@
     </div>
 
     <form method='post' action='' enctype="multipart/form-data">
-        <input type="hidden" name="id_pelicula" value="<?= $id_pelicula ?? 0 ?>" />
+        <?php if (isset($id_pelicula)) { ?>
+            <input type="hidden" name="id_pelicula" value="<?= $id_pelicula ?>" />
+        <?php } ?>
         <div class="filas-columnas">
             <br><br><br>
             <label for='nombre'>Nombre:
                 <input type='text' name='nombre' value='<?= $nombre ?? "" ?>' required>
             </label>
             <label for='duracion'>Duracion:
-                <input type='number' min='0' step ='1' name='duracion' value='<?= $duracion ?? 0 ?>' pattern='[0-9]+' required>
+                <input type='number' min='0' step='1' name='duracion' value='<?= $duracion ?? 0 ?>' pattern='[0-9]+' required>
             </label>
             <label for='clasificacion'>Clasificación:
                 <select name="clasificacion">
@@ -137,8 +139,8 @@
                 </label>
                 <label for='trailer'>Trailer:
                     <iframe src="https://www.youtube.com/embed/<?= $url ?>" id=trailer allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:400px" allowfullscreen></iframe>
-                    <label for='url_nueva'>Url nueva:
-                        <input type='text' name='url_new' style='width:150%' id='nueva_url'>
+                    <label for='url_nueva'>Url:
+                        <input type='text' name='url_new' style='width:150%' id='nueva_url' value="<?= $url ?>">
                     </label>
                     <label for='text' class="boton-modificar pen" name='boton' id='boton' style="margin-left:25%; padding-left: 22px; width: 90px; background-color: rgb(79, 79, 255); border-radius: 4px;cursor: pointer; margin-top:15px">Editar</label>
                 </label>
