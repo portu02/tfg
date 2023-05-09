@@ -12,15 +12,27 @@
     <link rel="stylesheet" href="vista/css/sala.css">
     <link rel="stylesheet" href="vista/css/estilos.css">
     <script>
+        //ES DISTINTO AL DE EDITAR
         window.onload = function() {
             let arraycheckbox = Array.from(document.getElementsByClassName('checkbox'));
+            let color = 'vista/fotos/butacas/butaca_roja.png';
+            let ejemplo = document.getElementById("ejemplo");
+
+            // Guardar las imágenes originales de las butacas
+            let imagenesOriginales = [];
+            Array.from(document.getElementsByClassName('butaca')).forEach((butaca) => {
+                imagenesOriginales.push(butaca.src);
+            });
+
             arraycheckbox.map(
                 m => m.addEventListener('change', function() {
                     let butaca = this.previousElementSibling;
                     if (this.checked) {
-                        butaca.src = 'vista/fotos/butacas/butaca_roja.png';
+                        butaca.src = color;
                     } else {
-                        butaca.src = 'vista/fotos/butacas/butaca_verde.png';
+                        // Establecer la imagen original correspondiente cuando se desmarca el checkbox
+                        let index = arraycheckbox.indexOf(this);
+                        butaca.src = imagenesOriginales[index];
                     }
                 }));
         }
@@ -38,6 +50,8 @@
     <div class="butacas-contenedor">
         <div class="butacascontenido">
             <form method='post' action=''>
+                <input type="hidden" name="id_sala" value="<?= $id_sala ?? "" ?>">
+                <input type="hidden" name="id_horario" value="<?= $id_horario ?? "" ?>">
                 <table id='butacas'>
                     <?php
                     for ($filas = $max_fila; $filas >= 1; $filas--) {
@@ -46,34 +60,52 @@
                         <tr>
                             <?php
                             for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
+                                if (isset($arraybutaca[$numbutaca]["fila"]) && isset($arraybutaca[$numbutaca]["columna"])) {
+                                    if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
+                                        foreach ($arrayreservadas as $areservada) {
+                                            if ($areservada["fila"] == $arraybutaca[$numbutaca]["fila"] && $areservada["columna"] == $arraybutaca[$numbutaca]["columna"]) {
+                                                $existe = true;
 
-                                if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
-                                    //condicionales de color de butacas
-                                    if ($arraybutaca[$numbutaca]["color"] == "Verde") {
                             ?>
-                                        <td><img src="vista/fotos/butacas/butaca_verde.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+                                                <td><img src="vista/fotos/butacas/butaca_roja.png" class="butaca"><input type="checkbox" class="checkbox" disabled><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
 
-                                    <?php
-                                    } elseif ($arraybutaca[$numbutaca]["color"] == "Rojo") {
-                                    ?>
-                                        <td><img src="vista/fotos/butacas/butaca_roja.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
-                                    <?php
-                                    } elseif ($arraybutaca[$numbutaca]["color"] == "Gris") {
-                                    ?>
-                                        <td><img src="vista/fotos/butacas/butaca_gris.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
-                                        <?php
-                                    } elseif ($arraybutaca[$numbutaca]["color"] == "Azul") {
-                                    ?>
-                                        <td><img src="vista/fotos/butacas/butaca_azul.png" class="butaca"><input type="checkbox" class="checkbox"><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+                                            <?php
+                                            }
+                                        }
 
-                                    <?php
+                                        //condicionales de color de butacas
+                                        if ($existe == false) {
+                                            if ($arraybutaca[$numbutaca]["color"] == "Verde") {
+                                            ?>
+                                                <td><img src="vista/fotos/butacas/butaca_verde.png" class="butaca"><input type="checkbox" class="checkbox" name='reserva[<?= $filas . ";" . $columnas ?>]'><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+
+                                            <?php
+                                            } elseif ($arraybutaca[$numbutaca]["color"] == "Rojo") {
+                                            ?>
+                                                <td><img src="vista/fotos/butacas/butaca_roja.png" class="butaca"><input type="checkbox" class="checkbox" disabled><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+                                            <?php
+                                            } elseif ($arraybutaca[$numbutaca]["color"] == "Gris") {
+                                            ?>
+                                                <td><img src="vista/fotos/butacas/butaca_gris.png" class="butaca"><input type="checkbox" class="checkbox" disabled><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+                                            <?php
+                                            } elseif ($arraybutaca[$numbutaca]["color"] == "Azul") {
+                                            ?>
+                                                <td><img src="vista/fotos/butacas/butaca_azul.png" class="butaca"><input type="checkbox" class="checkbox" name='reserva[<?= $filas . ";" . $columnas ?>]'><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+
+                                            <?php
+                                            }
+
+                                            $numbutaca++;
+                                        } else {
+                                            $numbutaca++;
+                                            $existe = false;
+
+                                        }
+                                    }else{
+                                        ?>
+                                        <td></td>
+                        <?php
                                     }
-
-                                    $numbutaca++;
-                                } else {
-                                    ?>
-                                    <td></td>
-                            <?php
                                 }
                             }
 
@@ -83,8 +115,11 @@
                     }
                     ?>
                 </table>
-            </form>
         </div>
     </div>
+    <div class="filas-columnas">
 
+        <input type='submit' class="boton-modificar carrito" value='Reservar' name='enviar_sala_reservar'>
+    </div>
+    </form>
 </body>

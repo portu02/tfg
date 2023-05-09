@@ -99,7 +99,7 @@
                         <tr>
                             <?php
                             for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
-
+                                if(isset($arraybutaca[$numbutaca]["fila"]) && isset($arraybutaca[$numbutaca]["columna"])){
                                 if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
                                     //condicionales de color de butacas
                                     if ($arraybutaca[$numbutaca]["color"] == "Verde") {
@@ -128,6 +128,7 @@
                                     <td></td>
                             <?php
                                 }
+                            }
                             }
 
                             ?>

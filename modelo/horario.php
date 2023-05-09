@@ -80,5 +80,22 @@ class Horario extends Crud
             return $e->getMessage();
         }
     }
+
+    public function obtenerIDHorario($id_pelicula,$id_sala,$dia,$hora){
+        try {
+            $stmt = $this->conexion->prepare("SELECT id_horario FROM " . self::TABLA . " WHERE hora LIKE :hora '%' AND fecha LIKE '%' :dia AND id_pelicula = :id_pelicula AND id_sala = :id_sala;");
+        
+            $stmt->bindParam(":id_pelicula", $id_pelicula);
+            $stmt->bindParam(":id_sala", $id_sala);
+            $stmt->bindParam(":dia", $dia);
+            $stmt->bindParam(":hora", $hora);
+        
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }
 ?>

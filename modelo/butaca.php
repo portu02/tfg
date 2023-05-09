@@ -109,4 +109,20 @@ class Butaca extends Crud
             echo "Error" . $e->getMessage();
         }
     }
+
+    public function obtenerIDButaca($fila,$columna,$id_sala){
+        try {
+            $stmt = $this->conexion->prepare("SELECT id_butaca FROM " . self::TABLA . " WHERE butaca.fila = :fila AND butaca.columna = :columna AND butaca.id_sala = :id_sala;");
+    
+            $stmt->bindParam(":fila", $fila);
+            $stmt->bindParam(":columna", $columna);
+            $stmt->bindParam(":id_sala", $id_sala);
+        
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }

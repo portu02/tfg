@@ -7,6 +7,7 @@ include_once("modelo/paginacion.php");
 include_once("modelo/sala.php");
 include_once("modelo/butaca.php");
 include_once("modelo/usuario.php");
+include_once("modelo/reserva.php");
 
 //creacion de todas las peliculas 
 $peliculas = new Pelicula("", "", "", "", "", "", "", "", "");
@@ -25,6 +26,8 @@ $arrayusuarios = $usuario->obtieneTodos();
 $pagina = new Paginacion(4, "pelicula");
 $arraypeliculaspaginado = $pagina->mostrar();
 $num = $pagina->numeritos();
+//creacion de reserva
+$reserva = new Reserva("", "", "", "", "", "");
 
 //si interactua con alguna pelicula o el dia
 if (isset($_POST["pelicula"]) || isset($_POST["dia"]) || isset($_POST["buscar_pelicula"])) {
@@ -46,6 +49,9 @@ elseif (isset($_POST["usuario_admin"])  || isset($_POST["borrar_usuario_admin"])
 } 
 elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isset($_POST["volver_login"]) || isset($_POST["crear_login"]) || isset($_POST['registar_nuevo_login']) || isset($_POST['comprobar_codigo'])){
     require_once("controlador/controlador_login.php");
+}
+elseif(isset($_POST["enviar_sala_reservar"])){
+    require_once("controlador/controlador_reserva.php");
 }
 else {
     require_once("vista/principal.php");

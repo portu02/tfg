@@ -11,10 +11,14 @@ if (isset($_POST['hora'])) {
 
     $array_id_salas = $horarios->obtenerIDSala($id_pelicula, $dia, $hora);
 
-    $id = $array_id_salas[0]["id_sala"];
+    $id_sala = $array_id_salas[0]["id_sala"];
 
     $butacas = new Butaca("", "", "", "", "");
-    $arraybutaca = $butacas->obtieneDeIDSala($id);
+    $arraybutaca = $butacas->obtieneDeIDSala($id_sala);
+
+    //SACAR id_horario
+    $id_horario = $horarios->obtenerIDHorario($id_pelicula,$id_sala, $dia, $hora);
+    $id_horario = $id_horario[0]["id_horario"];
 
     //SACAR MAXIMO DE COLUMNAS
     $max_columna = 0;
@@ -32,6 +36,27 @@ if (isset($_POST['hora'])) {
     }
 
     $numbutaca = 0;
+    $numbutaca2 = 0;
+    //echo $arraybutaca[0]["fila"];
 
+
+    $arrayreservadas = $reserva->reservadas($id_horario,$id_sala);
+    //echo $arrayreservadas[0]["fila"];
+/*
+    foreach($arrayreservadas as $areservada){
+        if($areservada["fila"] == && $areservada["columna"] == ){
+
+        }
+    }
+
+    foreach ($array1 as $valor1) {
+        foreach ($array2 as $valor2) {
+          if ($valor1["nombre"] == $nombre_a_buscar && $valor2["nombre"] == $nombre_a_buscar) {
+            echo "El valor existe en ambos arrays multidimensionales";
+          }
+        }
+      }
+*/
+    $existe = false;
     require_once('vista/sala/reservaSala.php');
 }
