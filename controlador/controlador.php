@@ -27,7 +27,7 @@ $arraypeliculaspaginado = $pagina->mostrar();
 $num = $pagina->numeritos();
 
 //si interactua con alguna pelicula o el dia
-if (isset($_POST["pelicula"]) || isset($_POST["dia"])) {
+if (isset($_POST["pelicula"]) || isset($_POST["dia"]) || isset($_POST["buscar_pelicula"])) {
     require_once("controlador/controlador_peliculas.php");
 
     //si interactua con la hora
