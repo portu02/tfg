@@ -67,10 +67,11 @@ class Usuario extends Crud
     function actualizar()
     {
         try {
-            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET nombre =: nombre,apellido =: apellido,  =:  rol =: rol WHERE id_usuario =: id_usuario;");
+            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET nombre =:nombre,apellido =:apellido, correo =:correo, rol =:rol WHERE id_usuario =:id_usuario;");
 
             $stmt->bindParam(":nombre", $this->nombre);
             $stmt->bindParam(":apellido", $this->apellido);
+            $stmt->bindParam(":correo", $this->correo);
             $stmt->bindParam(":rol", $this->rol);
             $stmt->bindParam(":id_usuario", $this->id_usuario);
 

@@ -7,9 +7,15 @@ if (isset($_POST['borrar_usuario_admin'])) {
 }
 elseif(isset($_POST['editar_usuario_admin']) || isset($_POST['cambiar_usuario_admin'])){
     if(isset($_POST['cambiar_usuario_admin'])){
-        
+        $nuevo_usuario=new Usuario($_POST['id_usuario_admin_editar'],$_POST['nombre_usuario_admin_editar'],$_POST['apellido_usuario_admin_editar'],$_POST['correo_usuario_admin_editar'],"",$_POST['rol_usuario_admin_editar']);
+        $nuevo_usuario->actualizar();
+        $result = 'Usuario actualizado correctamente';
+        $arrayusuarios = $usuario->obtieneTodos();
+        require_once('vista/usuario/usuario_admin.php');
+    }else{
+        require_once('vista/usuario/editar_usuario_admin.php');
     }
-    require_once('vista/usuario/editar_usuario_admin.php');
+    
 }
 else {
     require_once('vista/usuario/usuario_admin.php');
