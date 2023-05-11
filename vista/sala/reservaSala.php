@@ -23,7 +23,7 @@
             Array.from(document.getElementsByClassName('butaca')).forEach((butaca) => {
                 imagenesOriginales.push(butaca.src);
             });
-
+            console.log(imagenesOriginales);
             arraycheckbox.map(
                 m => m.addEventListener('change', function() {
                     let butaca = this.previousElementSibling;
@@ -45,7 +45,7 @@
 
     ?>
     <div id="imagengrande">
-        Sala <?= $id ?? "" ?>
+        Sala <?= $id_sala ?? "" ?>
     </div>
     <div class="butacas-contenedor">
         <div class="butacascontenido">
@@ -59,7 +59,12 @@
                     ?>
                         <tr>
                             <?php
-                            for ($columnas = 1; $columnas <= $max_columna; $columnas++) {
+                            for ($columnas = 0; $columnas <= $max_columna; $columnas++) {
+                                if($columnas == 0){
+                                    ?>
+                                    <td><input type='checkbox' class='checkbox_filas' disabled><span><?= $filas ?? "" ?></span></td>
+                                    <?php
+                                }else{
                                 if (isset($arraybutaca[$numbutaca]["fila"]) && isset($arraybutaca[$numbutaca]["columna"])) {
                                     if ($arraybutaca[$numbutaca]["fila"] == $filas && $arraybutaca[$numbutaca]["columna"] == $columnas) {
                                         foreach ($arrayreservadas as $areservada) {
@@ -67,7 +72,7 @@
                                                 $existe = true;
 
                             ?>
-                                                <td><img src="vista/fotos/butacas/butaca_roja.png" class="butaca"><input type="checkbox" class="checkbox" disabled><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
+                                                <td><img src="vista/fotos/butacas/butaca_reservada.png"><input type="checkbox" class="checkbox_filas" disabled><span class="numbutaca"><?= "" ?? "" ?></span></td>
 
                                             <?php
                                             }
@@ -92,21 +97,21 @@
                                             ?>
                                                 <td><img src="vista/fotos/butacas/butaca_azul.png" class="butaca"><input type="checkbox" class="checkbox" name='reserva[<?= $filas . ";" . $columnas ?>]'><span class="numbutaca"><?= $columnas ?? "" ?></span></td>
 
-                                            <?php
+                                        <?php
                                             }
 
                                             $numbutaca++;
                                         } else {
                                             $numbutaca++;
                                             $existe = false;
-
                                         }
-                                    }else{
+                                    } else {
                                         ?>
                                         <td></td>
-                        <?php
+                            <?php
                                     }
                                 }
+                            }
                             }
 
                             ?>
@@ -118,8 +123,32 @@
         </div>
     </div>
     <div class="filas-columnas">
-
         <input type='submit' class="boton-modificar carrito" value='Reservar' name='enviar_sala_reservar'>
     </div>
+
+    <div id="ejemplos-butacas">
+        <div>
+            <img style="width: 60px;" src="vista/fotos/butacas/butaca_verde.png" >
+            <span>Butaca Libre</span>
+        </div>
+        <div>
+            <img style="width: 60px;" src="vista/fotos/butacas/butaca_roja.png" >
+            <span>Butaca para Reservar</span>
+        </div>
+        <div>
+            <img style="width: 60px;" src="vista/fotos/butacas/butaca_gris.png" >
+            <span>Butaca en Mantenimiento</span>
+        </div>
+        <div>
+            <img style="width: 60px;" src="vista/fotos/butacas/butaca_azul.png" >
+            <span>Butaca para Minusválido</span>
+        </div>
+        <div>
+            <img style="width: 60px;" src="vista/fotos/butacas/butaca_reservada.png" >
+            <span>Butaca Ocupada</span>
+        </div>
+    </div>
+
+
     </form>
 </body>

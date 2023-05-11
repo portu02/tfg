@@ -87,6 +87,35 @@ label{
     gap: 10px 10px;
     padding: 10px;
 }
+#ejemplos-butacas {
+    background-color: black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+    padding: 10px;
+  }
+  
+#ejemplos-butacas div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.checkbox_filas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    /* */
+    z-index:2;
+}
 .boton-modificar{
     display: inline-block;
     padding: 10px 20px;
