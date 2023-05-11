@@ -26,6 +26,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Inicio</a>
                         </li>
+                        <?php
+                            if(isset($_SESSION["usuario_sesion"])){
+                                if($_SESSION['usuario_sesion']['rol'] == 'Administrador'){
+                        ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Admin
@@ -36,12 +40,37 @@
                                 <input class="dropdown-item submit-btn w-100" type="submit" value="Usuarios" name="usuario_admin">
                             </div>
                         </li>
+                        <?php
+                            }
+                        }
+                        ?>
                         <li class="nav-item">
-                            <input type=submit name="buscar_pelicula" id="botones" value="Peliculas" class="nav-link">
+                            <input type="submit" name="buscar_pelicula" id="botones" value="Peliculas" class="nav-link">
                         </li>
+                        <?php
+                            if(isset($_SESSION["usuario_sesion"])){
+                        ?>
                         <li class="nav-item">
-                            <input type=submit name="iniciar_sesion" id="botones" value="Iniciar sesion" class="nav-link">
+                            <input type="submit" name="cerrar_sesion" id="botones" value="Cerrar sesion" class="nav-link">
                         </li>
+                        <?php
+                            }else{
+                        ?>
+                        <li class="nav-item">
+                            <input type="submit" name="iniciar_sesion" id="botones" value="Iniciar sesion" class="nav-link">
+                        </li>
+                        <?php
+                            }  
+                        ?>
+                        <?php
+                            if(isset($_SESSION["usuario_sesion"])){
+                        ?>
+                        <li class="nav-item">
+                            <input type="submit" id="botones" value="<?=$_SESSION['usuario_sesion']['nombre']."(".$_SESSION['usuario_sesion']['rol'].")" ?? ""?>" class="nav-link">
+                        </li>
+                        <?php
+                            }  
+                        ?>
                     </ul>
                 </div>
             </nav>

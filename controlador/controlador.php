@@ -50,9 +50,15 @@ elseif (isset($_POST["usuario_admin"])  || isset($_POST["borrar_usuario_admin"])
 elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isset($_POST["volver_login"]) || isset($_POST["crear_login"]) || isset($_POST['registar_nuevo_login']) || isset($_POST['comprobar_codigo'])){
     require_once("controlador/controlador_login.php");
 }
+
 elseif(isset($_POST["enviar_sala_reservar"])){
     require_once("controlador/controlador_reserva.php");
 }
 else {
+    
+    if(isset($_POST['cerrar_sesion'])){
+        unset($_SESSION['usuario_sesion']);
+    }
+
     require_once("vista/principal.php");
 }

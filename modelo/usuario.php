@@ -36,8 +36,20 @@ class Usuario extends Crud
             return $this->data[$property];
         }
     }
+    public function getid(){
+        return $this->id_usuario;
+    }
     public function getcorreo(){
         return $this->correo;
+    }
+    public function getnombre(){
+        return $this->nombre;
+    }
+    public function getapellido(){
+        return $this->apellido;
+    }
+    public function getrol(){
+        return $this->rol;
     }
     public function getcontra(){
         return $this->contrasena;
@@ -83,13 +95,25 @@ class Usuario extends Crud
     function comprueba($contra,$correo){
         $prueba=False;
         try{
-            $stmt = $this->conexion->prepare("SELECT * FROM ". self::TABLA ." WHERE correo = '".$this->correo."'");
+            $stmt = $this->conexion->prepare("SELECT * FROM ". self::TABLA ." WHERE correo =:correo ");
+            $stmt->bindParam(":correo", $this->correo);
             $stmt->execute();
-            $resultados=$stmt->fetchAll();
+            $resultados=$stmt->fetchAll(PDO::FETCH_ASSOC);
             if(count($resultados)>0){
                 $contra_base=$resultados[0]['contrasena'];
+                $id_usuario_base=$resultados[0]['id_usuario'];
+                $nombre_usuario_base=$resultados[0]['nombre'];
+                $apellido_usuario_base=$resultados[0]['apellido'];
+                $correo_usuario_base=$resultados[0]['correo'];
+                $rol_usuario_base=$resultados[0]['rol'];
                 if(password_verify($this->contrasena,$contra_base)){
                     $prueba=True;
+                    //cambiamos todos los valores del usuario que pasamos
+                    $this->id_usuario=$id_usuario_base;
+                    $this->nombre=$nombre_usuario_base;
+                    $this->apellido=$apellido_usuario_base;
+                    $this->correo=$correo_usuario_base;
+                    $this->rol=$rol_usuario_base;
                 }
             }
         }catch(PDOException $e){

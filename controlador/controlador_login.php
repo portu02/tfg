@@ -13,7 +13,6 @@ if (isset($_POST['comprobar_codigo'])) {
     //comprobamos que no exista un email ya registrado
     $prueba = True;
     foreach ($arrayusuarios as $usuario) {
-        //cambiar
         if ($usuario['correo'] == $nuevo_usuario->getcorreo()) {
             $prueba = False;
         }
@@ -29,9 +28,6 @@ if (isset($_POST['comprobar_codigo'])) {
         echo '<script>alert("Correo existente");window.close();</script>';
     }
 }
-
-
-
 if (isset($_POST['crear_login']) || isset($_POST['registar_nuevo_login'])) {
 
     require_once('./vista/usuario/crear_usuario.php');
@@ -45,7 +41,16 @@ if (isset($_POST['crear_login']) || isset($_POST['registar_nuevo_login'])) {
             $contra = $_POST['contra_login'];
             $nuevo_usuario = new Usuario("", "", "", $correo, $contra, "");
             if ($nuevo_usuario->comprueba($contra, $correo)) {
-                echo '<script>alert("Inicio Sesion");window.location.replace("index.php");</script>';
+                $array_usuario_sesion= array(
+                    'id_usuario' => $nuevo_usuario->getid(),
+                    'nombre' => $nuevo_usuario->getnombre(),
+                    'apellido' => $nuevo_usuario->getapellido(),
+                    'correo' => $nuevo_usuario->getcorreo(),
+                    'rol' => $nuevo_usuario->getrol()
+                );
+                $_SESSION['usuario_sesion']=$array_usuario_sesion;
+                echo '<script>alert("El usuario '.$nuevo_usuario->getcorreo().' inicio sesion");</script>';
+                header('Location:index.php');
             } else {
                 echo '<script>alert("Algo salio mal");</script>';
             }
