@@ -52,6 +52,7 @@
             <form method='post' action=''>
                 <input type="hidden" name="id_sala" value="<?= $id_sala ?? "" ?>">
                 <input type="hidden" name="id_horario" value="<?= $id_horario ?? "" ?>">
+                <input type="hidden" name="nombre_pelicula" value="<?= $nombre_pelicula ?? "" ?>">
                 <table id='butacas'>
                     <?php
                     for ($filas = $max_fila; $filas >= 1; $filas--) {

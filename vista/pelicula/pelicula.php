@@ -90,6 +90,7 @@
                     <form method="post" action="">
                         <input type='text' value='<?= $id_pelicula ?? "" ?>' name='id_pelicula' hidden />
                         <input type='text' value='<?= $id_dia ?? "" ?>' name='id_dia' hidden />
+                        <input type='text' value='<?= $arraypeliculas[$id_pelicula]["nombre"] ?? "" ?>' name='nombre_pelicula' hidden />
                         <input class="botonhora" type="submit" value="<?= $a ?? "" ?>" name="hora">
                     </form>
                 </div>

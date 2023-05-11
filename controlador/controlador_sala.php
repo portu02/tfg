@@ -1,6 +1,7 @@
 <?php
 if (isset($_POST['hora'])) {
     $id_pelicula = $_POST["id_pelicula"] + 1;
+    $nombre_pelicula = $_POST["nombre_pelicula"];
 
     $dia_simple = $_POST["id_dia"];
     $dia_inicial = substr($dia_simple, 0, 2);
