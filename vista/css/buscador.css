@@ -1,4 +1,11 @@
-
+.form-select, .form-select2, .form-select3, .date {
+width: 20%;
+}
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
 .mask {
   height: 100%;
   padding: 80px;

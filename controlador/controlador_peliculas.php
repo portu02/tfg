@@ -1,5 +1,29 @@
 <?php
 if (isset($_POST["buscar_pelicula"])) {
+    if (isset($_POST["buscar"])) {
+        $buscador = '%' . $_POST['buscador']. '%';
+        $arrayfiltrado = $peliculas->buscar($_POST['categoria'], $_POST['clasificacion'], $_POST['hora'], $_POST['fecha'], $buscador);
+        $categoria = $_POST['categoria'];
+        $clasificacion = $_POST['clasificacion'];
+        $hora = $_POST['hora'];
+        $fecha = $_POST['fecha'];
+        $buscador = $_POST['buscador'];
+    }
+    if (!isset($categoria)) {
+        $categoria = '';
+    }
+    if (!isset($clasificacion)) {
+        $clasificacion = '';
+    }
+    if (!isset($hora)) {
+        $hora = '';
+    }
+    if (!isset($fecha)) {
+        $fecha = '';
+    }
+    if (!isset($buscador)) {
+        $buscador = '';
+    }
     require_once('vista/pelicula/buscar_pelicula.php');
 } else {
     if (isset($_POST["pelicula"])) {

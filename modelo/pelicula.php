@@ -86,5 +86,54 @@ class Pelicula extends Crud
         }
     }
 
+    function buscar($categoria, $clasificacion, $hora, $fecha, $buscador)
+    {
+        $sql = "SELECT pelicula.* FROM pelicula
+        INNER JOIN horario ON pelicula.id_pelicula = horario.id_pelicula WHERE ";
+
+        if ($categoria != "") {
+            $sql .= "categoria = :categoria AND ";
+        }
+
+        if ($clasificacion != "") {
+            $sql .= "clasificacion = :clasificacion AND ";
+        }
+
+        if ($hora != '') {
+            $sql .= "hora = :hora AND ";
+        }
+
+        if ($fecha != '') {
+            $sql .= "fecha = :fecha AND ";
+        }
+
+        if ($buscador != '') {
+            $sql .= "nombre LIKE :buscador OR categoria LIKE :buscador AND ";
+        }
+        $sql .= "true = true GROUP BY pelicula.id_pelicula";
+        $query = $this->conexion->prepare($sql);
+
+        if ($categoria != '') {
+            $query->bindValue(":categoria", $categoria);
+        }
+
+        if ($clasificacion != '') {
+            $query->bindValue(":clasificacion", $clasificacion);
+        }
+
+        if ($hora != '') {
+            $query->bindValue(":hora", strval($hora));
+        }
+
+        if ($fecha != '') {
+            $query->bindValue(":fecha", $fecha);
+        }
+
+        if ($buscador != '') {
+            $query->bindValue(":buscador", $buscador);
+        }
+
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
-?>
