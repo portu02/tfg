@@ -27,7 +27,7 @@
                             <div class="card mb-2">
                                 <div class="card-body p-2">
                                     <div class="input-group input-group-lg">
-                                        <input type="text" name='buscador' class="form-control form-control-lg rounded" placeholder="Busqueda" aria-label="Busqueda" aria-describedby="basic-addon2" value='<?= $buscador ?? "" ?>'/>
+                                        <input type="text" name='buscador' class="form-control form-control-lg rounded" placeholder="Busqueda" aria-label="Busqueda" aria-describedby="basic-addon2" value='<?= $buscador ?? "" ?>' />
                                         <span class="input-group-text border-0" id="basic-addon2"><i class="fas fa-search"></i></span>
                                     </div>
                                 </div>
@@ -137,31 +137,33 @@
                                             <input type="hidden" name='buscar_pelicula'></button>
                                         </div>
                                     </div>
-                    </form>
-                    <?php if (isset($arrayfiltrado)) {
-                        if (empty($arrayfiltrado)) { ?>
-                            <p class="text-white mb-0 text-center"><span class="text-danger">No se han encontrado resultados para los filtros seleccionados</span></p>
-                        <?php
-                        } else {
-                        ?>
-                            <form action="" method="post">
-                                <div id="peliculas">
-                                    <?php
-                                    foreach ($arrayfiltrado as $a) { ?>
-                                        <div class="pelicula" style="background-image: url('vista/fotos/<?= $a["imagen"] ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
-                                    <?php } ?>
                                 </div>
-                            </form>
-                    <?php }
-                    } ?>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+                <?php if (isset($arrayfiltrado)) {
+                    if (empty($arrayfiltrado)) { ?>
+                        <div id="peliculas" style="margin-top: 0px; padding: 20px">
+                            <p class="text-white mb-0 text-center"><span class="text-danger">No se han encontrado resultados para los filtros seleccionados</span></p>
+                        </div><?php
+                            } else {
+                                ?>
+                        <form action="" method="post">
+                            <div id="peliculas" style="margin-top: 0px; padding: 50px">
+                                <?php
+                                foreach ($arrayfiltrado as $a) { ?>
+                                    <div class="pelicula" style="background-image: url('vista/fotos/<?= $a["imagen"] ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
+                                <?php } ?>
+                            </div>
+                        </form>
+                <?php }
+                        } ?>
             </div>
-        </div>
-        </div>
-        </div>
         </div>
     </section>
     <script>
+        const buscador = document.querySelector('.form-control');
         const categoriaSelect = document.querySelector('.form-select');
         const clasificacionSelect = document.querySelector('.form-select2');
         const fechaInput = document.querySelector('.date');
@@ -169,6 +171,7 @@
         const limpiarBtn = document.querySelector('.btn-link');
 
         limpiarBtn.addEventListener('click', () => {
+            buscador.value = '';
             categoriaSelect.selectedIndex = 0;
             clasificacionSelect.selectedIndex = 0;
             fechaInput.value = '';

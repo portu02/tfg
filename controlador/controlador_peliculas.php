@@ -1,8 +1,7 @@
 <?php
 if (isset($_POST["buscar_pelicula"])) {
     if (isset($_POST["buscar"])) {
-        $buscador = '%' . $_POST['buscador']. '%';
-        $arrayfiltrado = $peliculas->buscar($_POST['categoria'], $_POST['clasificacion'], $_POST['hora'], $_POST['fecha'], $buscador);
+        $arrayfiltrado = $peliculas->buscar($_POST['categoria'], $_POST['clasificacion'], $_POST['hora'], $_POST['fecha'], $_POST['buscador']);
         $categoria = $_POST['categoria'];
         $clasificacion = $_POST['clasificacion'];
         $hora = $_POST['hora'];

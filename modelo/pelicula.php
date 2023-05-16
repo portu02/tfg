@@ -130,6 +130,7 @@ class Pelicula extends Crud
         }
 
         if ($buscador != '') {
+            $buscador = '%' . $buscador. '%';
             $query->bindValue(":buscador", $buscador);
         }
 
