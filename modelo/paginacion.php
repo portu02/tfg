@@ -24,7 +24,7 @@ class Paginacion extends Conexion
 
     function calcularPag()
     {
-        $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT pelicula.id_pelicula) as total FROM horario INNER JOIN pelicula ON (horario.id_pelicula = pelicula.id_pelicula);");
+        $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT pelicula.id_pelicula) as total FROM pelicula;");
 
         $stmt->execute();
 
@@ -47,9 +47,7 @@ class Paginacion extends Conexion
     function mostrar()
     {
         try {
-            $fecha_hoy = date("Y-m-d");
-            $stmt = $this->conexion->prepare("SELECT DISTINCT pelicula.id_pelicula AS id_pelicula, pelicula.nombre AS nombre,pelicula.imagen AS imagen,pelicula.sinopsis AS sinopsis,pelicula.duracion AS duracion, pelicula.url AS url, pelicula.clasificacion AS clasificacion, pelicula.categoria AS categoria, pelicula.fecha_estreno AS fecha_estreno FROM horario INNER JOIN pelicula ON (horario.id_pelicula = pelicula.id_pelicula) WHERE horario.fecha >= :hoy ORDER BY pelicula.fecha_estreno DESC, pelicula.id_pelicula ASC LIMIT $this->indice, $this->resultadoporpag;");
-            $stmt->bindParam(":hoy", $fecha_hoy);
+            $stmt = $this->conexion->prepare("SELECT DISTINCT id_pelicula, nombre,imagen,sinopsis,duracion, url, clasificacion,categoria, fecha_estreno FROM pelicula ORDER BY fecha_estreno DESC, id_pelicula ASC LIMIT $this->indice, $this->resultadoporpag;");
             $stmt->execute();
             $registroarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $registroarray;

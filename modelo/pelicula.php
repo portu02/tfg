@@ -49,7 +49,8 @@ class Pelicula extends Crud
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(nombre, imagen, sinopsis, duracion, url, clasificacion, categoria, fecha_estreno) VALUES (:nombre, :imagen, :sinopsis, :duracion, :url, :clasificacion, :categoria, :fecha_estreno)");
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(id_pelicula,nombre, imagen, sinopsis, duracion, url, clasificacion, categoria, fecha_estreno) VALUES (:id,:nombre, :imagen, :sinopsis, :duracion, :url, :clasificacion, :categoria, :fecha_estreno)");
+            $stmt->bindParam(":id", $this->id_pelicula);
             $stmt->bindParam(":nombre", $this->nombre);
             $stmt->bindParam(":imagen", $this->imagen);
             $stmt->bindParam(":sinopsis", $this->sinopsis);

@@ -81,6 +81,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         $sala->actualizar();
 
         $result = 'Sala actualizada correctamente';
+        $arraysalas = $sala->obtieneTodos();
         require_once('vista/sala/sala_admin.php');
     }
 } elseif (isset($_POST['anadir_sala_admin']) || isset($_POST["previsualizar"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["enviar_sala"])) {

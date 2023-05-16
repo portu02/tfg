@@ -10,15 +10,15 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
         $id_pelicula = $_POST["id_pelicula"];
     }
     if (isset($_POST['enviar_pelicula'])) {
-    
+
         if (!isset($_POST['id_pelicula'])) {
             $id_pelicula = $peliculas->obtieneUltimoID();
             $id_pelicula = $id_pelicula + 1;
             $nombre = $_POST['nombre'];
-    
+
             $imagen = $_FILES['imagen']['name'];
             $temp = $_FILES['imagen']['tmp_name'];
-    
+
             if ($imagen != null) {
                 move_uploaded_file($temp, 'vista/fotos/' . $imagen);
             } else {
@@ -33,10 +33,14 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
             $fecha_mysql = date('Y-m-d', strtotime(str_replace('/', '-', $fecha_estreno)));
             $pelicula_nueva = new Pelicula($id_pelicula, $nombre, $imagen, $sinopsis, $duracion, $url, $clasificacion, $categoria, $fecha_mysql);
             $pelicula_nueva->crear();
+
             $result = 'Pelicula creada correctamente';
             $arraypeliculas = $peliculas->obtieneTodos();
+            
+            //CREAR HORARIO
+            require_once('./controlador/crear_horario.php');
+
             require_once("vista/pelicula/pelicula_admin.php");
-    
         } else {
             $id_pelicula = $_POST["id_pelicula"];
             $nombre = $_POST['nombre'];
@@ -55,7 +59,7 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
             $categoria = $_POST['categoria'];
             $fecha_estreno = $_POST['fecha_estreno'];
             $fecha_mysql = date('Y-m-d', strtotime(str_replace('/', '-', $fecha_estreno)));
-    
+
             $pelicula_nueva = new Pelicula($id_pelicula, $nombre, $imagen, $sinopsis, $duracion, $url, $clasificacion, $categoria, $fecha_mysql);
             $pelicula_nueva->actualizar();
             $result = 'Pelicula actualizada correctamente';
@@ -75,8 +79,6 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
         }
         require_once("vista/pelicula/crear_pelicula.php");
     }
-}
-else {
+} else {
     require_once("vista/pelicula/pelicula_admin.php");
 }
-

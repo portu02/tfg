@@ -43,7 +43,7 @@
         foreach ($arraysalas as $row) {
         ?>
             <tr>
-                <td><?php echo 'Sala ' . $row['id_sala'] - 1 ?></td>
+                <td><?php echo 'Sala ' . $row['id_sala'] ?></td>
                 <td><?php echo $row['descripcion'] ?></td>
                 <td><?php echo $row['capacidad'] . ' personas'?></td>
                 <td>

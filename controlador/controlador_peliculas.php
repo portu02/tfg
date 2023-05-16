@@ -27,30 +27,40 @@ if (isset($_POST["buscar_pelicula"])) {
 } else {
     if (isset($_POST["pelicula"])) {
         // mostramos los horarios de la pelicula selcionada
-        $id_pelicula = $_POST["pelicula"] - 1;
-        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula + 1);
+        $id_pelicula = $_POST["pelicula"];
+        
+        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula);
 
-        foreach ($arrayhorarios as $a) {
-            //contiene la informacion de horarios
-            $diasimple = $a["fecha"];
-            $diaini = substr($diasimple, 8, 2);
-            $diafin = substr($diasimple, 5, 2);
-            $dia = $diaini . "/" . $diafin;
-            $array[] = $dia;
+        //CREAR HORARIO
+        require_once('./controlador/crear_horario.php');
+
+        //Si no existe horarios te devuelve al index
+        if (count($arrayhorarios) <= 0) {
+            echo "<script>alert('De momento esta pelicula no dispone de horarios');</script>";
+            require_once('vista/principal.php');
+        } else {
+            foreach ($arrayhorarios as $a) {
+                //contiene la informacion de horarios
+                $diasimple = $a["fecha"];
+                $diaini = substr($diasimple, 8, 2);
+                $diafin = substr($diasimple, 5, 2);
+                $dia = $diaini . "/" . $diafin;
+                $array[] = $dia;
+            }
+            // para que no salgan horarios duplicados
+            $b = array_unique($array);
+            $id_dia = array_shift($b);
+
+            require_once("vista/pelicula/pelicula.php");
         }
-        // para que no salgan horarios duplicados
-        $b = array_unique($array);
-        $id_dia = array_shift($b);
     } elseif (isset($_POST["id_pelicula"])) {
         $id_pelicula = $_POST["id_pelicula"];
-        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula + 1);
+        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula);
     }
     if (isset($_POST["dia"])) {
         $id_pelicula = $_POST["id_pelicula"];
         $id_dia = $_POST["dia"];
-        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula + 1);
-        require_once("vista/pelicula/pelicula.php");
-    } else {
+        $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula);
         require_once("vista/pelicula/pelicula.php");
     }
 }

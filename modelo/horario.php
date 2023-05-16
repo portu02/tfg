@@ -41,12 +41,10 @@ class Horario extends Crud
 
     function crear()
     {
-
     }
 
     function actualizar()
     {
-
     }
 
     public function obtieneDeIDPelicula($id)
@@ -134,24 +132,46 @@ class Horario extends Crud
             $fecha_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($fecha_array) > 0) {
-
-                /* ELIMINAR SI EXISTEN HORARIOS */
-                try {
-                    $fecha_s = $fecha_insertada;
-
-                    $stmt = $this->conexion->prepare("DELETE FROM horario WHERE fecha >= :fecha AND id_horario NOT IN (SELECT id_horario FROM reserva)");
-
-                    $stmt->bindParam(":fecha", $fecha_s);
-                    $stmt->execute();
-                } catch (PDOException $e) {
-                    echo "Error" . $e->getMessage();
-                }
                 return true;
             } else {
                 return false;
             }
         } catch (PDOException $e) {
             return $e->getMessage();
+        }
+    }
+    
+    public function comprobarSiExisteHorario($fecha_insertada)
+    {
+        try {
+            $fecha_s = $fecha_insertada;
+            $stmt = $this->conexion->prepare("SELECT fecha FROM horario WHERE fecha = :fecha GROUP BY fecha;");
+            $stmt->bindParam(":fecha", $fecha_s);
+            $stmt->execute();
+            $fecha_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (count($fecha_array) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function comprobarSiExistenHorariosEliminar($fecha_insertada)
+    {
+        /* ELIMINAR SI EXISTEN HORARIOS NO ELIMINA RESERVADAS */
+        try {
+            $fecha_s = $fecha_insertada;
+
+            $stmt = $this->conexion->prepare("DELETE FROM horario WHERE fecha >= :fecha AND id_horario NOT IN (SELECT id_horario FROM reserva)");
+
+            $stmt->bindParam(":fecha", $fecha_s);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
         }
     }
 

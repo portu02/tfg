@@ -1,4 +1,7 @@
-
+<head>
+    <title>Richiliculas</title>
+    <link rel="icon" type="image/png" href="vista/fotos/R.png">
+</head>
 <?php
 error_reporting(E_ALL);
 

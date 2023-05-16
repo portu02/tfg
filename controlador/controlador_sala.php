@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['hora'])) {
 
-    $id_pelicula = $_POST["id_pelicula"] + 1;
+    $id_pelicula = $_POST["id_pelicula"];
     $nombre_pelicula = $_POST["nombre_pelicula"];
 
     $dia_simple = $_POST["id_dia"];
