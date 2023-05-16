@@ -74,7 +74,8 @@ class Sala extends Crud
         }
     }
 
-    function sacarUltimoId(){
+    function sacarUltimoId()
+    {
         try {
             $stmt = $this->conexion->prepare("SELECT id_sala FROM sala ORDER BY id_sala DESC LIMIT 1;");
             $stmt->execute();
@@ -86,12 +87,37 @@ class Sala extends Crud
         }
     }
 
-    function actualizarCapacidad($numero, $ultimoId){
+    function actualizarCapacidad($numero, $ultimoId)
+    {
         try {
             $stmt = $this->conexion->prepare("UPDATE sala  SET capacidad = :capacidad WHERE id_sala = :id_sala");
             $stmt->bindParam(":capacidad", $numero);
             $stmt->bindParam(":id_sala", $ultimoId);
             $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
+
+    /* PARA CREAR EL crear_horario.php */
+    function sacarNumSalas()
+    {
+        try {
+            $stmt = $this->conexion->prepare("SELECT id_sala AS num_salas FROM sala");
+
+            $stmt->execute();
+            $salasarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (count($salasarray) > 0) {
+                foreach ($salasarray as $i => $a) {
+                    foreach ($a as $j) {
+                        $numsalas[] = $j;
+                    }
+                }
+                return $numsalas;
+            } else {
+                return 1;
+            }
         } catch (PDOException $e) {
             echo "Error" . $e->getMessage();
         }

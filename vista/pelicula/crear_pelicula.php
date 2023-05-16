@@ -11,6 +11,67 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="vista/css/sala_admin.css">
     <script src="vista/js/sala_admin.js"></script>
+    <script>
+        window.onload = function() {
+            /* ACTUALIZAR O CREAR LA IMAGEN */
+            const agrega = document.getElementById("file");
+            const imagePreview = document.getElementById("agregar_imagen");
+            const nombre = document.getElementById("nombre");
+
+            agrega.addEventListener("change", function(event) {
+                const file = this.files[0];
+                nombre.innerHTML = file.name;
+
+                const selectedFiles = event.target.files;
+                for (let i = 0; i < selectedFiles.length; i++) {
+                    const reader = new FileReader();
+
+                    reader.addEventListener("load", function() {
+                        imagePreview.style.backgroundImage = `url(${reader.result})`;
+                    });
+
+                    reader.readAsDataURL(selectedFiles[i]);
+                }
+            });
+
+            /* ACTUALIZAR URL */
+            const trailer = document.getElementById("trailer");
+            const url_nueva = document.getElementById("nueva_url");
+            const boton = document.getElementById("boton");
+
+            if (boton) {
+                boton.addEventListener("click", function() {
+                    trailer.src = "https://www.youtube.com/embed/" + url_nueva.value;
+                });
+            }
+
+            /* AGREGAR TRAILER */
+            const trailer2 = document.getElementById("trailer2");
+            const url_nueva2 = document.getElementById("nueva_url2");
+            const boton2 = document.getElementById("boton2");
+
+            if (boton2) {
+                boton2.addEventListener("click", function() {
+                    const iframeExistente = document.querySelector('iframe');
+
+                    if (iframeExistente) {
+                        iframeExistente.remove();
+                    }
+
+                    var iframe = document.createElement("iframe");
+
+                    iframe.setAttribute("src", "https://www.youtube.com/embed/" + url_nueva2.value);
+                    iframe.setAttribute("width", "100%");
+                    iframe.setAttribute("height", "400px");
+                    iframe.setAttribute("name", "trailer");
+                    iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
+
+                    var label = document.querySelector("label[for='url_new']");
+                    label.parentNode.insertBefore(iframe, label);
+                });
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -123,19 +184,11 @@
             if (isset($id_pelicula)) {
             ?>
                 <label for='imagen'>Imagen:
-                    <div class="pelicula" style="background-image: url('vista/fotos/<?= $imagen ?> ');" id='imagen'></div>
+                    <div class="pelicula" style="background-image: url('vista/fotos/<?= $imagen ?> ');" id='agregar_imagen'></div>
                     <input type="file" name="imagen" accept="image/*" style="display: none;" id="file" />
                     <label for="file" class="boton-modificar pen" style="display: inline-block; padding-left: 22px; width: 30%; background-color: rgb(79, 79, 255); border-radius: 4px;cursor: pointer; margin-top:15px">Editar</label>
                     <label for="nombre" id='nombre'></label>
-                    <script>
-                        const input = document.getElementById("file");
-                        const nombre = document.getElementById("nombre");
 
-                        input.addEventListener("change", function() {
-                            const file = this.files[0];
-                            nombre.innerHTML = file.name;
-                        });
-                    </script>
                 </label>
                 <label for='trailer'>Trailer:
                     <iframe src="https://www.youtube.com/embed/<?= $url ?>" id=trailer allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:400px" allowfullscreen></iframe>
@@ -144,61 +197,21 @@
                     </label>
                     <label for='text' class="boton-modificar pen" name='boton' id='boton' style="margin-left:25%; padding-left: 22px; width: 90px; background-color: rgb(79, 79, 255); border-radius: 4px;cursor: pointer; margin-top:15px">Editar</label>
                 </label>
-                <script>
-                    const trailer = document.getElementById("trailer");
-                    const url_nueva = document.getElementById("nueva_url");
-                    const boton = document.getElementById("boton");
-
-                    boton.addEventListener("click", function() {
-                        trailer.src = "https://www.youtube.com/embed/" + url_nueva.value;
-                    });
-                </script>
             <?php
             } else { ?>
                 <label for='imagen'>Imagen:
-                    <input type="file" name="imagen" accept="image/*" style="display: none;" id="file2" />
-                    <br><label for="nombre2" id='nombre2'></label>
-                    <label for="file2" class="boton-modificar pen" style="display: inline-block; padding-left: 22px; width: 100%; background-color: rgb(79, 79, 255); border-radius: 4px;cursor: pointer; margin-top:15px">Subir Imagen</label>
+                    <div class="pelicula" style="background-color:black" id='agregar_imagen'></div>
+                    <input type="file" name="imagen" accept="image/*" id="file" style="display: none;" />
+                    <br><label for="nombre2" id='nombre'></label>
+                    <label for="file" class="boton-modificar pen" style="display: inline-block; padding-left: 22px; width: 100%; background-color: rgb(79, 79, 255); border-radius: 4px;cursor: pointer; margin-top:15px">Subir Imagen</label>
                 </label>
-                <script>
-                    const input2 = document.getElementById("file2");
-                    const nombre2 = document.getElementById("nombre2");
 
-                    input2.addEventListener("change", function() {
-                        const file2 = this.files[0];
-                        nombre2.innerHTML = file2.name;
-                    });
-                </script>
                 <label for='trailer'>Trailer:
                     <br><label for='url_new'>Url nueva:
                         <input type='text' name='url_new' style='width:100%' id='nueva_url2'>
                     </label>
                     <label for='text' class="boton-modificar pen" name='boton' id='boton2' style=" padding-left: 22px; width: 40%; background-color: rgb(79, 79, 255); border-radius: 4px;cursor: pointer; margin-top:15px">Subir trailer</label>
                 </label>
-                <script>
-                    const trailer2 = document.getElementById("trailer2");
-                    const url_nueva2 = document.getElementById("nueva_url2");
-                    const boton2 = document.getElementById("boton2");
-
-                    boton2.addEventListener("click", function() {
-                        const iframeExistente = document.querySelector('iframe');
-
-                        if (iframeExistente) {
-                            iframeExistente.remove();
-                        }
-
-                        var iframe = document.createElement("iframe");
-
-                        iframe.setAttribute("src", "https://www.youtube.com/embed/" + url_nueva2.value);
-                        iframe.setAttribute("width", "100%");
-                        iframe.setAttribute("height", "400px");
-                        iframe.setAttribute("name", "trailer");
-                        iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
-
-                        var label = document.querySelector("label[for='url_new']");
-                        label.parentNode.insertBefore(iframe, label);
-                    });
-                </script>
             <?php }
             ?>
         </div>

@@ -27,7 +27,7 @@
             <th>NÚMERO</th>
             <th>DESCRIPCIÓN</th>
             <th>CAPACIDAD</th>
-            <th>HABILITADA</th>
+            <th>DESHABILITADA</th>
             <th>LUXURY</th>
             <th colspan="2">ACCIONES</th>
         </tr>
