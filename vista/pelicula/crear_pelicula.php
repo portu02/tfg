@@ -180,7 +180,7 @@
                 </select>
             </label>
             <label for='fecha_estreno'>Fecha de Estreno:
-                <input type='date' name='fecha_estreno' value='<?= $fecha_estreno ?? "" ?>' required>
+                <input type='date' min="<?= $horarios->ultimohorarios() ?? "" ?>" name='fecha_estreno' value='<?= $fecha_estreno ?? "" ?>' required>
             </label>
         </div>
         <div class="filas-columnas">

@@ -140,7 +140,7 @@ class Horario extends Crud
             return $e->getMessage();
         }
     }
-    
+
     public function comprobarSiExisteHorario($fecha_insertada)
     {
         try {
@@ -241,7 +241,12 @@ class Horario extends Crud
         }
     }
 
-    public function ultimohorarios(){
-        
+    public function ultimohorarios()
+    {
+        $stmt = $this->conexion->prepare("SELECT fecha FROM `horario` ORDER BY `horario`.`fecha` DESC LIMIT 1");
+        $stmt->execute();
+        $fecha_actual = $stmt->fetchAll(PDO::FETCH_ASSOC)[0]["fecha"];
+        $nueva_fecha = date('Y-m-d', strtotime($fecha_actual . ' +1 day'));
+        return $nueva_fecha;
     }
 }

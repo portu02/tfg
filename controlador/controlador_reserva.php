@@ -88,14 +88,6 @@ if (isset($_POST["enviar_sala_reservar"]) && isset($_SESSION['usuario_sesion']))
 
 
 if (isset($_POST["enviar_sala_reservar"]) && isset($_SESSION['usuario_sesion'])) {
-    /*
-    //ELIMINA COOKIE
-    $id_usuario = $_SESSION['usuario_sesion']['id_usuario'];
-    $nombrecookie = "Entradas".$id_usuario;
-
-    unset($_COOKIE[$nombrecookie]);
-    setcookie($nombrecookie, '', time() - 3600, '/');
-    */
 
     $id_usuario = $_SESSION['usuario_sesion']['id_usuario'];
     $nombrecookie = "Entradas" . $id_usuario;
@@ -104,8 +96,6 @@ if (isset($_POST["enviar_sala_reservar"]) && isset($_SESSION['usuario_sesion']))
         $datos_serializados = $_COOKIE[$nombrecookie];
         $datos = unserialize($datos_serializados);
     }
-
-
 
     $nombre_pelicula = $_POST["nombre_pelicula"];
     $id_sala = $_POST["id_sala"];
@@ -158,10 +148,6 @@ if (isset($_POST["enviar_sala_reservar"]) && isset($_SESSION['usuario_sesion']))
         }
     }
 
-    print_r($datos);
-    echo "<br>";
-
-
     // Guardar la cadena serializada en una cookie
     $datos_serializados = serialize($datos);
     setcookie($nombrecookie, $datos_serializados, time() + (86400 * 30), '/');
@@ -194,6 +180,7 @@ if (isset($_POST["enviar_sala_reservar"]) && isset($_SESSION['usuario_sesion']))
     }
 
     require_once("vista/carrito.php");
+
 } elseif (isset($_POST["quitar_reserva"])) {
 
     $id_usuario = $_SESSION['usuario_sesion']['id_usuario'];
@@ -205,43 +192,56 @@ if (isset($_POST["enviar_sala_reservar"]) && isset($_SESSION['usuario_sesion']))
         $datos_serializados = $_COOKIE[$nombrecookie];
         $datos_cookie = unserialize($datos_serializados);
 
-        foreach ($datos as $i => $j) {
+        foreach ($datos_cookie as $i => $j) {
             if ($i != $id_array) {
-                $datos[]  = array('id_horario' => $datos[$i]["id_horario"], 'id_butaca' => $datos[$i]["id_butaca"], 'precio' => $datos[$i]["precio"]);
+                $datos[]  = array('id_horario' => $datos_cookie[$i]["id_horario"], 'id_butaca' => $datos_cookie[$i]["id_butaca"], 'precio' => $datos_cookie[$i]["precio"]);
             }
         }
 
-        $datos_serializados = serialize($datos);
+        //Si no hay datos borra la cookie 
+        if (isset($datos)) {
 
-        // Guardar la cadena serializada en una cookie
-        setcookie($nombrecookie, $datos_serializados, time() + (86400 * 30), '/');
+            $datos_serializados = serialize($datos);
 
-        $hora_objt = new Horario("", "", "", "", "", "");
-        //RECORRER ARRAY DE COOKIE Y CREAR ARRAY ENTRADA
-        $id_array = 0;
-        foreach ($datos as $i => $j) {
-            //horario
-            $horaobtiene = $hora_objt->obtieneDeID($datos[$i]["id_horario"]);
-            //fecha
-            $fechacambiado = new DateTime($horaobtiene->fecha);
-            $fechacambiado = $fechacambiado->format('d-m-Y');
-            //nombrepelicula
-            $nombre = $pelicula_objt->obtieneDeID($horaobtiene->id_pelicula)->nombre;
-            //sala
-            if ($sala->obtieneDeID($horaobtiene->id_sala)->luxury == 0) {
-                $luxury = "No";
-            } else {
-                $luxury = "Si";
+            // Guardar la cadena serializada en una cookie
+            setcookie($nombrecookie, $datos_serializados, time() + (86400 * 30), '/');
+
+            $hora_objt = new Horario("", "", "", "", "", "");
+
+            //RECORRER ARRAY DE COOKIE Y CREAR ARRAY ENTRADA
+            $id_array = 0;
+            foreach ($datos as $i => $j) {
+                //horario
+                $horaobtiene = $hora_objt->obtieneDeID($datos[$i]["id_horario"]);
+                //fecha
+                $fechacambiado = new DateTime($horaobtiene->fecha);
+                $fechacambiado = $fechacambiado->format('d-m-Y');
+                //nombrepelicula
+                $nombre = $pelicula_objt->obtieneDeID($horaobtiene->id_pelicula)->nombre;
+                //sala
+                if ($sala->obtieneDeID($horaobtiene->id_sala)->luxury == 0) {
+                    $luxury = "No";
+                } else {
+                    $luxury = "Si";
+                }
+                //butaca
+                $butacasobtiene = $butacas->obtieneDeID($datos[$i]["id_butaca"]);
+                //precio
+                $precio = $datos[$i]["precio"];
+
+                $arrayentrada[] = array("id_array" => $id_array, "id_sala" => $horaobtiene->id_sala, "luxury" => $luxury, "nombre" => $nombre, "fecha" => $fechacambiado, "hora" => $horaobtiene->hora, "fila" => $butacasobtiene->fila, "columna" => $butacasobtiene->columna, "precio" => $precio);
+                $id_array++;
             }
-            //butaca
-            $butacasobtiene = $butacas->obtieneDeID($datos[$i]["id_butaca"]);
-            //precio
-            $precio = $datos[$i]["precio"];
 
-            $arrayentrada[] = array("id_array" => $id_array, "id_sala" => $horaobtiene->id_sala, "luxury" => $luxury, "nombre" => $nombre, "fecha" => $fechacambiado, "hora" => $horaobtiene->hora, "fila" => $butacasobtiene->fila, "columna" => $butacasobtiene->columna, "precio" => $precio);
-            $id_array++;
+            require_once("vista/carrito.php");
+        } else {
+
+            setcookie($nombrecookie, '', time() - 3600, '/');
+            require_once("vista/principal.php");
+
         }
+
+    } else {
+        require_once("vista/principal.php");
     }
-
-    require_once("vista/carrito.php");
 }

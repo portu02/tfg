@@ -76,8 +76,8 @@ for ($iu = 0; $iu < 8; $iu++) {
     $fecha_ayer->modify('-1 day');
 
     //SI PULSA UNA PELICULA y existe la fecha se salta
-    if (isset($_POST["pelicula"]) && $objthorario->comprobarSiExisteHorario($fecha_actual->format('Y-m-d'))) {
-        //echo "<span style='color:red'>Existe ".$fecha_actual->format('Y-m-d')."</span>";
+    if ((isset($_POST["pelicula"]) && $objthorario->comprobarSiExisteHorario($fecha_actual->format('Y-m-d'))) || (isset($_POST["enviar_pelicula"]) && $objthorario->comprobarSiExisteHorario($fecha_actual->format('Y-m-d')))) {
+        echo "<span style='color:red'>Existe ".$fecha_actual->format('Y-m-d')."</span>";
     } else {
 
         //SOLO COGE LAS PELICULAS QUE TODAVIA NO SE HAN ESTRENADO strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])
@@ -107,7 +107,7 @@ for ($iu = 0; $iu < 8; $iu++) {
 
         foreach ($numsalas as $numsalasi => $ns) {
 
-            //echo "<span style='color:green'>".$fecha_actual->format('Y-m-d')."</span>";
+            echo "<span style='color:green'>".$fecha_actual->format('Y-m-d')."</span>";
             //Cuando se creee una sala if(isset(crearsala)){ que solo se ejecute el codigo en esa id
             //EL HORARIO NO PUEDE SER MAYOR DE LAS 22:00
             while ($horatiempo <= 22) {
@@ -136,12 +136,12 @@ for ($iu = 0; $iu < 8; $iu++) {
                     $objthorario->insertarHorario($hora, $ns, $fecha, $peliculaElegida);
 
                     //MOSTRAR LO QUE INSERTA
-                    /*
+                    
                     echo " => SALA [" . $ns;
                     echo "] <b>" . $peliculas[$peliculaElegida] . "</b>";
                     echo " PELICULA (" . $peliculaElegida . ") ";
                     echo " HORA -" . horario($horatiempo);
-                    */
+                    
                     //
 
                     if ($peliculasduracion[$peliculaElegida] >= 138) {
@@ -149,16 +149,16 @@ for ($iu = 0; $iu < 8; $iu++) {
                     } else {
                         $horatiempo += 2;
                     }
-                    //echo " || ";
+                    echo " || ";
                 } else {
-                    //echo "SE REPITE";
+                    echo "SE REPITE";
                 }
             }
 
             $horatiempo = 16;
-            //echo "<br>";
+            echo "<br>";
         }
 
-        //echo "<hr>";
+        echo "<hr>";
     }
 }

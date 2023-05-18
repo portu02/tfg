@@ -60,7 +60,7 @@
 
 <body>
     <?php
-    //include "vista/menu.php";
+    include "vista/menu.php";
     ?>
     <section class="h-100" style="background-color: black;">
         <div class="container h-100 py-5">
