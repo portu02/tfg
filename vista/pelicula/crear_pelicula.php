@@ -70,6 +70,13 @@
                     label.parentNode.insertBefore(iframe, label);
                 });
             }
+
+            document.getElementById("FormulCreaPelicula").addEventListener("submit", function(event) {
+                let boton = event.submitter;
+                if (boton.id === "EnviaPelicula") {
+                    document.getElementById("loadingImage").style.display = "block";
+                }
+            });
         }
     </script>
 </head>
@@ -92,7 +99,7 @@
         ?>
     </div>
 
-    <form method='post' action='' enctype="multipart/form-data">
+    <form id="FormulCreaPelicula" method='post' action='' enctype="multipart/form-data">
         <?php if (isset($id_pelicula)) { ?>
             <input type="hidden" name="id_pelicula" value="<?= $id_pelicula ?>" />
         <?php } ?>
@@ -216,10 +223,10 @@
             ?>
         </div>
         <div class="filas-columnas">
-            <input type='submit' class="boton-modificar confirm" value='Correcto' name='enviar_pelicula'>
+            <input id="EnviaPelicula" type='submit' class="boton-modificar confirm" value='Correcto' name='enviar_pelicula'>
         </div>
     </form>
-
+    <div id="loadingImage"></div>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="vista/css/tablasAdmin.css">
     <link rel="stylesheet" href="vista/css/estilos.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -22,16 +22,16 @@
     <?php
     include "vista/menu.php";
     ?>
-    <table>
-        <tr>
-            <th>NÚMERO</th>
-            <th>NOMBRE</th>
-            <th>DURACIÓN</th>
-            <th>CLASIFICACIÓN</th>
-            <th>CATEGORÍA</th>
-            <th>FECHA DE ESTRENO</th>
-            <th colspan="4">ACCIONES</th>
-        </tr>
+    <table id='table'>
+        <thead>
+            <th data-titulo='Número'>NÚMERO</th>
+            <th data-titulo='Nombre'>NOMBRE</th>
+            <th data-titulo='Duración'>DURACIÓN</th>
+            <th data-titulo='Clasificación'>CLASIFICACIÓN</th>
+            <th data-titulo='Categoria'>CATEGORÍA</th>
+            <th data-titulo='Fecha de estreno'>FECHA DE ESTRENO</th>
+            <th data-titulo='acciones' colspan="4">ACCIONES</th>
+        </thead>
         <tr>
             <td colspan="6">NUEVA PELICULA</td>
             <td colspan="4">
@@ -44,12 +44,12 @@
         foreach ($arraypeliculas as $row) {
         ?>
             <tr>
-                <td><?php echo 'Pelicula ' . $row['id_pelicula'] ?></td>
-                <td><?php echo $row['nombre'] ?></td>
-                <td><?php echo $row['duracion'] . ' min' ?></td>
-                <td><?php echo $row['clasificacion'] ?></td>
-                <td><?php echo $row['categoria'] ?></td>
-                <td><?php echo $row['fecha_estreno'] ?></td>
+                <td data-titulo='Número'><?php echo 'Pelicula ' . $row['id_pelicula'] ?></td>
+                <td data-titulo='Nombre'><?php echo $row['nombre'] ?></td>
+                <td data-titulo='Duración'><?php echo $row['duracion'] . ' min' ?></td>
+                <td data-titulo='Clasificación'><?php echo $row['clasificacion'] ?></td>
+                <td data-titulo='Categoria'><?php echo $row['categoria'] ?></td>
+                <td data-titulo='Fecha de estreno'><?php echo $row['fecha_estreno'] ?></td>
                 <td>
                     <?php if ($row['imagen'] != null) { ?>
                         <a href="vista/fotos/<?php echo $row['imagen'] ?>" target="_blank" style="text-decoration: none">Imagen</a>

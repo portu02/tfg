@@ -8,7 +8,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="vista/css/sala_admin.css">
     <link rel="stylesheet" href="vista/css/buscador.css">
     <script src="vista/js/sala_admin.js"></script>
 </head>
@@ -19,7 +18,7 @@
     ?>
     <div id="imagengrande">Películas</div>
     <section class="intro">
-        <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.43);">
+        <div class="mask d-flex align-items-center h-1000" style="background-color: rgba(0,0,0,.43);">
             <div class="container">
                 <div class="row">
                     <form action='' method="post">
@@ -183,12 +182,5 @@
         resultsSpan.innerHTML = numPelis + ' ';
     </script>
 </body>
-<div class="linea3"></div>
-<footer class="container-fluid text-center">
-    <span class="fa fa-instagram" style="font-size: 30px; color:white"></span>&emsp;
-    <span class="fa fa-twitter" style="font-size: 30px; color:white"></span>&emsp;
-    <span class="fa fa-facebook" style="font-size: 30px; color:white"></span>&emsp;
-    <span class="fa fa-snapchat" style="font-size: 30px; color:white"></span>
-</footer>
 
 </html>

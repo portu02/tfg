@@ -21,7 +21,7 @@
         Crear Sala
     </div>
 
-    <form method='post' action=''>
+    <form method='post' action='' id="FormulCreaSala">
         <div class="filas-columnas">
             <label for='longcolumna'>Maxímo columnas:
                 <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'>
@@ -125,10 +125,10 @@
         </div>
         <div class="filas-columnas">
             <input type='submit' class="boton-modificar pen" value='Modificar' name='editar_sala_admin'>
-            <input type='submit' class="boton-modificar confirm" value='Correcto' name='enviar_sala'>
+            <input id="EnviaSala" type='submit' class="boton-modificar confirm" value='Correcto' name='enviar_sala'>
         </div>
     </form>
-
+    <div id="loadingImage"></div>
 </body>
 
 </html>

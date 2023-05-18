@@ -11,6 +11,7 @@ include_once("modelo/reserva.php");
 
 //creacion de todas las peliculas 
 $peliculas = new Pelicula("", "", "", "", "", "", "", "", "");
+$pelicula_objt = new Pelicula("", "", "", "", "", "", "", "", "");
 $arraypeliculas = $peliculas->obtieneTodos();
 //creacion de horarios
 $horarios = new Horario("", "", "", "", "", "");
@@ -51,7 +52,7 @@ elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isse
     require_once("controlador/controlador_login.php");
 }
 
-elseif(isset($_POST["enviar_sala_reservar"])){
+elseif(isset($_POST["enviar_sala_reservar"]) || isset($_POST["quitar_reserva"])){
     require_once("controlador/controlador_reserva.php");
 }
 else {

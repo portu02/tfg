@@ -366,6 +366,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
 
     /****** CREAR SALA ******/
     if (isset($_POST["enviar_sala"])) {
+
         /***** COMPROBAR QUE EXISTEN LAS SESIONES *****/
         if (isset($_SESSION["maxfilas"])) {
             $max_fila = $_SESSION["maxfilas"];

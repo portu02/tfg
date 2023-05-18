@@ -51,7 +51,7 @@ class Horario extends Crud
     {
         try {
             $fecha_hoy = date("Y-m-d");
-            $stmt = $this->conexion->prepare("SELECT * FROM " . self::TABLA . " WHERE id_pelicula = :id AND fecha >= :hoy AND CAST(CONCAT(fecha, ' ', hora) AS DATETIME) >= NOW();");
+            $stmt = $this->conexion->prepare("SELECT * FROM " . self::TABLA . " WHERE id_pelicula = :id AND fecha >= :hoy AND CAST(CONCAT(fecha, ' ', hora) AS DATETIME) >= NOW() ORDER BY fecha,hora;");
             $stmt->bindParam(":hoy", $fecha_hoy);
             $stmt->bindParam(":id", $id);
 
@@ -239,5 +239,9 @@ class Horario extends Crud
         } catch (PDOException $e) {
             echo "Error" . $e->getMessage();
         }
+    }
+
+    public function ultimohorarios(){
+        
     }
 }

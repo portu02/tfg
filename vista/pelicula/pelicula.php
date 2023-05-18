@@ -16,7 +16,7 @@
     include "vista/menu.php";
     ?>
     <div id="imagengrande">
-        <?= $peliculas->obtieneDeID($id_pelicula)->nombre ?>
+        <?= $pelicula->nombre ?>
     </div>
     <div id="menudias">
         <form action="" method="post">
@@ -51,19 +51,19 @@
 
     <div id="hoja">
         <div id="escenapelicula">
-            <div class="pelicula" style="background-image: url('vista/fotos/<?= $peliculas->obtieneDeID($id_pelicula)->imagen ?> ');"></div>
+            <div class="pelicula" style="background-image: url('vista/fotos/<?= $pelicula->imagen ?> ');"></div>
             <div id="info">
-                <h3><?= $peliculas->obtieneDeID($id_pelicula)->nombre ?></h3>
+                <h3><?= $pelicula->nombre ?></h3>
                 <h4>Sinopsis</h4>
-                <p><?= $peliculas->obtieneDeID($id_pelicula)->sinopsis ?></p>
+                <p><?= $pelicula->sinopsis ?></p>
                 <h4>Categoría</h4>
-                <p><?= $peliculas->obtieneDeID($id_pelicula)->categoria ?></p>
+                <p><?= $pelicula->categoria ?></p>
                 <h4>Clasificación</h4>
-                <p><?= $peliculas->obtieneDeID($id_pelicula)->clasificacion ?></p>
+                <p><?= $pelicula->clasificacion ?></p>
                 <h4>Duración</h4>
-                <p><?= $peliculas->obtieneDeID($id_pelicula)->duracion ?> min</p>
+                <p><?= $pelicula->duracion ?> min</p>
                 <h4>Fecha de Estreno</h4>
-                <p><?= $peliculas->obtieneDeID($id_pelicula)->fecha_estreno ?></p>
+                <p><?= $pelicula->fecha_estreno ?></p>
             </div>
         </div>
         <div id="horas">
@@ -90,7 +90,7 @@
                     <form method="post" action="">
                         <input type='text' value='<?= $id_pelicula ?? "" ?>' name='id_pelicula' hidden />
                         <input type='text' value='<?= $id_dia ?? "" ?>' name='id_dia' hidden />
-                        <input type='text' value='<?= $peliculas->obtieneDeID($id_pelicula)->nombre ?? "" ?>' name='nombre_pelicula' hidden />
+                        <input type='text' value='<?= $pelicula->nombre ?? "" ?>' name='nombre_pelicula' hidden />
                         <input class="botonhora" type="submit" value="<?= $a ?? "" ?>" name="hora">
                     </form>
                 </div>
@@ -100,16 +100,17 @@
         </div>
 
         <div id="videograndetrailer">
-            <iframe src="https://www.youtube.com/embed/<?= $peliculas->obtieneDeID($id_pelicula)->url ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/<?= $pelicula->url ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div class="linea3"></div>
-        <footer class="container-fluid text-center">
-            <span class="fa fa-instagram" style="font-size: 30px; color:white"></span>&emsp;
-            <span class="fa fa-twitter" style="font-size: 30px; color:white"></span>&emsp;
-            <span class="fa fa-facebook" style="font-size: 30px; color:white"></span>&emsp;
-            <span class="fa fa-snapchat" style="font-size: 30px; color:white"></span>
-        </footer>
+
     </div>
+    <div class="linea3"></div>
+    <footer class="container-fluid text-center">
+        <span class="fa fa-instagram" style="font-size: 30px; color:white"></span>&emsp;
+        <span class="fa fa-twitter" style="font-size: 30px; color:white"></span>&emsp;
+        <span class="fa fa-facebook" style="font-size: 30px; color:white"></span>&emsp;
+        <span class="fa fa-snapchat" style="font-size: 30px; color:white"></span>
+    </footer>
 </body>
 
 </html>

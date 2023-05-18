@@ -1,7 +1,7 @@
-window.onload = function() {
+window.onload = function () {
     let arraycheckbox = Array.from(document.getElementsByClassName('checkbox'));
     arraycheckbox.map(
-        m => m.addEventListener('change', function() {
+        m => m.addEventListener('change', function () {
             var numeroSpan = this.nextElementSibling;
             if (numeroSpan.classList.contains("marcado")) {
                 numeroSpan.classList.remove('marcado');
@@ -12,4 +12,11 @@ window.onload = function() {
                 numeroSpan.classList.remove('oculto');
             }
         }));
+
+    document.getElementById("FormulCreaSala").addEventListener("submit", function (event) {
+        let boton = event.submitter;
+        if (boton.id === "EnviaSala") {
+            document.getElementById("loadingImage").style.display = "block";
+        }
+    });
 }

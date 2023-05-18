@@ -108,7 +108,7 @@ for ($iu = 0; $iu < 8; $iu++) {
         foreach ($numsalas as $numsalasi => $ns) {
 
             //echo "<span style='color:green'>".$fecha_actual->format('Y-m-d')."</span>";
-
+            //Cuando se creee una sala if(isset(crearsala)){ que solo se ejecute el codigo en esa id
             //EL HORARIO NO PUEDE SER MAYOR DE LAS 22:00
             while ($horatiempo <= 22) {
 

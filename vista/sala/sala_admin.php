@@ -22,15 +22,15 @@
     <?php
     include "vista/menu.php";
     ?>
-    <table>
-        <tr>
+    <table id='table'>
+        <thead>
             <th>NÚMERO</th>
             <th>DESCRIPCIÓN</th>
             <th>CAPACIDAD</th>
             <th>DESHABILITADA</th>
             <th>LUXURY</th>
             <th colspan="2">ACCIONES</th>
-        </tr>
+        </thead>
         <tr>
             <td colspan="5">NUEVA SALA</td>
             <td colspan="2">
@@ -43,17 +43,17 @@
         foreach ($arraysalas as $row) {
         ?>
             <tr>
-                <td><?php echo 'Sala ' . $row['id_sala'] ?></td>
-                <td><?php echo $row['descripcion'] ?></td>
-                <td><?php echo $row['capacidad'] . ' personas'?></td>
-                <td>
+                <td data-titulo='Número'><?php echo 'Sala ' . $row['id_sala'] - 1 ?></td>
+                <td data-titulo='Descripción'><?php echo $row['descripcion'] ?></td>
+                <td data-titulo='Capacidad'><?php echo $row['capacidad'] . ' personas'?></td>
+                <td data-titulo='Habilitada'>
                     <?php if ($row['habilitada'] == 1) {
                         echo 'Sí';
                     } else {
                         echo 'No';
                     } ?>
                 </td>
-                <td>
+                <td data-titulo='Luxury'>
                     <?php if ($row['luxury'] == 1) {
                         echo 'Sí';
                     } else {

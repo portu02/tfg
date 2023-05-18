@@ -2,10 +2,10 @@ table {
     background-color: white;
     text-align: center;
     border-collapse: collapse;
-    width: 90%;
     margin: 0 auto;
-    margin-top: 30px;
     font-size: 18px;
+    width: 90%;
+    margin-top: 30px;
 }
 
 th,
@@ -46,4 +46,48 @@ button.insert {
     border-radius: 5px;
     width: 50px;
     height: 50px;
+}
+
+@media screen and (max-width: 1100px) {
+    #table {
+        font-size: 12px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        background-color: black;
+    }
+    thead{
+        display: none;
+    }
+    tr:first-child {
+        background-color: #c01111;
+        color: white;
+    }
+    table td[data-titulo]{
+        display: flex;
+        width: 300px;
+    }
+
+    table td[data-titulo]::before{
+        content: attr(data-titulo);
+        width: 150px;
+    }
+    td,th {
+        border:1px solid black;
+        padding: 10px 10px;
+    }
+    #table tr{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid grey;
+        padding: 10px;
+        margin-bottom: 1em;
+    }
+
+    button.edit, button.trash, button.insert{
+        width: 40px;
+        height: 40px;
+    }
 }

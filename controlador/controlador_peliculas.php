@@ -51,16 +51,20 @@ if (isset($_POST["buscar_pelicula"])) {
             $b = array_unique($array);
             $id_dia = array_shift($b);
 
+            $pelicula = $pelicula_objt->obtieneDeID($id_pelicula);
+
             require_once("vista/pelicula/pelicula.php");
         }
     } elseif (isset($_POST["id_pelicula"])) {
         $id_pelicula = $_POST["id_pelicula"];
         $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula);
+        $pelicula = $pelicula_objt->obtieneDeID($id_pelicula);
     }
     if (isset($_POST["dia"])) {
         $id_pelicula = $_POST["id_pelicula"];
         $id_dia = $_POST["dia"];
         $arrayhorarios = $horarios->obtieneDeIDPelicula($id_pelicula);
+        $pelicula = $pelicula_objt->obtieneDeID($id_pelicula);
         require_once("vista/pelicula/pelicula.php");
     }
 }

@@ -22,8 +22,8 @@
     <?php
     include "vista/menu.php";
     ?>
-    <table>
-        <tr>
+    <table id='table'>
+        <tr id='titulo'>
             <th>NÚMERO</th>
             <th>NOMBRE</th>
             <th>APELLIDO</th>
@@ -35,11 +35,11 @@
         foreach ($arrayusuarios as $row) {
         ?>
             <tr>
-                <td><?php echo 'Usuario ' . $row['id_usuario'] - 1 ?></td>
-                <td><?php echo $row['nombre'] ?></td>
-                <td><?php echo $row['apellido'] ?></td>
-                <td><?php echo $row['correo'] ?></td>
-                <td><?php echo $row['rol'] ?></td>
+                <td data-titulo='Número'><?php echo 'Usuario ' . $row['id_usuario'] - 1 ?></td>
+                <td data-titulo='Nombre'><?php echo $row['nombre'] ?></td>
+                <td data-titulo='Apellido'><?php echo $row['apellido'] ?></td>
+                <td data-titulo='Correo'><?php echo $row['correo'] ?></td>
+                <td data-titulo='Rol'><?php echo $row['rol'] ?></td>
                 <td>
                     <form method="post" action="index.php">
                         <button class="edit" name="editar_usuario_admin" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
