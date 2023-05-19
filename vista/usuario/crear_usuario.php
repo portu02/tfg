@@ -119,8 +119,8 @@
                                     </div>
 
 
-                                    <a href="#!" class="small text-muted">Terms of RRR.</a>
-                                    <a href="#!" class="small text-muted">Privacy policy</a>
+                                    <a href="vista/fotos/archivos/Términos y Condiciones.pdf" class="small text-muted" download>Terms of RRR.</a>
+                                    <a href="vista/fotos/archivos/Política y Privacidad.pdf" class="small text-muted" download>Privacy policy</a>
 
 
                                 </div>
