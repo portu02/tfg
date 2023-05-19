@@ -166,7 +166,7 @@
 
 
         .pelicula {
-            background-color: green;
+            background-color: black;
             height: 400px;
             width: 250px;
             position: relative;
@@ -209,7 +209,7 @@
         }
 
         .peliculaestreno {
-            background-color: green;
+            background-color: black;
             height: 250px;
             width: 400px;
             position: relative;
@@ -385,18 +385,6 @@
             gap: 20px 20px;
             flex-wrap: wrap;
         }
-
-        .pelicula {
-            background-color: green;
-            height: 400px;
-            width: 250px;
-            position: relative;
-            background-image: url('../fotos/no_imagen.png');
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-        }
-
 
         /* SINOPSIS */
         #info {

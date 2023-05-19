@@ -63,7 +63,7 @@
                             <li class="nav-item">
                                 <form method='post' action='index.php'>
                                     <button name="iniciar_sesion" title='Iniciar sesión' id="botones" class="fa fa-sign-in" style='font-size:24px; color: #737373; padding:8px; margin-left:5px'></button>
-                                </form>                            
+                                </form>
                             </li>
                         <?php
                         }
@@ -72,9 +72,9 @@
                         if (isset($_SESSION["usuario_sesion"])) {
                         ?>
                             <li class="nav-item">
-                            <div class="icon1">
-                                    <i class='fa fa-user-o' title='Usuario: <?php echo $_SESSION['usuario_sesion']['nombre'] ?>' style='font-size:24px; color: #737373; padding:8px; margin-left:5px'></i>
-                                </div>
+                                <form method='post' action='index.php'>
+                                    <button name="carrito_sesion" title='Usuario: <?php echo $_SESSION['usuario_sesion']['nombre'] ?>' id="botones" class="fa fa-user-o" style='font-size:24px; color: #737373; padding:8px; margin-left:5px'></button>
+                                </form>
                             </li>
                         <?php
                         }

@@ -249,4 +249,24 @@ class Horario extends Crud
         $nueva_fecha = date('Y-m-d', strtotime($fecha_actual . ' +1 day'));
         return $nueva_fecha;
     }
+
+    public function ComprobarID($id)
+    {
+        try {
+            $stmt = $this->conexion->prepare("SELECT * FROM horario WHERE id_horario LIKE :id;");
+
+            $stmt->bindParam(":id", $id);
+
+            $stmt->execute();
+
+            $resultado = $stmt->fetchObject();
+            if ($resultado) {
+                return $resultado;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }

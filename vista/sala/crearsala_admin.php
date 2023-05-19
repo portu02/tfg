@@ -24,10 +24,10 @@
     <form method='post' action='' id="FormulCreaSala">
         <div class="filas-columnas">
             <label for='longcolumna'>Maxímo columnas:
-                <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>'>
+                <input type='number' min='1' name='longcolumna' value='<?= $max_columna ?? "" ?>' required>
             </label>
             <label for='longfila'>Maxímo filas:
-                <input type='number' min='1' name='longfila' value='<?= $max_fila ?? "" ?>'>
+                <input type='number' min='1' name='longfila' value='<?= $max_fila ?? "" ?>' required>
             </label>
             <label for='descripcion'>Descripcion:
                 <input type='tex' name='descripcion' value='<?= $descripcion ?? "" ?>'>

@@ -125,4 +125,24 @@ class Butaca extends Crud
             return $e->getMessage();
         }
     }
+
+    public function ComprobarID($id)
+    {
+        try {
+            $stmt = $this->conexion->prepare("SELECT * FROM " . self::TABLA . " WHERE id_butaca LIKE :id;");
+
+            $stmt->bindParam(":id", $id);
+
+            $stmt->execute();
+
+            $resultado = $stmt->fetchObject();
+            if ($resultado) {
+                return $resultado;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }

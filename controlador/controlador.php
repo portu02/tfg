@@ -52,7 +52,7 @@ elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isse
     require_once("controlador/controlador_login.php");
 }
 
-elseif(isset($_POST["enviar_sala_reservar"]) || isset($_POST["quitar_reserva"])){
+elseif(isset($_POST["enviar_sala_reservar"]) || isset($_POST["quitar_reserva"]) || isset($_POST["carrito_sesion"]) || isset($_POST["comprar_reservas"])){
     require_once("controlador/controlador_reserva.php");
 }
 else {

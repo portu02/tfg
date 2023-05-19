@@ -63,7 +63,7 @@
         <form action="" method="post">
             <div id="peliculas">
                 <?php foreach ($arraypeliculaspaginado as $a) { ?>
-                    <div class="pelicula" style="background-image: url('vista/fotos/<?= $a["imagen"] ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
+                    <div class="pelicula" style="background-image: url('vista/fotos/<?php if($a["imagen"] == null){echo "no_imagen.png";}else{echo $a["imagen"];} ?> ');"><input class="botonpelicula" type="submit" value="<?= $a["id_pelicula"] ?>" name="pelicula"></div>
                 <?php } ?>
             </div>
         </form>

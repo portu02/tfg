@@ -74,4 +74,25 @@ class Reserva extends Crud
             echo "Error" . $e->getMessage();
         }
     }
+
+    public function ComprobarReserva($id_horario,$id_butaca)
+    {
+        try {
+            $stmt = $this->conexion->prepare("SELECT * FROM reserva WHERE id_horario = :id_horario AND id_butaca = :id_butaca;");
+
+            $stmt->bindParam(":id_horario", $id_horario);
+            $stmt->bindParam(":id_butaca", $id_butaca);
+
+            $stmt->execute();
+
+            $resultado = $stmt->fetchObject();
+            if ($resultado) {
+                return $resultado;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }
