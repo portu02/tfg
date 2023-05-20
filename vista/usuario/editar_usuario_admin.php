@@ -43,7 +43,6 @@
                                         <label class="form-label">Rol:</label>
                                         <select class="form-select" name="rol_usuario_admin_editar">
                                             <option value="Cliente">Cliente</option>
-                                            <option value="Empleado" <?php if ($_POST['rol_usuario_admin'] == "Empleado") echo "selected"; ?>>Empleado</option>
                                             <option value="Administrador" <?php if ($_POST['rol_usuario_admin'] == "Administrador") echo "selected"; ?>>Administrador</option>
                                         </select>
                                     </div>
@@ -51,7 +50,6 @@
                                     <button class="btn btn-outline-light btn-lg px-5" name="cambiar_usuario_admin" type="submit">Cambiar</button>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>

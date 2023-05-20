@@ -33,7 +33,7 @@
             <th colspan="2">ACCIONES</th>
         </tr>
         <?php
-        foreach ($arrayusuarios as $row) {
+        foreach ($arrayusuariopaginado as $row) {
         ?>
             <tr>
                 <td data-titulo='Número'><?php echo 'Usuario ' . $row['id_usuario'] - 1 ?></td>
@@ -62,10 +62,44 @@
         }
         ?>
     </table>
-    <br>
-    <?php
-    //include('Paginacion.php');
-    ?>
+    <div id='contain'>
+        <div id='dentro'>
+            <?php
+            foreach ($num_usuario as $a) {
+
+                if (isset($_GET["pagina_usuario"])) {
+                    if ($_GET["pagina_usuario"] == $a) {
+            ?>
+                        <a href='?pagina_usuario=<?= ($a) ?>'>
+                            <div id='colorea' class='dentro'></div>
+                        </a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href='?pagina_usuario=<?= ($a) ?>'>
+                            <div class='dentro'></div>
+                        </a>
+                    <?php
+                    }
+                } else {
+                    if ($a == 1) {
+                    ?>
+                        <a href='?pagina_usuario=<?= ($a) ?>'>
+                            <div id='colorea' class='dentro'></div>
+                        </a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href='?pagina_usuario=<?= ($a) ?>'>
+                            <div class='dentro'></div>
+                        </a>
+            <?php
+                    }
+                }
+            }
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

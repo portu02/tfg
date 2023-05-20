@@ -39,8 +39,19 @@ if (isset($_POST['enviar_pelicula'])) {
 
 /* SACAR ARRAY SALAS */
 $objtsala = new Sala("", "", "", "", "", "");
-$numsalas = $objtsala->sacarNumSalas();
+$objthorario = new Horario("", "", "", "", "", "");
 
+//AL CREAR UNA SALA LAS DEMAS NO CAMBIAN EL HORARIO
+if (isset($_POST["enviar_sala"])) {
+    //Si no existen horarios los crea
+    if ($objthorario->comprobarSiExistenHorarios($fecha_insertada) == true) {
+        $numsalas = array(0 => $id_sala);
+    } else {
+        $numsalas = $objtsala->sacarNumSalas();
+    }
+} else {
+    $numsalas = $objtsala->sacarNumSalas();
+}
 
 /* SACAR ARRAY PELICULAS  */
 $objtpelicula = new Pelicula("", "", "", "", "", "", "", "", "");
@@ -48,14 +59,14 @@ $registroarray = $objtpelicula->obtieneTodos();
 
 
 /* ELIMINAR HORARIOS ANTIGUOS */
-$objthorario = new Horario("", "", "", "", "", "");
 $objthorario->eliminarHorariosAntiguos();
 
 
 /* COMPROBAR SI EXISTEN HORARIOS */
-if (!isset($_POST["pelicula"])) {
+if (!isset($_POST["pelicula"]) && !isset($_POST["enviar_sala"])) {
     if ($objthorario->comprobarSiExistenHorarios($fecha_insertada) == true) {
         $objthorario->comprobarSiExistenHorariosEliminar($fecha_insertada);
+        echo "<span style='color:white'>ELIMINA</span>";
     }
 }
 
@@ -77,7 +88,7 @@ for ($iu = 0; $iu < 8; $iu++) {
 
     //SI PULSA UNA PELICULA y existe la fecha se salta
     if ((isset($_POST["pelicula"]) && $objthorario->comprobarSiExisteHorario($fecha_actual->format('Y-m-d'))) || (isset($_POST["enviar_pelicula"]) && $objthorario->comprobarSiExisteHorario($fecha_actual->format('Y-m-d')))) {
-        echo "<span style='color:red'>Existe ".$fecha_actual->format('Y-m-d')."</span>";
+        echo "<span style='color:red'>Existe " . $fecha_actual->format('Y-m-d') . "</span>";
     } else {
 
         //SOLO COGE LAS PELICULAS QUE TODAVIA NO SE HAN ESTRENADO strtotime($fecha_actual->format('Y-m-d')) > strtotime($a["fecha_estreno"])
@@ -107,7 +118,7 @@ for ($iu = 0; $iu < 8; $iu++) {
 
         foreach ($numsalas as $numsalasi => $ns) {
 
-            echo "<span style='color:green'>".$fecha_actual->format('Y-m-d')."</span>";
+            echo "<span style='color:green'>" . $fecha_actual->format('Y-m-d') . "</span>";
             //Cuando se creee una sala if(isset(crearsala)){ que solo se ejecute el codigo en esa id
             //EL HORARIO NO PUEDE SER MAYOR DE LAS 22:00
             while ($horatiempo <= 22) {
@@ -136,12 +147,12 @@ for ($iu = 0; $iu < 8; $iu++) {
                     $objthorario->insertarHorario($hora, $ns, $fecha, $peliculaElegida);
 
                     //MOSTRAR LO QUE INSERTA
-                    
+
                     echo " => SALA [" . $ns;
                     echo "] <b>" . $peliculas[$peliculaElegida] . "</b>";
                     echo " PELICULA (" . $peliculaElegida . ") ";
                     echo " HORA -" . horario($horatiempo);
-                    
+
                     //
 
                     if ($peliculasduracion[$peliculaElegida] >= 138) {

@@ -18,7 +18,7 @@
     <div class="contenedor" style="background-color:#141414;">
         <form action="" method="post">
             <nav class="navbar navbar-expand-lg navbar-dark">
-                <a class="navbar-brand logotipo" href="">Richiliculas</a>
+                <a class="navbar-brand logotipo" href="index.php">Richiliculas</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

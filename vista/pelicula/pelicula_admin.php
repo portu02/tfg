@@ -42,7 +42,7 @@
             </td>
         </tr>
         <?php
-        foreach ($arraypeliculas as $row) {
+        foreach ($arraypeliculaspaginado_pelicula as $row) {
         ?>
             <tr>
                 <td data-titulo='Número'><?php echo 'Pelicula ' . $row['id_pelicula'] ?></td>
@@ -92,7 +92,44 @@
         }
         ?>
     </table>
-    <br>
+    <div id='contain'>
+        <div id='dentro'>
+            <?php
+            foreach ($num_pelicula as $a) {
+
+                if (isset($_GET["pagina_pelicula"])) {
+                    if ($_GET["pagina_pelicula"] == $a) {
+            ?>
+                        <a href='?pagina_pelicula=<?= ($a) ?>'>
+                            <div id='colorea' class='dentro'></div>
+                        </a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href='?pagina_pelicula=<?= ($a) ?>'>
+                            <div class='dentro'></div>
+                        </a>
+                    <?php
+                    }
+                } else {
+                    if ($a == 1) {
+                    ?>
+                        <a href='?pagina_pelicula=<?= ($a) ?>'>
+                            <div id='colorea' class='dentro'></div>
+                        </a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href='?pagina_pelicula=<?= ($a) ?>'>
+                            <div class='dentro'></div>
+                        </a>
+            <?php
+                    }
+                }
+            }
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

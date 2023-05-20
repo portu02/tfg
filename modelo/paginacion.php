@@ -24,7 +24,13 @@ class Paginacion extends Conexion
 
     function calcularPag()
     {
-        $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT pelicula.id_pelicula) as total FROM pelicula;");
+        if ($this->tabla == 'pelicula' || $this->tabla == 'pelicula_admin') {
+            $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT pelicula.id_pelicula) as total FROM pelicula;");
+        } elseif ($this->tabla == 'sala') {
+            $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT sala.id_sala) as total FROM sala;");
+        }elseif ($this->tabla == 'usuario') {
+            $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT usuario.id_usuario) as total FROM usuario;");
+        }
 
         $stmt->execute();
 
@@ -32,22 +38,61 @@ class Paginacion extends Conexion
 
 
         $this->totalpag = $this->numresultados / $this->resultadoporpag;
-        
-        if (isset($_GET['pagina'])) {
-            //COMPROBAR SI ES VALIDA LA PAGINA
-            if (is_numeric($_GET['pagina'])) {
-                $this->pagactual = $_GET['pagina'];
-            } else {
-                $this->pagactual = 1;
+
+        if ($this->tabla == 'pelicula') {
+            if (isset($_GET['pagina'])) {
+                //COMPROBAR SI ES VALIDA LA PAGINA
+                if (is_numeric($_GET['pagina'])) {
+                    $this->pagactual = $_GET['pagina'];
+                } else {
+                    $this->pagactual = 1;
+                }
+                $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
             }
-            $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
+        } elseif ($this->tabla == 'sala') {
+            if (isset($_GET['pagina_sala'])) {
+                //COMPROBAR SI ES VALIDA LA PAGINA
+                if (is_numeric($_GET['pagina_sala'])) {
+                    $this->pagactual = $_GET['pagina_sala'];
+                } else {
+                    $this->pagactual = 1;
+                }
+                $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
+            }
+        }  elseif ($this->tabla == 'pelicula_admin') {
+            if (isset($_GET['pagina_pelicula'])) {
+                //COMPROBAR SI ES VALIDA LA PAGINA
+                if (is_numeric($_GET['pagina_pelicula'])) {
+                    $this->pagactual = $_GET['pagina_pelicula'];
+                } else {
+                    $this->pagactual = 1;
+                }
+                $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
+            }
+        }  elseif ($this->tabla == 'usuario') {
+            if (isset($_GET['pagina_usuario'])) {
+                //COMPROBAR SI ES VALIDA LA PAGINA
+                if (is_numeric($_GET['pagina_usuario'])) {
+                    $this->pagactual = $_GET['pagina_usuario'];
+                } else {
+                    $this->pagactual = 1;
+                }
+                $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
+            }
         }
     }
 
     function mostrar()
     {
         try {
-            $stmt = $this->conexion->prepare("SELECT DISTINCT id_pelicula, nombre,imagen,sinopsis,duracion, url, clasificacion,categoria, fecha_estreno FROM pelicula ORDER BY fecha_estreno DESC, id_pelicula ASC LIMIT $this->indice, $this->resultadoporpag;");
+            if ($this->tabla == 'pelicula' || $this->tabla == 'pelicula_admin') {
+                $stmt = $this->conexion->prepare("SELECT DISTINCT id_pelicula, nombre,imagen,sinopsis,duracion, url, clasificacion,categoria, fecha_estreno FROM pelicula ORDER BY fecha_estreno DESC, id_pelicula ASC LIMIT $this->indice, $this->resultadoporpag;");
+            } elseif ($this->tabla == 'sala') {
+                $stmt = $this->conexion->prepare("SELECT DISTINCT id_sala,descripcion,capacidad,habilitada,luxury FROM sala ORDER BY id_sala LIMIT $this->indice, $this->resultadoporpag;");
+            } elseif ($this->tabla == 'usuario') {
+                $stmt = $this->conexion->prepare("SELECT DISTINCT id_usuario,nombre,apellido,correo,contrasena,rol FROM usuario ORDER BY id_usuario LIMIT $this->indice, $this->resultadoporpag;");
+            }
+
             $stmt->execute();
             $registroarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $registroarray;
@@ -67,4 +112,3 @@ class Paginacion extends Conexion
         return $array;
     }
 }
-?>

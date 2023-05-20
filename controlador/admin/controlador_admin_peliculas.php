@@ -3,7 +3,10 @@ if (isset($_POST['borrar_peli'])) {
     $id_pelicula = $_POST['id_pelicula_a'];
     $peliculas->borrar($id_pelicula);
     $result = 'Pelicula borrada correctamente';
-    $arraypeliculas = $peliculas->obtieneTodos();
+    //Pelicula
+    $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+    $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
+    $num_pelicula = $pagina_pelicula->numeritos();
 }
 if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isset($_POST['enviar_pelicula']))) {
     if (isset($_POST["id_pelicula"])) {
@@ -35,8 +38,11 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
             $pelicula_nueva->crear();
 
             $result = 'Pelicula creada correctamente';
-            $arraypeliculas = $peliculas->obtieneTodos();
-            
+            //Pelicula
+            $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+            $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
+            $num_pelicula = $pagina_pelicula->numeritos();
+
             //CREAR HORARIO
             require_once('./controlador/crear_horario.php');
 
@@ -63,7 +69,12 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
             $pelicula_nueva = new Pelicula($id_pelicula, $nombre, $imagen, $sinopsis, $duracion, $url, $clasificacion, $categoria, $fecha_mysql);
             $pelicula_nueva->actualizar();
             $result = 'Pelicula actualizada correctamente';
-            $arraypeliculas = $peliculas->obtieneTodos();
+
+            //Pelicula
+            $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+            $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
+            $num_pelicula = $pagina_pelicula->numeritos();
+
             require_once("vista/pelicula/pelicula_admin.php");
         }
     } else {
@@ -80,5 +91,9 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
         require_once("vista/pelicula/crear_pelicula.php");
     }
 } else {
+    //Pelicula
+    $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+    $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
+    $num_pelicula = $pagina_pelicula->numeritos();
     require_once("vista/pelicula/pelicula_admin.php");
 }

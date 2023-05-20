@@ -3,7 +3,10 @@ if (isset($_POST['borrar_sala_admin'])) {
     $id_sala = $_POST['id_sala'];
     $sala->borrar($id_sala);
     $result = 'Sala borrada correctamente';
-    $arraysalas = $sala->obtieneTodos();
+    //Sala
+    $pagina_sala = new Paginacion(5, "sala");
+    $arraysalaspaginado = $pagina_sala->mostrar();
+    $num_sala = $pagina_sala->numeritos();
 }
 if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset($_POST["editar_sala_admin_editar"])) {
     if (isset($_POST["editar_sala"]) || isset($_POST["editar_sala_admin_editar"])) {
@@ -81,7 +84,11 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         $sala->actualizar();
 
         $result = 'Sala actualizada correctamente';
-        $arraysalas = $sala->obtieneTodos();
+
+        //Sala
+        $pagina_sala = new Paginacion(5, "sala");
+        $arraysalaspaginado = $pagina_sala->mostrar();
+        $num_sala = $pagina_sala->numeritos();
         require_once('vista/sala/sala_admin.php');
     }
 } elseif (isset($_POST['anadir_sala_admin']) || isset($_POST["previsualizar"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["enviar_sala"])) {
@@ -471,7 +478,11 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         unset($_SESSION["butacas"]);
 
         $result = 'Sala creada correctamente';
-        $arraysalas = $sala->obtieneTodos();
+        //Sala
+        $pagina_sala = new Paginacion(5, "sala");
+        $arraysalaspaginado = $pagina_sala->mostrar();
+        $num_sala = $pagina_sala->numeritos();
+
         /* EJECUTAR SCRIPT CREAR HORARIO */
         require_once('./controlador/crear_horario.php');
 
@@ -480,5 +491,9 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         require_once 'vista/sala/crearsala_admin.php';
     }
 } else {
+    //Sala
+    $pagina_sala = new Paginacion(5, "sala");
+    $arraysalaspaginado = $pagina_sala->mostrar();
+    $num_sala = $pagina_sala->numeritos();
     require_once('vista/sala/sala_admin.php');
 }

@@ -12,11 +12,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script>
-    <?php if ($result != "") {
-    ?>alert("<?= $result ?>")
-    <?php
-    } ?>
-</script>
+        <?php if ($result != "") {
+        ?>alert("<?= $result ?>")
+        <?php
+        } ?>
+    </script>
 </head>
 
 <body>
@@ -41,12 +41,12 @@
             </td>
         </tr>
         <?php
-        foreach ($arraysalas as $row) {
+        foreach ($arraysalaspaginado as $row) {
         ?>
             <tr>
                 <td data-titulo='Número'><?php echo 'Sala ' . $row['id_sala'] - 1 ?></td>
                 <td data-titulo='Descripción'><?php echo $row['descripcion'] ?></td>
-                <td data-titulo='Capacidad'><?php echo $row['capacidad'] . ' personas'?></td>
+                <td data-titulo='Capacidad'><?php echo $row['capacidad'] . ' personas' ?></td>
                 <td data-titulo='Habilitada'>
                     <?php if ($row['habilitada'] == 1) {
                         echo 'Sí';
@@ -82,10 +82,44 @@
         }
         ?>
     </table>
-    <br>
-    <?php
-    //include('Paginacion.php');
-    ?>
+    <div id='contain'>
+        <div id='dentro'>
+            <?php
+            foreach ($num_sala as $a) {
+
+                if (isset($_GET["pagina_sala"])) {
+                    if ($_GET["pagina_sala"] == $a) {
+            ?>
+                        <a href='?pagina_sala=<?= ($a) ?>'>
+                            <div id='colorea' class='dentro'></div>
+                        </a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href='?pagina_sala=<?= ($a) ?>'>
+                            <div class='dentro'></div>
+                        </a>
+                    <?php
+                    }
+                } else {
+                    if ($a == 1) {
+                    ?>
+                        <a href='?pagina_sala=<?= ($a) ?>'>
+                            <div id='colorea' class='dentro'></div>
+                        </a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href='?pagina_sala=<?= ($a) ?>'>
+                            <div class='dentro'></div>
+                        </a>
+            <?php
+                    }
+                }
+            }
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -204,9 +204,16 @@ class Horario extends Crud
             // Si no hay filas con los valores deseados, hacer la inserción
             if (!$resultado) {
                 try {
-                    $stmt = $this->conexion->prepare("INSERT INTO horario (fecha, hora, id_pelicula, id_sala) VALUES (:dia,:hora,:pelicula,:sala)");
+                    $stmtsacarmax = $this->conexion->prepare("SELECT MAX(id_horario) AS max_id FROM horario");
+                    $stmtsacarmax->execute();
+                    $sacarid = $stmtsacarmax->fetch(PDO::FETCH_ASSOC);
+
+                    $id_horario = $sacarid['max_id'] + 1;
+
+                    $stmt = $this->conexion->prepare("INSERT INTO horario (id_horario,fecha, hora, id_pelicula, id_sala) VALUES (:id_horario,:dia,:hora,:pelicula,:sala)");
 
                     $sala = $ns;
+                    $stmt->bindParam(":id_horario", $id_horario);
                     $stmt->bindParam(":dia", $fecha);
                     $stmt->bindParam(":hora", $hora);
                     $stmt->bindParam(":sala", $sala);

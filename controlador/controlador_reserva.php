@@ -42,9 +42,10 @@ if (isset($_SESSION['usuario_sesion'])) {
             }
         }
 
-        $reservas = $_POST["reserva"];
+        
         if (isset($_POST["reserva"])) {
-
+            $reservas = $_POST["reserva"];
+            
             foreach ($reservas as $i => $a) {
 
                 $datosss = explode(";", $i);
