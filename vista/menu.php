@@ -39,6 +39,7 @@
                                         <input class="dropdown-item submit-btn w-100" type="submit" value="Salas" name="sala_admin">
                                         <input class="dropdown-item submit-btn w-100" type="submit" value="Peliculas" name="pelicula_admin">
                                         <input class="dropdown-item submit-btn w-100" type="submit" value="Usuarios" name="usuario_admin">
+                                        <input class="dropdown-item submit-btn w-100" type="submit" value="Entradas" name="entradas_admin">
                                     </div>
                                 </li>
                         <?php

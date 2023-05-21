@@ -119,18 +119,15 @@
             <div class="peliculaestreno" style="background-image:url('https://img.youtube.com/vi/hflCiNtY6MA/maxresdefault.jpg');"><img alt="yLYbOe914ZU" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
             <div class="peliculaestreno" style="background-image:url('https://media.revistagq.com/photos/63ea01f16c6ab595e1330cf0/16:9/w_2560%2Cc_limit/flash.png');"><img alt="Gzj1JzTCxm8" class="play" src="https://odeonmulticines.com/wp-content/themes/odeon/assets/icons/video-play-icon.png"></div>
         </div>
-
-
-
     </div>
     <div id="video"></div>
     <div id="videofondo"></div>
     <div class="linea3"></div>
     <footer class="container-fluid text-center">
-        <span class="fa fa-instagram" style="font-size: 30px; color:white"></span>&emsp;
-        <span class="fa fa-twitter" style="font-size: 30px; color:white"></span>&emsp;
-        <span class="fa fa-facebook" style="font-size: 30px; color:white"></span>&emsp;
-        <span class="fa fa-snapchat" style="font-size: 30px; color:white"></span>
+    <a href="https://www.instagram.com/" target='blank'><span class="fa fa-instagram" style="font-size: 30px; color:white"></span></a>&emsp;
+    <a href="https://www.instagram.com/" target='blank'><span class="fa fa-twitter" style="font-size: 30px; color:white"></span></a>&emsp;
+    <a href="https://www.instagram.com/" target='blank'><span class="fa fa-facebook" style="font-size: 30px; color:white"></span></a>&emsp;
+    <a href="https://www.instagram.com/" target='blank'><span class="fa fa-snapchat" style="font-size: 30px; color:white"></span></a>
     </footer>
 
 </body>

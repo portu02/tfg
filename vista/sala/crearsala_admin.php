@@ -44,7 +44,7 @@
                     <option value="1" <?php if ($luxury == 1) echo "selected"; ?>>Luxury</option>
                 </select>
             </label>
-            <input type='submit' class="boton-modificar pen" value='previsualizar' name='previsualizar'><br><br>
+            <input type='submit' class="boton-modificar pen" value='Cambiar' name='previsualizar'><br><br>
         </div>
 
         <div class="butacas-contenedor">

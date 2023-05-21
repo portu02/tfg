@@ -30,6 +30,8 @@ class Paginacion extends Conexion
             $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT sala.id_sala) as total FROM sala;");
         }elseif ($this->tabla == 'usuario') {
             $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT usuario.id_usuario) as total FROM usuario;");
+        }elseif ($this->tabla == 'entradas') {
+            $stmt = $this->conexion->prepare("SELECT COUNT(DISTINCT reserva.id_reserva) as total FROM reserva;");
         }
 
         $stmt->execute();
@@ -79,6 +81,16 @@ class Paginacion extends Conexion
                 }
                 $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
             }
+        }  elseif ($this->tabla == 'entradas') {
+            if (isset($_GET['pagina_entradas'])) {
+                //COMPROBAR SI ES VALIDA LA PAGINA
+                if (is_numeric($_GET['pagina_entradas'])) {
+                    $this->pagactual = $_GET['pagina_entradas'];
+                } else {
+                    $this->pagactual = 1;
+                }
+                $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
+            }
         }
     }
 
@@ -91,8 +103,9 @@ class Paginacion extends Conexion
                 $stmt = $this->conexion->prepare("SELECT DISTINCT id_sala,descripcion,capacidad,habilitada,luxury FROM sala ORDER BY id_sala LIMIT $this->indice, $this->resultadoporpag;");
             } elseif ($this->tabla == 'usuario') {
                 $stmt = $this->conexion->prepare("SELECT DISTINCT id_usuario,nombre,apellido,correo,contrasena,rol FROM usuario ORDER BY id_usuario LIMIT $this->indice, $this->resultadoporpag;");
+            }elseif ($this->tabla == 'entradas') {
+                $stmt = $this->conexion->prepare("SELECT reserva.id_sala as sala, pelicula.nombre as pelicula ,reserva.precio as precio ,horario.fecha as dia ,horario.hora as hora ,butaca.columna as columna,butaca.fila as fila,usuario.nombre as usuario FROM reserva INNER JOIN horario ON reserva.id_horario = horario.id_horario INNER JOIN usuario ON reserva.id_usuario = usuario.id_usuario INNER JOIN butaca ON reserva.id_butaca = butaca.id_butaca INNER JOIN pelicula ON horario.id_pelicula = pelicula.id_pelicula ORDER BY usuario,sala,dia,hora;");
             }
-
             $stmt->execute();
             $registroarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $registroarray;
@@ -111,4 +124,5 @@ class Paginacion extends Conexion
 
         return $array;
     }
+
 }
