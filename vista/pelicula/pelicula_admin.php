@@ -93,7 +93,7 @@
         ?>
     </table>
     <div id='contain'>
-        <div id='dentro'>
+        <div id='dentro' style="margin-top: 0px; margin-bottom:40px">
             <?php
             foreach ($num_pelicula as $a) {
 

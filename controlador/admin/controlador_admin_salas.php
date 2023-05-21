@@ -4,7 +4,7 @@ if (isset($_POST['borrar_sala_admin'])) {
     $sala->borrar($id_sala);
     $result = 'Sala borrada correctamente';
     //Sala
-    $pagina_sala = new Paginacion(5, "sala");
+    $pagina_sala = new Paginacion(4, "sala");
     $arraysalaspaginado = $pagina_sala->mostrar();
     $num_sala = $pagina_sala->numeritos();
 }
@@ -86,7 +86,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         $result = 'Sala actualizada correctamente';
 
         //Sala
-        $pagina_sala = new Paginacion(5, "sala");
+        $pagina_sala = new Paginacion(4, "sala");
         $arraysalaspaginado = $pagina_sala->mostrar();
         $num_sala = $pagina_sala->numeritos();
         require_once('vista/sala/sala_admin.php');
@@ -479,7 +479,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
 
         $result = 'Sala creada correctamente';
         //Sala
-        $pagina_sala = new Paginacion(5, "sala");
+        $pagina_sala = new Paginacion(4, "sala");
         $arraysalaspaginado = $pagina_sala->mostrar();
         $num_sala = $pagina_sala->numeritos();
 
@@ -492,7 +492,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
     }
 } else {
     //Sala
-    $pagina_sala = new Paginacion(5, "sala");
+    $pagina_sala = new Paginacion(4, "sala");
     $arraysalaspaginado = $pagina_sala->mostrar();
     $num_sala = $pagina_sala->numeritos();
     require_once('vista/sala/sala_admin.php');

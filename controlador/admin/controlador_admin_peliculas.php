@@ -4,7 +4,7 @@ if (isset($_POST['borrar_peli'])) {
     $peliculas->borrar($id_pelicula);
     $result = 'Pelicula borrada correctamente';
     //Pelicula
-    $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+    $pagina_pelicula = new Paginacion(4, "pelicula_admin");
     $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
     $num_pelicula = $pagina_pelicula->numeritos();
 }
@@ -39,7 +39,7 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
 
             $result = 'Pelicula creada correctamente';
             //Pelicula
-            $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+            $pagina_pelicula = new Paginacion(4, "pelicula_admin");
             $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
             $num_pelicula = $pagina_pelicula->numeritos();
 
@@ -71,7 +71,7 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
             $result = 'Pelicula actualizada correctamente';
 
             //Pelicula
-            $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+            $pagina_pelicula = new Paginacion(4, "pelicula_admin");
             $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
             $num_pelicula = $pagina_pelicula->numeritos();
 
@@ -92,7 +92,7 @@ if (isset($_POST['nueva_pelicula']) || isset($_POST['editar_pelicula']) || (isse
     }
 } else {
     //Pelicula
-    $pagina_pelicula = new Paginacion(5, "pelicula_admin");
+    $pagina_pelicula = new Paginacion(4, "pelicula_admin");
     $arraypeliculaspaginado_pelicula = $pagina_pelicula->mostrar();
     $num_pelicula = $pagina_pelicula->numeritos();
     require_once("vista/pelicula/pelicula_admin.php");

@@ -5,7 +5,7 @@ if (isset($_POST['borrar_usuario_admin'])) {
     $result = 'Usuario borrado correctamente';
 
     //Usuario
-    $pagina_usuario = new Paginacion(5, "usuario");
+    $pagina_usuario = new Paginacion(4, "usuario");
     $arrayusuariopaginado = $pagina_usuario->mostrar();
     $num_usuario = $pagina_usuario->numeritos();
     require_once('vista/usuario/usuario_admin.php');
@@ -16,7 +16,7 @@ if (isset($_POST['borrar_usuario_admin'])) {
         $result = 'Usuario actualizado correctamente';
 
         //Usuario
-        $pagina_usuario = new Paginacion(5, "usuario");
+        $pagina_usuario = new Paginacion(4, "usuario");
         $arrayusuariopaginado = $pagina_usuario->mostrar();
         $num_usuario = $pagina_usuario->numeritos();
         require_once('vista/usuario/usuario_admin.php');
@@ -25,7 +25,7 @@ if (isset($_POST['borrar_usuario_admin'])) {
     }
 } else {
     //Usuario
-    $pagina_usuario = new Paginacion(5, "usuario");
+    $pagina_usuario = new Paginacion(4, "usuario");
     $arrayusuariopaginado = $pagina_usuario->mostrar();
     $num_usuario = $pagina_usuario->numeritos();
     require_once('vista/usuario/usuario_admin.php');

@@ -27,7 +27,7 @@
                                 <div class="card-body p-2">
                                     <div class="input-group input-group-lg">
                                         <input type="text" name='buscador' class="form-control form-control-lg rounded" placeholder="Busqueda" aria-label="Busqueda" aria-describedby="basic-addon2" value='<?= $buscador ?? "" ?>' />
-                                        <span class="input-group-text border-0" id="basic-addon2"><i class="fas fa-search"></i></span>
+                                        <span class="input-group-text border-0" id="basic-addon2"><i class="fa fa-search"></i></span>
                                     </div>
                                 </div>
                             </div>
