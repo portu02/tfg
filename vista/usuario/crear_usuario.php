@@ -7,66 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script>
-        window.onload = function() {
-            const checkbox = document.getElementById('verPassword');
-            const passwordInput = document.getElementById('contra');
-
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    passwordInput.type = 'text';
-                } else {
-                    passwordInput.type = 'password';
-                }
-            });
-
-            document.getElementById("registro").addEventListener('submit', function(event) {
-                event.preventDefault(); // Evita que el formulario se envíe por defecto
-                // Genera 4 números aleatorios entre 1 y 10 y los almacena en un array
-                var numeros = [];
-                for (var i = 0; i < 4; i++) {
-                    numeros[i] = Math.floor(Math.random() * 10) + 1;
-                }
-
-                // Convierte el array de números en una cadena de texto
-                var numerosAleatorios = numeros.join('');
-
-                // Obtiene los valores del formulario
-                let nombre = document.getElementById('nombre').value;
-                let apellido = document.getElementById("apellido").value;
-                let gmail = document.getElementById("gmail").value;
-                let contra = document.getElementById("contra").value;
-                let rol = document.getElementById("rol").value;
-
-                //ENVIAR CORREO
-                Email.send({
-                    Host: "smtp.elasticemail.com",
-                    Username: "richiliculas@gmail.com",
-                    Password: "33116F6401112EB1E4626A8D39D35715CB38",
-                    To: gmail,
-                    From: "richiliculas@gmail.com",
-                    Subject: "Código de confirmacion",
-                    Body: numerosAleatorios
-                }).then(
-                    message => alert(message)
-                );
-
-                // Crea una nueva ventana
-                let nuevaVentana = window.open('', '_blank', 'width=800,height=800,left=' + (screen.width - 800) / 2 + ',top=' + (screen.height - 800) / 2);
-
-                // Pasa los datos a la nueva ventana utilizando localStorage
-                localStorage.setItem('nombre', nombre);
-                localStorage.setItem('apellido', apellido);
-                localStorage.setItem('gmail', gmail);
-                localStorage.setItem('contra', contra);
-                localStorage.setItem('rol', rol);
-                localStorage.setItem('code', numerosAleatorios);
-
-                // Redirige la nueva ventana a la página que quieres mostrar
-                nuevaVentana.location.href = 'vista/usuario/comprobacion_usuario_correo.php';
-            });
-        }
-    </script>
+    <script src="vista/js/crear_usuario.js"></script>
 </head>
 
 <body style="background-color: black;">
@@ -92,7 +33,6 @@
                                                 <span class="h1 fw-bold mb-0" style="font-family: 'Bebas Neue', cursive;font-weight: normal;color: Red;;">RICHILICULAS</span>
                                             </div>
 
-                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Bienvenido a Richiliculas</h5>
 
                                             <div class="form-outline mb-2">
                                                 <label class="form-label" for="form2Example17">Nombre</label>

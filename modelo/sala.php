@@ -8,20 +8,18 @@ class Sala extends Crud
     private $capacidad;
     private $habilitada;
     private $luxury;
-    private $lleno;
 
     private $conexion;
     const TABLA = "sala";
 
 
-    public function __construct($id_sala, $descripcion, $capacidad, $habilitada, $luxury, $lleno)
+    public function __construct($id_sala, $descripcion, $capacidad, $habilitada, $luxury)
     {
         $this->id_sala = $id_sala;
         $this->descripcion = $descripcion;
         $this->capacidad = $capacidad;
         $this->habilitada = $habilitada;
         $this->luxury = $luxury;
-        $this->lleno = $lleno;
 
         parent::__construct(self::TABLA);
         $this->conexion = parent::conex();
@@ -42,13 +40,12 @@ class Sala extends Crud
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(id_sala,descripcion, capacidad, habilitada, luxury, lleno) VALUES (:id,:descripcion, :capacidad, :habilitada, :luxury, :lleno)");
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(id_sala,descripcion, capacidad, habilitada, luxury) VALUES (:id,:descripcion, :capacidad, :habilitada, :luxury)");
             $stmt->bindParam(":id", $this->id_sala);
             $stmt->bindParam(":descripcion", $this->descripcion);
             $stmt->bindParam(":capacidad", $this->capacidad);
             $stmt->bindParam(":habilitada", $this->habilitada);
             $stmt->bindParam(":luxury", $this->luxury);
-            $stmt->bindParam(":lleno", $this->lleno);
 
             $stmt->execute();
         } catch (PDOException $e) {
@@ -59,14 +56,13 @@ class Sala extends Crud
     function actualizar()
     {
         try {
-            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET descripcion=:descripcion,capacidad=:capacidad,habilitada=:habilitada,luxury=:luxury,lleno=:lleno WHERE id_sala=:id_sala;");
+            $stmt = $this->conexion->prepare("UPDATE " . self::TABLA . " SET descripcion=:descripcion,capacidad=:capacidad,habilitada=:habilitada,luxury=:luxury WHERE id_sala=:id_sala;");
 
             $stmt->bindParam(":id_sala", $this->id_sala);
             $stmt->bindParam(":descripcion", $this->descripcion);
             $stmt->bindParam(":capacidad", $this->capacidad);
             $stmt->bindParam(":habilitada", $this->habilitada);
             $stmt->bindParam(":luxury", $this->luxury);
-            $stmt->bindParam(":lleno", $this->lleno);
 
             $stmt->execute();
         } catch (PDOException $e) {
@@ -116,7 +112,7 @@ class Sala extends Crud
                 }
                 return $numsalas;
             } else {
-                return 1;
+                return null;
             }
         } catch (PDOException $e) {
             echo "Error" . $e->getMessage();

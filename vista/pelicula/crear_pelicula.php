@@ -10,75 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="vista/css/sala_admin.css">
-    <script src="vista/js/sala_admin.js"></script>
-    <script>
-        window.onload = function() {
-            /* ACTUALIZAR O CREAR LA IMAGEN */
-            const agrega = document.getElementById("file");
-            const imagePreview = document.getElementById("agregar_imagen");
-            const nombre = document.getElementById("nombre");
-
-            agrega.addEventListener("change", function(event) {
-                const file = this.files[0];
-                nombre.innerHTML = file.name;
-
-                const selectedFiles = event.target.files;
-                for (let i = 0; i < selectedFiles.length; i++) {
-                    const reader = new FileReader();
-
-                    reader.addEventListener("load", function() {
-                        imagePreview.style.backgroundImage = `url(${reader.result})`;
-                    });
-
-                    reader.readAsDataURL(selectedFiles[i]);
-                }
-            });
-
-            /* ACTUALIZAR URL */
-            const trailer = document.getElementById("trailer");
-            const url_nueva = document.getElementById("nueva_url");
-            const boton = document.getElementById("boton");
-
-            if (boton) {
-                boton.addEventListener("click", function() {
-                    trailer.src = "https://www.youtube.com/embed/" + url_nueva.value;
-                });
-            }
-
-            /* AGREGAR TRAILER */
-            const trailer2 = document.getElementById("trailer2");
-            const url_nueva2 = document.getElementById("nueva_url2");
-            const boton2 = document.getElementById("boton2");
-
-            if (boton2) {
-                boton2.addEventListener("click", function() {
-                    const iframeExistente = document.querySelector('iframe');
-
-                    if (iframeExistente) {
-                        iframeExistente.remove();
-                    }
-
-                    var iframe = document.createElement("iframe");
-
-                    iframe.setAttribute("src", "https://www.youtube.com/embed/" + url_nueva2.value);
-                    iframe.setAttribute("width", "100%");
-                    iframe.setAttribute("height", "400px");
-                    iframe.setAttribute("name", "trailer");
-                    iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
-
-                    var label = document.querySelector("label[for='url_new']");
-                    label.parentNode.insertBefore(iframe, label);
-                });
-            }
-
-            document.getElementById("FormulCreaPelicula").addEventListener("submit", function(event) {
-                let boton = event.submitter;
-                if (boton.id === "EnviaPelicula") {
-                    document.getElementById("loadingImage").style.display = "block";
-                }
-            });
-        }
-    </script>
+    <script src="vista/js/crear_pelicula.js"></script>
 </head>
 
 <body>
@@ -109,7 +41,7 @@
                 <input type='text' name='nombre' value='<?= $nombre ?? "" ?>' required>
             </label>
             <label for='duracion'>Duracion:
-                <input type='number' min='5' step='1' name='duracion' value='<?= $duracion ?? 5 ?>' pattern='[0-9]+' required>
+                <input type='number' min='0' step='1' name='duracion' value='<?= $duracion ?? 0 ?>' pattern='[0-9]+' required>
             </label>
             <label for='clasificacion'>Clasificación:
                 <select name="clasificacion">

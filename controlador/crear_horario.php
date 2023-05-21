@@ -38,7 +38,7 @@ if (isset($_POST['enviar_pelicula'])) {
 
 
 /* SACAR ARRAY SALAS */
-$objtsala = new Sala("", "", "", "", "", "");
+$objtsala = new Sala("", "", "", "", "");
 $objthorario = new Horario("", "", "", "", "", "");
 
 //AL CREAR UNA SALA LAS DEMAS NO CAMBIAN EL HORARIO
@@ -115,7 +115,7 @@ for ($iu = 0; $iu < 8; $iu++) {
 
         //EL HORARIO EMPIEZA A LAS 16:00
         $horatiempo = 16;
-
+        if($numsalas != null){
         foreach ($numsalas as $numsalasi => $ns) {
 
             //echo "<span style='color:green'>" . $fecha_actual->format('Y-m-d') . "</span>";
@@ -164,12 +164,13 @@ for ($iu = 0; $iu < 8; $iu++) {
                 } else {
                     //echo "SE REPITE";
                 }
-            
+            }
 
             $horatiempo = 16;
             //echo "<br>";
         }
     }
+
         //echo "<hr>";
     }
 }

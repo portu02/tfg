@@ -30,8 +30,6 @@
                                                 <span class="h1 fw-bold mb-0" style="font-family: 'Bebas Neue', cursive;font-weight: normal;color: Red;;">RICHILICULAS</span>
                                             </div>
 
-                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Bienvenido a Richiliculas</h5>
-
                                             <div class="form-outline mb-2">
                                                 <label class="form-label" for="form2Example17">Gmail</label>
                                                 <input type="email" id="form2Example17" class="form-control " name="gmail_login" required /><br>

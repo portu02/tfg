@@ -18,7 +18,7 @@ $horarios = new Horario("", "", "", "", "", "");
 //creacion de horarios
 $butacas = new Butaca("", "", "", "", "", "");
 //creacion de sala
-$sala = new Sala("", "", "", "", "", "");
+$sala = new Sala("", "", "", "", "");
 $arraysalas = $sala->obtieneTodos();
 //creacion de usuarios
 $usuario = new Usuario("", "", "", "", "", "");
@@ -57,7 +57,7 @@ elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isse
 elseif(isset($_POST["enviar_sala_reservar"]) || isset($_POST["quitar_reserva"]) || isset($_POST["carrito_sesion"]) || isset($_POST["comprar_reservas"])){
     require_once("controlador/controlador_reserva.php");
 }
-elseif(isset($_GET["pagina_reserva"]) || isset($_POST["entradas_admin"])){
+elseif(isset($_GET["pagina_entradas"]) || isset($_POST["entradas_admin"])){
     require_once("controlador/admin/controlador_admin_entradas.php");
 
 }

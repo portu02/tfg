@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="form-outline form-white mb-4">
                                         <label class="form-label">Correo:</label>
-                                        <input type="email" name="correo_usuario_admin_editar"  value='<?= $_POST['correo_usuario_admin'] ?? "" ?>' class="form-control form-control-lg" />
+                                        <input type="text" name="correo_usuario_admin_editar"  value='<?= $_POST['correo_usuario_admin'] ?? "" ?>' class="form-control form-control-lg" />
                                     </div>
                                     <div class="form-outline form-white mb-4">
                                         <label class="form-label">Rol:</label>

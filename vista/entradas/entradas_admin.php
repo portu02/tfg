@@ -53,16 +53,16 @@
             <?php
             foreach ($num_entradas as $a) {
 
-                if (isset($_GET["pagina_reserva"])) {
-                    if ($_GET["pagina_reserva"] == $a) {
+                if (isset($_GET["pagina_entradas"])) {
+                    if ($_GET["pagina_entradas"] == $a) {
             ?>
-                        <a href='?pagina_reserva=<?= ($a) ?>'>
+                        <a href='?pagina_entradas=<?= ($a) ?>'>
                             <div id='colorea' class='dentro'></div>
                         </a>
                     <?php
                     } else {
                     ?>
-                        <a href='?pagina_reserva=<?= ($a) ?>'>
+                        <a href='?pagina_entradas=<?= ($a) ?>'>
                             <div class='dentro'></div>
                         </a>
                     <?php
@@ -70,13 +70,13 @@
                 } else {
                     if ($a == 1) {
                     ?>
-                        <a href='?pagina_reserva=<?= ($a) ?>'>
+                        <a href='?pagina_entradas=<?= ($a) ?>'>
                             <div id='colorea' class='dentro'></div>
                         </a>
                     <?php
                     } else {
                     ?>
-                        <a href='?pagina_reserva=<?= ($a) ?>'>
+                        <a href='?pagina_entradas=<?= ($a) ?>'>
                             <div class='dentro'></div>
                         </a>
             <?php

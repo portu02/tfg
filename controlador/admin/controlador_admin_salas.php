@@ -12,7 +12,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
     if (isset($_POST["editar_sala"]) || isset($_POST["editar_sala_admin_editar"])) {
         $id_sala = $_POST["id_sala"];
         $butacas = new Butaca("", "", "", "", "");
-        $sala = new Sala($id_sala, "", "", "", "", "");
+        $sala = new Sala($id_sala, "", "", "", "");
 
 
         $descripcion = $sala->obtieneDeID($id_sala)->descripcion;
@@ -49,7 +49,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         $capacidad = $sala->obtieneDeID($id_sala)->capacidad;
         $habilitada = $_POST["habilitada"];
         $luxury = $_POST["luxury"];
-        $lleno = 0;
+
 
         if (isset($_POST["butaca"])) {
             $but = $_POST["butaca"];
@@ -80,7 +80,7 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         }
 
         /* ACTUALIZAR SALA */
-        $sala = new Sala($id_sala, $descripcion, $capacidad, $habilitada, $luxury, $lleno);
+        $sala = new Sala($id_sala, $descripcion, $capacidad, $habilitada, $luxury);
         $sala->actualizar();
 
         $result = 'Sala actualizada correctamente';
@@ -440,12 +440,12 @@ if (isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset
         }
 
         /* INSERTAR SALA */
-        $salas = new Sala("", "", "", "", "", "");
+        $salas = new Sala("", "", "", "", "");
 
         $id_sala = $salas->obtieneUltimoID();
         $id_sala = $id_sala + 1;
 
-        $sala = new Sala($id_sala, $descripcion, $capacidad, $habilitada, $luxury, 0);
+        $sala = new Sala($id_sala, $descripcion, $capacidad, $habilitada, $luxury);
         $sala->crear();
 
         /* INSERTAR BUTACAS */

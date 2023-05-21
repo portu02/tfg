@@ -81,7 +81,7 @@ class Paginacion extends Conexion
                 }
                 $this->indice = ($this->pagactual - 1) * ($this->resultadoporpag);
             }
-        }  elseif ($this->tabla == 'entradas') {
+        }elseif ($this->tabla == 'entradas') {
             if (isset($_GET['pagina_entradas'])) {
                 //COMPROBAR SI ES VALIDA LA PAGINA
                 if (is_numeric($_GET['pagina_entradas'])) {
@@ -106,6 +106,7 @@ class Paginacion extends Conexion
             }elseif ($this->tabla == 'entradas') {
                 $stmt = $this->conexion->prepare("SELECT reserva.id_sala as sala, pelicula.nombre as pelicula ,reserva.precio as precio ,horario.fecha as dia ,horario.hora as hora ,butaca.columna as columna,butaca.fila as fila,usuario.nombre as usuario FROM reserva INNER JOIN horario ON reserva.id_horario = horario.id_horario INNER JOIN usuario ON reserva.id_usuario = usuario.id_usuario INNER JOIN butaca ON reserva.id_butaca = butaca.id_butaca INNER JOIN pelicula ON horario.id_pelicula = pelicula.id_pelicula ORDER BY usuario,sala,dia,hora;");
             }
+
             $stmt->execute();
             $registroarray = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $registroarray;
@@ -124,5 +125,4 @@ class Paginacion extends Conexion
 
         return $array;
     }
-
 }
