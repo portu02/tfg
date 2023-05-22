@@ -51,16 +51,20 @@ if (isset($_POST['crear_login']) || isset($_POST['registar_nuevo_login'])) {
                 $_SESSION['usuario_sesion']=$array_usuario_sesion;
                 echo '<script>alert("El usuario '.$nuevo_usuario->getcorreo().' inicio sesion");</script>';
                 require_once('vista/principal.php');
+
             } else {
                 echo '<script>alert("Algo salio mal");</script>';
+                require_once('vista/login.php');
             }
         } else {
             echo '<script>alert("Faltan Datos");</script>';
+            require_once('vista/login.php');
         }
     } else {
         $msg = "";
+        require_once('vista/login.php');
     }
 
 
-    require_once('vista/login.php');
+    
 }
