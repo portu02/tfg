@@ -41,7 +41,7 @@
                 <input type='text' name='nombre' value='<?= $nombre ?? "" ?>' required>
             </label>
             <label for='duracion'>Duracion:
-                <input type='number' min='0' step='1' name='duracion' value='<?= $duracion ?? 0 ?>' pattern='[0-9]+' required>
+                <input type='number' min='5' step='1' name='duracion' value='<?= $duracion ?? 0 ?>' pattern='[0-9]+' required>
             </label>
             <label for='clasificacion'>Clasificación:
                 <select name="clasificacion">

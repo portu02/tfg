@@ -22,6 +22,7 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -43,6 +44,11 @@
                 <div class="carousel-caption d-none d-md-block gradiante">
                     <h5 class="textocarrusel">Blue Beetle</h5>
                     <p class="textocarrusel">Fecha de estreno 18/08/2023</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="vista/fotos/efecto2.gif" class="d-block w-100 object-fit-cover-top" alt="vista/fotos/efecto.gif" style="max-height: 500px;object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block gradiante">
                 </div>
             </div>
         </div>

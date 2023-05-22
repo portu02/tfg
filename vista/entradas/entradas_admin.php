@@ -42,7 +42,7 @@
                 <td data-titulo='pelicula'><?php echo $row['pelicula']?></td>
                 <td data-titulo='fila'><?php echo $row['fila'] ?></td>
                 <td data-titulo='columna'><?php echo $row['columna'] ?></td>
-                <td data-titulo='precio'><?php echo $row['precio'] ?></td>
+                <td data-titulo='precio'><?php echo $row['precio'] ?> €</td>
             </tr>
         <?php
         }

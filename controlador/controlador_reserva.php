@@ -42,10 +42,10 @@ if (isset($_SESSION['usuario_sesion'])) {
             }
         }
 
-        
+
         if (isset($_POST["reserva"])) {
             $reservas = $_POST["reserva"];
-            
+
             foreach ($reservas as $i => $a) {
 
                 $datosss = explode(";", $i);
@@ -246,26 +246,34 @@ if (isset($_SESSION['usuario_sesion'])) {
                 }
 
                 $correo_reserva = $_SESSION['usuario_sesion']['correo'];
+
+                $id_usuario = $_SESSION['usuario_sesion']['id_usuario'];
+                $nombrecookie = "Entradas" . $id_usuario;
+
+                if (isset($_COOKIE[$nombrecookie])) {
+
+                    setcookie($nombrecookie, '', time() - 3600, '/');
+
 ?>
-                <script src="https://smtpjs.com/v3/smtp.js"></script>
-                <script>
-                    //ENVIAR CORREO
-                    Email.send({
-                        Host: "smtp.elasticemail.com",
-                        Username: "richiliculas@gmail.com",
-                        Password: "33116F6401112EB1E4626A8D39D35715CB38",
-                        To: "<?= $correo_reserva ?? '' ?>",
-                        From: "richiliculas@gmail.com",
-                        Subject: "Compra de entradas:",
-                        Body: "<html><head><style>*{color: white;text-align:center;}span{color:red;} #richi {font-family: 'Times New Roman', serif;font-weight: bold;font-size: 40px;color: red;}div {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: black;}</style></head><body><div class='contenedor'><h1><span id='richi'>RICHILICULAS</span></h1><hr style='background-color: white;'><h1>Compra de entradas</h1><hr style='background-color: white;margin-left: 40%;margin-right:40%;'><?= $string_total ?? "" ?><h2><span>Total:</span> <?= $total ?? '' ?> €</h2><hr style='background-color: white;'><p style='font-size:20px' >Gracias por confiar en Richiliculas para comprar tu entrada de cine, esperamos que disfrutes de la película</p></div></body></html>"
-                    }).then(
-                        message => alert(message)
-                    );
-                    alert("Se ha comprado correctamente las entradas revise spam");
-                </script>
+                    <script src="https://smtpjs.com/v3/smtp.js"></script>
+                    <script>
+                        //ENVIAR CORREO
+                        Email.send({
+                            Host: "smtp.elasticemail.com",
+                            Username: "richiliculas@gmail.com",
+                            Password: "33116F6401112EB1E4626A8D39D35715CB38",
+                            To: "<?= $correo_reserva ?? '' ?>",
+                            From: "richiliculas@gmail.com",
+                            Subject: "Compra de entradas:",
+                            Body: "<html><head><style>*{color: white;text-align:center;}span{color:red;} #richi {font-family: 'Times New Roman', serif;font-weight: bold;font-size: 40px;color: red;}div {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: black;}</style></head><body><div class='contenedor'><h1><span id='richi'>RICHILICULAS</span></h1><hr style='background-color: white;'><h1>Compra de entradas</h1><hr style='background-color: white;margin-left: 40%;margin-right:40%;'><?= $string_total ?? "" ?><h2><span>Total:</span> <?= $total ?? '' ?> €</h2><hr style='background-color: white;'><p style='font-size:20px' >Gracias por confiar en Richiliculas para comprar tu entrada de cine, esperamos que disfrutes de la película</p></div></body></html>"
+                        }).then(
+                            message => alert(message)
+                        );
+                        alert("Se ha comprado correctamente las entradas revise spam");
+                    </script>
 <?php
-                setcookie($nombrecookie, '', time() - 3600, '/');
-                require_once("vista/principal.php");
+                    require_once("vista/principal.php");
+                }
             } else {
                 echo "<script>alert('Se te han adelantado, haber andado listo');</script>";
                 require_once('vista/principal.php');
@@ -278,3 +286,4 @@ if (isset($_SESSION['usuario_sesion'])) {
     echo "<script>alert('No ha iniciado sesion');</script>";
     require_once('vista/login.php');
 }
+?>
