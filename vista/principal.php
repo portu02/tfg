@@ -12,7 +12,7 @@
     <script src="vista/js/script.js"></script>
 </head>
 
-<body>
+<body style="background-color:#141414;">
     <?php
     include "vista/menu.php";
     ?>

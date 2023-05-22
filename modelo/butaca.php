@@ -38,8 +38,15 @@ class Butaca extends Crud
     function crear()
     {
         try {
-            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(columna, fila, color, id_sala) VALUES (:columna, :fila, :color, :id_sala)");
+            $stmtsacarmax = $this->conexion->prepare("SELECT MAX(id_butaca) AS max_id FROM butaca");
+            $stmtsacarmax->execute();
+            $sacarid = $stmtsacarmax->fetch(PDO::FETCH_ASSOC);
 
+            $id_butaca = $sacarid['max_id'] + 1;
+
+            $stmt = $this->conexion->prepare("INSERT INTO " . self::TABLA . "(id_butaca,columna, fila, color, id_sala) VALUES (:id_butaca,:columna, :fila, :color, :id_sala)");
+
+            $stmt->bindParam(":id_butaca", $id_butaca);
             $stmt->bindParam(":columna", $this->columna);
             $stmt->bindParam(":fila", $this->fila);
             $stmt->bindParam(":color", $this->color);
@@ -110,17 +117,17 @@ class Butaca extends Crud
         }
     }
 
-    public function obtenerIDButaca($fila,$columna,$id_sala){
+    public function obtenerIDButaca($fila, $columna, $id_sala)
+    {
         try {
             $stmt = $this->conexion->prepare("SELECT id_butaca FROM " . self::TABLA . " WHERE butaca.fila = :fila AND butaca.columna = :columna AND butaca.id_sala = :id_sala;");
-    
+
             $stmt->bindParam(":fila", $fila);
             $stmt->bindParam(":columna", $columna);
             $stmt->bindParam(":id_sala", $id_sala);
-        
+
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
         } catch (PDOException $e) {
             return $e->getMessage();
         }
