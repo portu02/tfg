@@ -133,10 +133,10 @@
     <div id="videofondo"></div>
     <div class="linea3"></div>
     <footer class="container-fluid text-center">
-        <span class="fa fa-instagram" style="font-size: 30px; color:white"></span>&emsp;
-        <span class="fa fa-twitter" style="font-size: 30px; color:white"></span>&emsp;
-        <span class="fa fa-facebook" style="font-size: 30px; color:white"></span>&emsp;
-        <span class="fa fa-snapchat" style="font-size: 30px; color:white"></span>
+    <a href='https://www.instagram.com/richiliculas.s.l/' target="_blank"><span class="fa fa-instagram" style="font-size: 30px; color:white"></span></a>&emsp;
+    <a href='https://twitter.com/richiliculas?t=aAMqgjzcuEZCDIpD1KBp3w&s=09' target="_blank"><span class="fa fa-twitter" style="font-size: 30px; color:white"></span></a>&emsp;
+    <a href='https://twitter.com/richiliculas?t=aAMqgjzcuEZCDIpD1KBp3w&s=09' target="_blank"><span class="fa fa-facebook" style="font-size: 30px; color:white"></span></a>&emsp;
+    <a href='https://twitter.com/richiliculas?t=aAMqgjzcuEZCDIpD1KBp3w&s=09' target="_blank"><span class="fa fa-snapchat" style="font-size: 30px; color:white"></span></a> 
     </footer>
 
 </body>

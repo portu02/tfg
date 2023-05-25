@@ -104,6 +104,38 @@
             <iframe src="https://www.youtube.com/embed/<?= $pelicula->url ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
+        <form action="" method="post">
+            <div class="comment-filas-columnas">
+                <input type='text' value='<?= $id_pelicula ?? "" ?>' name='id_pelicula' hidden />
+                <input type='text' value='<?= $id_pelicula ?? "" ?>' name='pelicula' hidden />
+                <input type="text" id="comment-input" name="texto_comentario" placeholder="Escribe tu comentario...">
+                <button id="comment-btn" name="hacer_comentario">Enviar</button>
+            </div>
+        </form>
+
+        <div id="cajacomentario">
+        <?php    
+        foreach($comentarios as $comment){
+            if(isset($_SESSION['usuario_sesion'])){
+                if($comment["id_usuario"] == $_SESSION['usuario_sesion']['id_usuario']){
+                    ?>
+                        <div class="comentario comentario2"><span class="comentariotunombre"><?= $comment["nombre"].$comment["id_usuario"] ?? "" ?>: </span><?= $comment["texto"] ?? "" ?></div>
+                    <?php
+                }else{
+                    ?>
+                    <div class="comentario"><span class="comentarionombre"><?= $comment["nombre"].$comment["id_usuario"] ?? "" ?>: </span><?= $comment["texto"] ?? "" ?></div>
+                <?php   
+                }
+            }else{
+                ?>
+                <div class="comentario"><span class="comentarionombre"><?= $comment["nombre"].$comment["id_usuario"] ?? "" ?>: </span><?= $comment["texto"] ?? "" ?></div>
+            <?php 
+            }
+
+        }
+        ?>
+        </div>
+
     </div>
     <div class="linea3"></div>
     <footer class="container-fluid text-center">

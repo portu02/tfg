@@ -8,6 +8,7 @@ include_once("modelo/sala.php");
 include_once("modelo/butaca.php");
 include_once("modelo/usuario.php");
 include_once("modelo/reserva.php");
+include_once("modelo/comentario.php");
 
 //creacion de todas las peliculas 
 $peliculas = new Pelicula("", "", "", "", "", "", "", "", "");
@@ -28,12 +29,17 @@ $arrayusuarios = $usuario->obtieneTodos();
 $pagina = new Paginacion(4, "pelicula");
 $arraypeliculaspaginado = $pagina->mostrar();
 $num = $pagina->numeritos();
-
+//Comentarios
+$comentario = new Comentario("", "", "", "");
 //creacion de reserva
 $reserva = new Reserva("", "", "", "", "", "");
 
+
+if(isset($_POST["hacer_comentario"])){
+    require_once("controlador/controlador_comentario.php");
+}
 //si interactua con alguna pelicula o el dia
-if (isset($_POST["pelicula"]) || isset($_POST["dia"]) || isset($_POST["buscar_pelicula"])) {
+elseif (isset($_POST["pelicula"]) || isset($_POST["dia"]) || isset($_POST["buscar_pelicula"])) {
     require_once("controlador/controlador_peliculas.php");
 
     //si interactua con la hora
@@ -43,6 +49,7 @@ if (isset($_POST["pelicula"]) || isset($_POST["dia"]) || isset($_POST["buscar_pe
 //admin sala 
 elseif(isset($_GET["pagina_sala"]) || isset($_POST["sala_admin"]) || isset($_POST["editar_sala_admin"]) || isset($_POST["anadir_sala_admin"]) || isset($_POST["editar_sala"]) || isset($_POST["enviar_sala_editar"]) || isset($_POST["editar_sala_admin_editar"]) || isset($_POST["borrar_sala_admin"]) || isset($_POST["previsualizar"]) || isset($_POST["enviar_sala"])){
     require_once("controlador/admin/controlador_admin_salas.php");
+
 }
 elseif (isset($_POST["sala"]) || isset($_POST["hora"])) {
     require_once("controlador/controlador_sala.php");
@@ -53,7 +60,6 @@ elseif (isset($_GET["pagina_usuario"]) || isset($_POST["usuario_admin"])  || iss
 elseif(isset($_POST["iniciar_sesion"]) || isset($_POST["acceder_login"]) || isset($_POST["volver_login"]) || isset($_POST["crear_login"]) || isset($_POST['registar_nuevo_login']) || isset($_POST['comprobar_codigo'])){
     require_once("controlador/controlador_login.php");
 }
-
 elseif(isset($_POST["enviar_sala_reservar"]) || isset($_POST["quitar_reserva"]) || isset($_POST["carrito_sesion"]) || isset($_POST["comprar_reservas"])){
     require_once("controlador/controlador_reserva.php");
 }
