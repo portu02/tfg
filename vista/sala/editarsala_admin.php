@@ -10,6 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="vista/css/sala.css">
+    <?php
+    if (!isset($_SESSION['usuario_sesion'])) {
+        header('location: ../../index.php');
+    }
+    ?>
     <script src="vista/js/editar_sala_admin.js"></script>
 </head>
 <body>

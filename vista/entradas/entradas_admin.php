@@ -8,6 +8,11 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <?php
+    if (!isset($_SESSION['usuario_sesion'])) {
+        header('location: ../../index.php');
+    }
+    ?>
     <script>
         <?php if ($result != "") {
         ?>alert("<?= $result ?>")
@@ -36,10 +41,10 @@
         ?>
             <tr>
                 <td data-titulo='usuario'><?php echo $row['usuario'] ?></td>
-                <td data-titulo='sala'><?php echo $row['sala']?></td>
+                <td data-titulo='sala'><?php echo $row['sala'] ?></td>
                 <td data-titulo='fecha'><?php echo $row['dia'] ?></td>
                 <td data-titulo='hora'><?php echo $row['hora'] ?></td>
-                <td data-titulo='pelicula'><?php echo $row['pelicula']?></td>
+                <td data-titulo='pelicula'><?php echo $row['pelicula'] ?></td>
                 <td data-titulo='fila'><?php echo $row['fila'] ?></td>
                 <td data-titulo='columna'><?php echo $row['columna'] ?></td>
                 <td data-titulo='precio'><?php echo $row['precio'] ?> €</td>
