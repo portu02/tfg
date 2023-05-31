@@ -36,7 +36,7 @@
             <td colspan="5">NUEVA SALA</td>
             <td colspan="2">
                 <form method="post" action="index.php">
-                    <button class="insert" name="anadir_sala_admin" title="Añadir"><i class='fas fa-plus' style='font-size:24px'></i></button>
+                    <button class="insert" name="anadir_sala_admin" title="Añadir"><i class='fas' style='font-size:24px'></i></button>
                 </form>
             </td>
         </tr>
@@ -63,7 +63,7 @@
                 </td>
                 <td>
                     <form method="post" action="index.php">
-                        <button class="edit" name="editar_sala" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
+                        <button class="edit" name="editar_sala" title="Editar"><i class='fas' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_sala" value="<?php echo $row['id_sala'] ?>" />
                         <input type="hidden" name="descripcion" value="<?php echo $row['descripcion'] ?>" />
                         <input type="hidden" name="capacidad" value="<?php echo $row['capacidad'] ?>" />

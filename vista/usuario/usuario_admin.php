@@ -43,7 +43,7 @@
                 <td data-titulo='Rol'><?php echo $row['rol'] ?></td>
                 <td>
                     <form method="post" action="index.php">
-                        <button class="edit" name="editar_usuario_admin" title="Editar"><i class='fas fa-edit' style='font-size:24px'></i></button>
+                        <button class="edit" name="editar_usuario_admin" title="Editar"><i class='fas' style='font-size:24px'></i></button>
                         <input type="hidden" name="id_usuario_admin" value="<?php echo $row['id_usuario'] ?>" />
                         <input type="hidden" name="nombre_usuario_admin" value="<?php echo $row['nombre'] ?>" />
                         <input type="hidden" name="apellido_usuario_admin" value="<?php echo $row['apellido'] ?>" />

@@ -297,11 +297,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
             font-family: 'Bebas Neue', cursive;
             font-weight: normal;
             color: white;
-            font-size: 3.5em;
+            font-size: 3.5vw;
             cursor: default;
         }
 
